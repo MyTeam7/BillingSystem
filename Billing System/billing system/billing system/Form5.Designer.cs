@@ -211,6 +211,7 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Gainsboro;
+            this.button4.BackgroundImage = global::billing_system.Properties.Resources.add;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(412, 250);
@@ -225,6 +226,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Gainsboro;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(326, 250);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 43);
