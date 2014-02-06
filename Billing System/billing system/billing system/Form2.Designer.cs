@@ -822,7 +822,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Admin";
             this.Text = "Admin";
-            this.Load += new System.EventHandler(this.Adminform_Load);
+            this.Load += new System.EventHandler(this.Admin_Load);
             this.adminTabPg.ResumeLayout(false);
             this.Items.ResumeLayout(false);
             this.Items.PerformLayout();
