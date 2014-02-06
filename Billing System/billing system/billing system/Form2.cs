@@ -32,5 +32,10 @@ namespace billing_system
 
             adminDb.Insert(textboxCode, txtboxDescription, txtboxDiscount, Qty, txtboxRate, rate, txtboxOther);
         }
+
+        private void Admin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
