@@ -5,7 +5,7 @@ using MySql.Data.MySqlClient;
 
 namespace billing_system.Classes
 {
-    // Dilanka Rathnayaka--2/2/2014
+    // --------------Dilanka Rathnayaka----------------2/2/2014-------------------
 
     /// <summary>
     /// class for dbconnection open, dbconnection close

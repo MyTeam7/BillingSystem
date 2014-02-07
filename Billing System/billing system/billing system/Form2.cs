@@ -24,13 +24,12 @@ namespace billing_system
             String txtboxDescription = txtBoxDescription.Text;
             String txtboxDiscount = txtBoxDiscount.Text;
             String Qty = textBox2.Text;
-            String txtboxRate = txtBoxRate.Text;
             String rate = textBox8.Text;
             String txtboxOther = txtBoxOther.Text;
 
             ItemDBConnection adminDb = new ItemDBConnection();
 
-            adminDb.Insert(textboxCode, txtboxDescription, txtboxDiscount, Qty, txtboxRate, rate, txtboxOther);
+            
         }
 
         private void Admin_Load(object sender, EventArgs e)

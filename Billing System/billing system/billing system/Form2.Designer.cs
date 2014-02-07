@@ -38,14 +38,6 @@
             this.button9 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Disc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Other = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtBoxDescription = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -53,7 +45,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtBoxOther = new System.Windows.Forms.TextBox();
             this.lblOther = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtBoxCode = new System.Windows.Forms.TextBox();
             this.A_I_Code = new System.Windows.Forms.Label();
@@ -69,6 +63,13 @@
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtBoxSearch = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -95,26 +96,24 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Disc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Other = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adminTabPg.SuspendLayout();
             this.Items.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.Users.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Report.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // adminTabPg
@@ -220,7 +219,6 @@
             this.No,
             this.Code,
             this.Description,
-            this.Qty,
             this.Disc,
             this.Cost,
             this.Rate,
@@ -229,55 +227,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(974, 516);
             this.dataGridView1.TabIndex = 4;
-            // 
-            // No
-            // 
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
-            this.No.DefaultCellStyle = dataGridViewCellStyle1;
-            this.No.HeaderText = "No:";
-            this.No.Name = "No";
-            this.No.Width = 50;
-            // 
-            // Code
-            // 
-            this.Code.HeaderText = "Code";
-            this.Code.Name = "Code";
-            this.Code.Width = 125;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            this.Description.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Description.Width = 400;
-            // 
-            // Qty
-            // 
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.Width = 50;
-            // 
-            // Disc
-            // 
-            this.Disc.HeaderText = "Disc";
-            this.Disc.Name = "Disc";
-            this.Disc.Width = 50;
-            // 
-            // Cost
-            // 
-            this.Cost.HeaderText = "Cost";
-            this.Cost.Name = "Cost";
-            // 
-            // Rate
-            // 
-            this.Rate.HeaderText = "Rate";
-            this.Rate.Name = "Rate";
-            // 
-            // Other
-            // 
-            this.Other.HeaderText = "Other";
-            this.Other.Name = "Other";
-            this.Other.Width = 150;
             // 
             // panel1
             // 
@@ -356,6 +305,15 @@
             this.lblOther.TabIndex = 0;
             this.lblOther.Text = "Other";
             // 
+            // textBox2
+            // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(298, 52);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(125, 26);
+            this.textBox2.TabIndex = 1;
+            // 
             // textBox8
             // 
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -364,6 +322,16 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(125, 26);
             this.textBox8.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(206, 55);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(96, 19);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Lowest-Price";
             // 
             // label12
             // 
@@ -520,6 +488,79 @@
             this.txtBoxSearch.Name = "txtBoxSearch";
             this.txtBoxSearch.Size = new System.Drawing.Size(456, 26);
             this.txtBoxSearch.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Gray;
+            this.panel4.Controls.Add(this.comboBox3);
+            this.panel4.Controls.Add(this.textBox9);
+            this.panel4.Controls.Add(this.label14);
+            this.panel4.Controls.Add(this.label16);
+            this.panel4.Controls.Add(this.textBox14);
+            this.panel4.Controls.Add(this.label18);
+            this.panel4.Location = new System.Drawing.Point(15, 114);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(952, 58);
+            this.panel4.TabIndex = 5;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Admin",
+            "User"});
+            this.comboBox3.Location = new System.Drawing.Point(727, 15);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 26);
+            this.comboBox3.TabIndex = 2;
+            // 
+            // textBox9
+            // 
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(369, 16);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(245, 26);
+            this.textBox9.TabIndex = 1;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(289, 19);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(74, 19);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Password";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(643, 19);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(70, 19);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Catagory";
+            // 
+            // textBox14
+            // 
+            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox14.Location = new System.Drawing.Point(94, 15);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(175, 26);
+            this.textBox14.TabIndex = 1;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(5, 19);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(83, 19);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "User Name";
             // 
             // panel2
             // 
@@ -788,97 +829,48 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Cashier";
             // 
-            // label13
+            // No
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(206, 55);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(96, 19);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Lowest-Price";
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
+            this.No.DefaultCellStyle = dataGridViewCellStyle1;
+            this.No.HeaderText = "No:";
+            this.No.Name = "No";
+            this.No.Width = 50;
             // 
-            // textBox2
+            // Code
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(298, 52);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(125, 26);
-            this.textBox2.TabIndex = 1;
+            this.Code.HeaderText = "Code";
+            this.Code.Name = "Code";
+            this.Code.Width = 125;
             // 
-            // panel4
+            // Description
             // 
-            this.panel4.BackColor = System.Drawing.Color.Gray;
-            this.panel4.Controls.Add(this.comboBox3);
-            this.panel4.Controls.Add(this.textBox9);
-            this.panel4.Controls.Add(this.label14);
-            this.panel4.Controls.Add(this.label16);
-            this.panel4.Controls.Add(this.textBox14);
-            this.panel4.Controls.Add(this.label18);
-            this.panel4.Location = new System.Drawing.Point(15, 114);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(952, 58);
-            this.panel4.TabIndex = 5;
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            this.Description.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Description.Width = 400;
             // 
-            // textBox9
+            // Disc
             // 
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(369, 16);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(245, 26);
-            this.textBox9.TabIndex = 1;
+            this.Disc.HeaderText = "Disc";
+            this.Disc.Name = "Disc";
+            this.Disc.Width = 50;
             // 
-            // label14
+            // Cost
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(289, 19);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(74, 19);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Password";
+            this.Cost.HeaderText = "Cost";
+            this.Cost.Name = "Cost";
             // 
-            // label16
+            // Rate
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(643, 19);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(70, 19);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Catagory";
+            this.Rate.HeaderText = "Rate";
+            this.Rate.Name = "Rate";
             // 
-            // textBox14
+            // Other
             // 
-            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox14.Location = new System.Drawing.Point(94, 15);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(175, 26);
-            this.textBox14.TabIndex = 1;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(5, 19);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(83, 19);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "User Name";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "Admin",
-            "User"});
-            this.comboBox3.Location = new System.Drawing.Point(727, 15);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 26);
-            this.comboBox3.TabIndex = 2;
+            this.Other.HeaderText = "Other";
+            this.Other.Name = "Other";
+            this.Other.Width = 150;
             // 
             // Admin
             // 
@@ -901,14 +893,14 @@
             this.Users.ResumeLayout(false);
             this.Users.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.Report.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -923,14 +915,6 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn No;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Disc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Other;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtBoxDescription;
         private System.Windows.Forms.Label lblDescription;
@@ -989,5 +973,12 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Disc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Other;
     }
 }
