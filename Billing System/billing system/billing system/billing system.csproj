@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Classes\DBConnection.cs" />
     <Compile Include="Classes\ItemDBConnection.cs" />
+    <Compile Include="Classes\UserDbConnection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -7,14 +7,13 @@ using System.Windows.Forms;
 
 namespace billing_system.Classes
 {
-    // Aruna Udayanga--2/5/2014
+    // Aruna Udayanga--2/7/2014
 
     /// <summary>
     /// class for dbconnection open, dbconnection close
     /// </summary>
-    class ItemDBConnection : DBConnection
+    class UserDbConnection : DBConnection
     {
-
         public void Insert(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
         {
             string query = "INSERT INTO  (Item_Code,Description,Discount,Lowest_Price,Others) VALUES('" + textboxCode + "','" + txtboxDescription + "','" + txtboxDiscount + "','" + lowestPrice + "','" + price + "','" + txtboxOther + "')";
@@ -36,7 +35,7 @@ namespace billing_system.Classes
         //Update statement
         public void Update(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
         {
-            string query = "UPDATE items SET Item_Code='" + textboxCode + "', Description='" + txtboxDescription + "',Discount='" + txtboxDiscount + "',Lowest_Price='" + lowestPrice + "',price='" + price + "',Others='" + txtboxOther + "' WHERE Item_Code= '"+ textboxCode + "'";
+            string query = "UPDATE items SET Item_Code='" + textboxCode + "', Description='" + txtboxDescription + "',Discount='" + txtboxDiscount + "',Lowest_Price='" + lowestPrice + "',price='" + price + "',Others='" + txtboxOther + "' WHERE Item_Code= '" + textboxCode + "'";
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -89,6 +88,7 @@ namespace billing_system.Classes
                 this.CloseConnection();
             }
         }
+
 
     }
 }
