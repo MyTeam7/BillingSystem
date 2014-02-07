@@ -15,9 +15,9 @@ namespace billing_system.Classes
     class ItemDBConnection : DBConnection
     {
 
-        public void Insert(String textboxCode, String txtboxDescription, String txtboxDiscount, String Qty, String txtboxRate, String rate, String txtboxOther)
+        public void Insert(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
         {
-            string query = "INSERT INTO  (name, age) VALUES('" + textboxCode + "','" + txtboxDescription + "','" + txtboxDiscount + "','" + Qty + "','" + txtboxRate + "','" + rate + "','" + txtboxOther + "')";
+            string query = "INSERT INTO  (name, age) VALUES('" + textboxCode + "','" + txtboxDescription + "','" + txtboxDiscount + "','" + lowestPrice + "','" + price + "','" + txtboxOther + "')";
 
             //open connection
             if (this.OpenConnection() == true)
@@ -34,9 +34,9 @@ namespace billing_system.Classes
         }
 
         //Update statement
-        public void Update()
+        public void Update(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
         {
-            string query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
+            string query = "UPDATE tableinfo SET name='" + textboxCode + "', age='" + txtboxDescription + "',age='" + txtboxDiscount + "',age='" + lowestPrice + "',age='" + price + "',age='" + txtboxOther + "',  WHERE name='John Smith'";
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -57,7 +57,7 @@ namespace billing_system.Classes
         }
 
         //Delete statement
-        public void Delete()
+        public void Delete(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
         {
             string query = "DELETE FROM tableinfo WHERE name='John Smith'";
 
