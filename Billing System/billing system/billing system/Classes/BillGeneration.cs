@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using MySql.Data.MySqlClient;
+
+
+
 namespace billing_system.Classes
 {
-   //-------------------startOfBillGenerationClass-----------------------
+//-------------------startOfBillGenerationClass---------------------------------------------------------------------------------------------------------------------------------------------
     class BillGeneration
     {
         // RavishaHeshan(ravisha_weerasekara@yahoo.com)--2/7/2014
@@ -20,17 +23,18 @@ namespace billing_system.Classes
             
         }
 
-        //--------------startOfBillNoGen Function------------------------
+//--------------startOfBillNoGen Function---------------------------------------------------------------------------------------------------------------------------
         public int BillNoGen()
         {
+            DBConnection db = new DBConnection();
+            int billno=0;
             try
             {
                 string query = "SELECT COUNT(Quantity) FROM bills";
                 int count = 0;
-                int billno;
 
-                DBConnection db = new DBConnection();
-                db.Initialize();
+
+
                 if (db.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, db.connection);  //create command and assign the query and connection from the constructor
@@ -47,12 +51,16 @@ namespace billing_system.Classes
 
                     }
 
-                    return billno;
-                    db.CloseConnection();
+
+
                 }
-                     
+
                 else
+                    
                     throw new Exception("DB Connection Error");
+                    
+
+                
                 
             }
             catch (Exception ex)
@@ -61,13 +69,45 @@ namespace billing_system.Classes
                 Billingform bf = new Billingform();
                 bf.Show();
             }
+            
             finally
             {
-                
+                db.CloseConnection(); 
             }
+            
+            return billno;
  
         }
-        //--------------startOfBillNoGen Function------------------------
+//--------------endOfBillNoGen Function--------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+//--------------startOfDateTime Function-------------------------------------------------------------------------------------------------------------------
+
+        public DateTime Date()
+        {
+            return DateTime.Today;
+        }
+
+//--------------endOfDateTime Function---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
+//-------------------endOfBillGenerationClass------------------------------------------------------------------------------------------------------------------------------------------------
 }
