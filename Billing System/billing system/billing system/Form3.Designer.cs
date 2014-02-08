@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Billingform));
             this.panel3 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
@@ -76,6 +77,7 @@
             this.button13 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -190,7 +192,6 @@
             this.txtBoxDescription.Name = "txtBoxDescription";
             this.txtBoxDescription.Size = new System.Drawing.Size(481, 24);
             this.txtBoxDescription.TabIndex = 7;
-            ///this.txtBoxDescription.TextChanged += new System.EventHandler(this.txtBoxDescription_TextChanged);
             // 
             // lblDescription
             // 
@@ -201,7 +202,6 @@
             this.lblDescription.Size = new System.Drawing.Size(86, 19);
             this.lblDescription.TabIndex = 5;
             this.lblDescription.Text = "Description";
-            ///this.lblDescription.Click += new System.EventHandler(this.lblDescription_Click);
             // 
             // txtBoxDiscount
             // 
@@ -211,7 +211,6 @@
             this.txtBoxDiscount.Name = "txtBoxDiscount";
             this.txtBoxDiscount.Size = new System.Drawing.Size(175, 24);
             this.txtBoxDiscount.TabIndex = 9;
-            ///this.txtBoxDiscount.TextChanged += new System.EventHandler(this.txtBoxDiscount_TextChanged);
             // 
             // label3
             // 
@@ -222,7 +221,6 @@
             this.label3.Size = new System.Drawing.Size(69, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "Discount";
-            ///this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // textBox2
             // 
@@ -232,7 +230,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(112, 24);
             this.textBox2.TabIndex = 10;
-            ///this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // lblQty
             // 
@@ -243,7 +240,6 @@
             this.lblQty.Size = new System.Drawing.Size(34, 19);
             this.lblQty.TabIndex = 3;
             this.lblQty.Text = "Qty";
-            ///this.lblQty.Click += new System.EventHandler(this.lblQty_Click);
             // 
             // textBox8
             // 
@@ -253,7 +249,6 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(125, 24);
             this.textBox8.TabIndex = 11;
-            ///this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // label12
             // 
@@ -264,7 +259,6 @@
             this.label12.Size = new System.Drawing.Size(40, 19);
             this.label12.TabIndex = 4;
             this.label12.Text = "Rate";
-            ///this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // txtBoxCode
             // 
@@ -274,7 +268,6 @@
             this.txtBoxCode.Name = "txtBoxCode";
             this.txtBoxCode.Size = new System.Drawing.Size(189, 23);
             this.txtBoxCode.TabIndex = 8;
-            ///this.txtBoxCode.TextChanged += new System.EventHandler(this.txtBoxCode_TextChanged);
             // 
             // A_I_Code
             // 
@@ -285,7 +278,6 @@
             this.A_I_Code.Size = new System.Drawing.Size(43, 19);
             this.A_I_Code.TabIndex = 6;
             this.A_I_Code.Text = "Code";
-            ///this.A_I_Code.Click += new System.EventHandler(this.A_I_Code_Click);
             // 
             // panel4
             // 
@@ -458,8 +450,8 @@
             // 
             // No
             // 
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
-            this.No.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Gray;
+            this.No.DefaultCellStyle = dataGridViewCellStyle2;
             this.No.HeaderText = "No:";
             this.No.Name = "No";
             this.No.Width = 50;
@@ -554,7 +546,6 @@
             this.button2.Text = "Print";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
-            ///this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button15
             // 
@@ -569,6 +560,11 @@
             this.button15.Text = "Delete";
             this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button15.UseVisualStyleBackColor = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Billingform
             // 
@@ -661,6 +657,7 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Timer timer1;
 
     }
 }

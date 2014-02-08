@@ -47,7 +47,7 @@ namespace billing_system.Classes
                         billno = 000001;
                     else
                     {
-                        string queryOne = "SELECT InvoiceNo FROM bills ORDER BY id DESC LIMIT 1";
+                        string queryOne = "SELECT InvoiceNo FROM bills ORDER BY InvoiceNo DESC LIMIT 1";
                         MySqlCommand cmdOne = new MySqlCommand(queryOne, db.connection);
                         int result = cmdOne.ExecuteNonQuery();
                         billno = result + 1;
@@ -92,7 +92,7 @@ namespace billing_system.Classes
 
         public DateTime Date()
         {
-            return DateTime.Today;
+            return DateTime.Now;
         }
 
     //--------------endOfDateTime Function---------------------------------------------------------------------------------------------------------------------

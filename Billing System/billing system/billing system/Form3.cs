@@ -30,8 +30,14 @@ namespace billing_system
         {
             txtBoxDescription.Focus();
             BillGeneration bf = new BillGeneration();
-            bf.BillNoGen();
-            bf.Date();
+            textBox1.Text=bf.BillNoGen().ToString();
+            //label9.Text=bf.Date().ToString();
+
+            timer1 = new Timer();
+            timer1.Interval = 1000;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Start();
+
         }
 
 
@@ -65,6 +71,12 @@ namespace billing_system
                     bg.manualBilling(searchKey);
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            BillGeneration bf = new BillGeneration();
+            label9.Text = bf.Date().ToString();
         }
 
 
