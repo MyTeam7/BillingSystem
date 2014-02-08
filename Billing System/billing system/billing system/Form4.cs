@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace billing_system
 {
-    public partial class MenualBilling : Form
+    public partial class ManualBilling : Form
     {
-        public MenualBilling()
+        public ManualBilling()
         {
             InitializeComponent();
         }
@@ -20,10 +20,7 @@ namespace billing_system
 
         }
 
-        private void txtBoxCode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {

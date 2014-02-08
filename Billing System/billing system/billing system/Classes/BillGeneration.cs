@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using MySql.Data.MySqlClient;
 
-
+// RavishaHeshan(ravisha_weerasekara@yahoo.com)--2/7/2014
 
 namespace billing_system.Classes
 {
 //-------------------startOfBillGenerationClass---------------------------------------------------------------------------------------------------------------------------------------------
     class BillGeneration
     {
-        // RavishaHeshan(ravisha_weerasekara@yahoo.com)--2/7/2014
+        
         //class for generate bill in Billing form
         private double cash; //varible for store cash value 
         private int discount; // virable for store discount
@@ -23,7 +23,7 @@ namespace billing_system.Classes
             
         }
 
-//--------------startOfBillNoGen Function---------------------------------------------------------------------------------------------------------------------------
+    //--------------startOfBillNoGen Function---------------------------------------------------------------------------------------------------------------------------
         public int BillNoGen()
         {
             DBConnection db = new DBConnection();
@@ -72,27 +72,27 @@ namespace billing_system.Classes
             
             finally
             {
-                db.CloseConnection(); 
+                bool a=db.CloseConnection(); 
             }
             
             return billno;
  
         }
-//--------------endOfBillNoGen Function--------------------------------------------------------------------------------------------------------------------
+    //--------------endOfBillNoGen Function--------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
 
-//--------------startOfDateTime Function-------------------------------------------------------------------------------------------------------------------
+    //--------------startOfDateTime Function-------------------------------------------------------------------------------------------------------------------
 
         public DateTime Date()
         {
             return DateTime.Today;
         }
 
-//--------------endOfDateTime Function---------------------------------------------------------------------------------------------------------------------
+    //--------------endOfDateTime Function---------------------------------------------------------------------------------------------------------------------
 
 
 
