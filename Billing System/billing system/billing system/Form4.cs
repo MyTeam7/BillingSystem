@@ -33,15 +33,17 @@ namespace billing_system
 
         public void txtBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
+            string keyVal;
             string keyCd;
             string searchKey;
 
             RowIndex = dataGridView1.CurrentCell.RowIndex;
 
             ManualBilling mb = new ManualBilling();
-            keyCd = e.KeyCode.ToString();
+            keyVal = e.KeyValue.ToString();
             KeyPressEvent kpe = new KeyPressEvent();
-            searchKey = kpe.manualSearchkey(keyCd, "ManualBilling", "description");
+            keyCd = e.KeyCode.ToString();
+            searchKey = kpe.manualSearchkey(keyVal,keyCd, "ManualBilling", "description");
 
             BillGeneration bg = new BillGeneration();
             bg.manualBilling(searchKey);
@@ -50,23 +52,23 @@ namespace billing_system
 
         public void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            string keyCd;
+            string keyVal;
             
 
             RowIndex = dataGridView1.CurrentCell.RowIndex;
-            keyCd = e.KeyCode.ToString();
+            keyVal = e.KeyCode.ToString();
 
-            if (int.Parse(keyCd) == 40)
+            if (int.Parse(keyVal) == 40)
             {
                 KeyPressEvent kpe = new KeyPressEvent();
                 kpe.mbDgvdownArrow();
             }
-            else if (int.Parse(keyCd) == 38)
+            else if (int.Parse(keyVal) == 38)
             {
                 KeyPressEvent kpe = new KeyPressEvent();
                 kpe.mbDgvupArrow();
             }
-            else if (int.Parse(keyCd) == 13)
+            else if (int.Parse(keyVal) == 13)
             {
                 KeyPressEvent kpe = new KeyPressEvent();
                 kpe.enterButton("mb", "dgv");
@@ -88,7 +90,8 @@ namespace billing_system
 
         private void ManualBilling_Load(object sender, EventArgs e)
         {
-            txtBoxDescription.Focus();
+            
+            this.ActiveControl = txtBoxDescription;
         }
     }
 }

@@ -247,7 +247,7 @@
         private System.Windows.Forms.Button button2;
         public System.Windows.Forms.TextBox txtBoxDescription;
         private System.Windows.Forms.Label lblDescription;
-        private System.Windows.Forms.TextBox txtBoxCode;
         private System.Windows.Forms.Label A_I_Code;
+        public System.Windows.Forms.TextBox txtBoxCode;
     }
 }

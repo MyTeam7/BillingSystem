@@ -23,7 +23,7 @@ namespace billing_system.Classes
 
     //--------------startOfmanualSearchkey Function---------------------------------------------------------------------------------------------------------------------------
 
-        public string manualSearchkey(string keyCode, string form="dflt",string focus="dflt")
+        public string manualSearchkey(string keyCode,string character, string form="dflt",string focus="dflt")
         {
             string keyChar=null;
             
@@ -32,10 +32,19 @@ namespace billing_system.Classes
                
                
 
-                if (int.Parse(keyCode) > 65 && int.Parse(keyCode) < 105) //validate Alphanumeric characters-------------------------
+                if (int.Parse(keyCode) > 64 && int.Parse(keyCode) < 106) //validate Alphanumeric characters-------------------------
                 {
-                    KeysConverter kc = new KeysConverter();
-                    keyChar=kc.ConvertToString(keyCode);
+                    //KeysConverter kc = new KeysConverter();
+                    keyChar = character;
+                    ManualBilling mb = new ManualBilling();
+                    if (mb.Visible == false)
+                    {
+                        mb.Show();
+                        
+                    }
+                    BillGeneration bf = new BillGeneration();
+                    bf.manualBilling(character);
+
                 }
                 else if(int.Parse(keyCode) == 27)
                 {
@@ -49,6 +58,7 @@ namespace billing_system.Classes
 
                     else
                     {
+                        
                         SystemSounds.Hand.Play();
                      
                     }
@@ -67,6 +77,7 @@ namespace billing_system.Classes
                        
                 else
                 {
+                    
                     SystemSounds.Hand.Play();
                      
                 }

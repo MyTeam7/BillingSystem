@@ -17,6 +17,7 @@ namespace billing_system
         {
             InitializeComponent();
             stage = 0;
+            this.txtBoxDescription.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
         }
 
 
@@ -28,10 +29,10 @@ namespace billing_system
 
         private void Billingform_Load(object sender, EventArgs e)
         {
-            txtBoxDescription.Focus();
+            this.ActiveControl = txtBoxDescription;
             BillGeneration bf = new BillGeneration();
             textBox1.Text=bf.BillNoGen().ToString();
-            //label9.Text=bf.Date().ToString();
+            
 
             timer1 = new Timer();
             timer1.Interval = 1000;
@@ -48,16 +49,18 @@ namespace billing_system
 
         public void txtBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
+            string keyVal;
             string keyCd;
             string searchKey;
 
             ManualBilling mb=new ManualBilling();
-            if (mb.Visible == false)
-            {
-                mb.Show();
+            
+                keyVal = e.KeyValue.ToString();
                 keyCd = e.KeyCode.ToString();
+                
+
                 KeyPressEvent kpe = new KeyPressEvent();
-                searchKey = kpe.manualSearchkey(keyCd, "Billingform", "des");
+                searchKey = kpe.manualSearchkey(keyVal,keyCd, "Billingform", "des");
                 
 
 
@@ -70,7 +73,7 @@ namespace billing_system
                     BillGeneration bg = new BillGeneration();
                     bg.manualBilling(searchKey);
                 }
-            }
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)

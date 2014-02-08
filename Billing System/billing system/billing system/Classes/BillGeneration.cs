@@ -104,19 +104,22 @@ namespace billing_system.Classes
         public void manualBilling(string searchKey)
         {
             DBConnection db = new DBConnection();
+            
+            
             try
             {
                 string query;
-
+                
                 
 
                     ManualBilling mb = new ManualBilling();
                     
                     
-                    
+
+
                     mb.txtBoxDescription.Text = mb.txtBoxDescription.Text+searchKey;
                     query = "SELECT * From items WHERE Description LIKE CONCAT('" + searchKey + "','%')";
-
+                    
 
                     
                     if (db.OpenConnection() == true)
@@ -136,13 +139,14 @@ namespace billing_system.Classes
                         //mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
                         //MySqlDataReader mdr = cmd.ExecuteReader();
                         //mdr = cmd.ExecuteReader();
-
+                        
                     }
                     else
                     {
                         MessageBox.Show("DB Connection Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         mb.Close();
                         mb.Show();
+                        
                         
                     }
 
@@ -152,12 +156,17 @@ namespace billing_system.Classes
             catch (Exception exc)
             {
                 MessageBox.Show("Error Occured," + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                
             }
 
             finally
             {
-                bool a=db.CloseConnection();  
+                bool a=db.CloseConnection();
+                
+                
             }
+            
         }
 
         
