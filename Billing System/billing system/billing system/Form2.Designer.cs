@@ -96,6 +96,7 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
 
 
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,6 +107,8 @@
             this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Other = new System.Windows.Forms.DataGridViewTextBoxColumn();
 
+=======
+>>>>>>> origin/Aruna
             this.adminTabPg.SuspendLayout();
             this.Items.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -835,6 +838,7 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Cashier";
             // 
+<<<<<<< HEAD
 
 
             // No
@@ -881,6 +885,8 @@
             this.Other.Width = 150;
             // 
 
+=======
+>>>>>>> origin/Aruna
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

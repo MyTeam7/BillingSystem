@@ -23,6 +23,7 @@ namespace billing_system
             String textboxCode = txtBoxCode.Text;
             String txtboxDescription = txtBoxDescription.Text;
             String txtboxDiscount = txtBoxDiscount.Text;
+<<<<<<< HEAD
 
             String lowestPrice = textBox2.Text;
             String price = textBox8.Text;
@@ -30,15 +31,23 @@ namespace billing_system
             String Qty = textBox2.Text;
             String rate = textBox8.Text;
 
+=======
+            String lowestPrice = textBox2.Text;
+            String price = textBox8.Text;
+>>>>>>> origin/Aruna
             String txtboxOther = txtBoxOther.Text;
 
             ItemDBConnection adminDb = new ItemDBConnection();
 
+<<<<<<< HEAD
 
             adminDb.Insert(textboxCode,txtboxDescription, txtboxDiscount,lowestPrice,price,txtboxOther);
 
             
 
+=======
+            adminDb.Insert(textboxCode,txtboxDescription, txtboxDiscount,lowestPrice,price,txtboxOther);
+>>>>>>> origin/Aruna
         }
 
         private void Admin_Load(object sender, EventArgs e)
@@ -69,10 +78,13 @@ namespace billing_system
 
             itemdel.Delete(textboxCode);
         }
+<<<<<<< HEAD
 
         private void button9_Click(object sender, EventArgs e)
         {
 
         }
+=======
+>>>>>>> origin/Aruna
     }
 }
