@@ -68,7 +68,7 @@ namespace billing_system.Classes
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("Error" + ex.Message, "Oops!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                MessageBox.Show("Error" + ex.Message, "Oops!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 Billingform bf = new Billingform();
                 bf.Show();
             }
@@ -133,7 +133,7 @@ namespace billing_system.Classes
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("DB Connection Error", "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                        MessageBox.Show("DB Connection Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         mb.Close();
                         mb.Show();
                         
@@ -144,7 +144,7 @@ namespace billing_system.Classes
 
             catch (Exception exc)
             {
-                System.Windows.Forms.MessageBox.Show("Error Occured," + exc.Message, "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                MessageBox.Show("Error Occured," + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             finally

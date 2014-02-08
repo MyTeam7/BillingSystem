@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using billing_system.Classes;
+using System.Media;
 
 namespace billing_system
 {
@@ -18,6 +19,13 @@ namespace billing_system
             stage = 0;
         }
 
+
+
+
+
+
+
+
         private void Billingform_Load(object sender, EventArgs e)
         {
             txtBoxDescription.Focus();
@@ -25,6 +33,12 @@ namespace billing_system
             bf.BillNoGen();
             bf.Date();
         }
+
+
+
+
+
+
 
         public void txtBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
@@ -37,12 +51,30 @@ namespace billing_system
                 mb.Show();
                 keyCd = e.KeyCode.ToString();
                 KeyPressEvent kpe = new KeyPressEvent();
-                searchKey=kpe.manualSearchkey(keyCd);
+                searchKey = kpe.manualSearchkey(keyCd, "Billingform", "des");
+                
 
-                BillGeneration bg = new BillGeneration();
-                bg.manualBilling(searchKey);
+
+                if (searchKey == "exit")
+                {
+                    this.Close();
+                }
+                else
+                {
+                    BillGeneration bg = new BillGeneration();
+                    bg.manualBilling(searchKey);
+                }
             }
         }
+
+
+
+
+
+
+
+
+
 
         
     }
