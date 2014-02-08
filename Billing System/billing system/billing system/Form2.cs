@@ -24,6 +24,7 @@ namespace billing_system
             String txtboxDescription = txtBoxDescription.Text;
             String txtboxDiscount = txtBoxDiscount.Text;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             String lowestPrice = textBox2.Text;
             String price = textBox8.Text;
@@ -35,10 +36,15 @@ namespace billing_system
             String lowestPrice = textBox2.Text;
             String price = textBox8.Text;
 >>>>>>> origin/Aruna
+=======
+            String lowestPrice = textBox2.Text;
+            String price = textBox8.Text;
+>>>>>>> origin/Ravisha
             String txtboxOther = txtBoxOther.Text;
 
             ItemDBConnection adminDb = new ItemDBConnection();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
             adminDb.Insert(textboxCode,txtboxDescription, txtboxDiscount,lowestPrice,price,txtboxOther);
@@ -48,6 +54,9 @@ namespace billing_system
 =======
             adminDb.Insert(textboxCode,txtboxDescription, txtboxDiscount,lowestPrice,price,txtboxOther);
 >>>>>>> origin/Aruna
+=======
+            adminDb.Insert(textboxCode,txtboxDescription, txtboxDiscount,lowestPrice,price,txtboxOther);
+>>>>>>> origin/Ravisha
         }
 
         private void Admin_Load(object sender, EventArgs e)
@@ -73,6 +82,7 @@ namespace billing_system
         private void button15_Click(object sender, EventArgs e)
         {
             String textboxCode = txtBoxCode.Text;
+<<<<<<< HEAD
 
             ItemDBConnection itemdel = new ItemDBConnection();
 
@@ -86,5 +96,17 @@ namespace billing_system
         }
 =======
 >>>>>>> origin/Aruna
+=======
+            String txtboxDescription = txtBoxDescription.Text;
+            String txtboxDiscount = txtBoxDiscount.Text;
+            String lowestPrice = textBox2.Text;
+            String price = textBox8.Text;
+            String txtboxOther = txtBoxOther.Text;
+
+            ItemDBConnection itemdel = new ItemDBConnection();
+
+            itemdel.Delete(textboxCode, txtboxDescription, txtboxDiscount, lowestPrice, price, txtboxOther);
+        }
+>>>>>>> origin/Ravisha
     }
 }

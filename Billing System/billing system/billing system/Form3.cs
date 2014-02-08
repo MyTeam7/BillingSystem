@@ -5,74 +5,77 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using billing_system.Classes;
+using System.Media;
 
 namespace billing_system
 {
     public partial class Billingform : Form
     {
+        public int stage;
         public Billingform()
         {
             InitializeComponent();
+            stage = 0;
         }
+
+
+
+
+
+
+
 
         private void Billingform_Load(object sender, EventArgs e)
         {
-
+            txtBoxDescription.Focus();
+            BillGeneration bf = new BillGeneration();
+            bf.BillNoGen();
+            bf.Date();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+
+
+
+
+
+        public void txtBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
+            string keyCd;
+            string searchKey;
 
+            ManualBilling mb=new ManualBilling();
+            if (mb.Visible == false)
+            {
+                mb.Show();
+                keyCd = e.KeyCode.ToString();
+                KeyPressEvent kpe = new KeyPressEvent();
+                searchKey = kpe.manualSearchkey(keyCd, "Billingform", "des");
+                
+
+
+                if (searchKey == "exit")
+                {
+                    this.Close();
+                }
+                else
+                {
+                    BillGeneration bg = new BillGeneration();
+                    bg.manualBilling(searchKey);
+                }
+            }
         }
 
-        private void A_I_Code_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void txtBoxCode_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        private void lblDescription_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void txtBoxDescription_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        private void lblQty_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxDiscount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

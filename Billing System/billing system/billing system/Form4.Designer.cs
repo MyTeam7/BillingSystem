@@ -1,6 +1,6 @@
 ﻿namespace billing_system
 {
-    partial class MenualBilling
+    partial class ManualBilling
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenualBilling));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManualBilling));
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -196,7 +196,6 @@
             this.txtBoxCode.Name = "txtBoxCode";
             this.txtBoxCode.Size = new System.Drawing.Size(307, 23);
             this.txtBoxCode.TabIndex = 8;
-            this.txtBoxCode.TextChanged += new System.EventHandler(this.txtBoxCode_TextChanged);
             // 
             // A_I_Code
             // 
@@ -209,7 +208,7 @@
             this.A_I_Code.Text = "Code";
             this.A_I_Code.Click += new System.EventHandler(this.A_I_Code_Click);
             // 
-            // MenualBilling
+            // ManualBilling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,8 +220,9 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MenualBilling";
-            this.Text = "Menual billing";
+            this.Name = "ManualBilling";
+            this.Text = "Manual billing";
+            this.Load += new System.EventHandler(this.ManualBilling_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -234,7 +234,7 @@
 
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
@@ -245,7 +245,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Other;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox txtBoxDescription;
+        public System.Windows.Forms.TextBox txtBoxDescription;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox txtBoxCode;
         private System.Windows.Forms.Label A_I_Code;

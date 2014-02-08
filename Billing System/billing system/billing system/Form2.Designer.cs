@@ -97,6 +97,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -109,6 +110,8 @@
 
 =======
 >>>>>>> origin/Aruna
+=======
+>>>>>>> origin/Ravisha
             this.adminTabPg.SuspendLayout();
             this.Items.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -839,6 +842,7 @@
             this.label11.Text = "Cashier";
             // 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
             // No
@@ -887,6 +891,8 @@
 
 =======
 >>>>>>> origin/Aruna
+=======
+>>>>>>> origin/Ravisha
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
