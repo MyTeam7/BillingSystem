@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
+
+using System.Data;
 
 // RavishaHeshan(ravisha_weerasekara@yahoo.com)--2/7/2014
 
@@ -96,7 +99,63 @@ namespace billing_system.Classes
 
 
 
+//--------------startOfManualBilling Function-------------------------------------------------------------------------------------------------------------------
 
+        public void manualBilling(string searchKey)
+        {
+            DBConnection db = new DBConnection();
+            try
+            {
+                string query;
+
+                
+
+                    ManualBilling mb = new ManualBilling();
+                    
+                    
+                    
+                    mb.txtBoxDescription.Text = mb.txtBoxDescription.Text+searchKey;
+                    query = "SELECT * From items WHERE Description LIKE CONCAT('" + searchKey + "','%')";
+
+
+                    
+                    if (db.OpenConnection() == true)
+                    {
+                        MySqlCommand cmd = new MySqlCommand(query, db.connection);
+                        MySqlDataAdapter adapter = new MySqlDataAdapter(query, db.connection);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        mb.dataGridView1.DataSource = dt;
+                        mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
+                        MySqlDataReader mdr = new MySqlDataReader();
+                        mdr = cmd.ExecuteReader();
+
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("DB Connection Error", "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                        mb.Close();
+                        mb.Show();
+                        
+                    }
+
+                
+            }
+
+            catch (Exception exc)
+            {
+                System.Windows.Forms.MessageBox.Show("Error Occured," + exc.Message, "Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                bool a=db.CloseConnection();  
+            }
+        }
+
+        
+
+//--------------endOfManualBilling Function-------------
 
 
 

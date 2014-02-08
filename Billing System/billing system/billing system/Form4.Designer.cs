@@ -196,7 +196,6 @@
             this.txtBoxCode.Name = "txtBoxCode";
             this.txtBoxCode.Size = new System.Drawing.Size(307, 23);
             this.txtBoxCode.TabIndex = 8;
-            this.txtBoxCode.TextChanged += new System.EventHandler(this.txtBoxCode_TextChanged);
             // 
             // A_I_Code
             // 
@@ -223,6 +222,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ManualBilling";
             this.Text = "Manual billing";
+            this.Load += new System.EventHandler(this.ManualBilling_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
