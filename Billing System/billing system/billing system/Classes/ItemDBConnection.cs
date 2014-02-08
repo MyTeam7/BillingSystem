@@ -17,11 +17,11 @@ namespace billing_system.Classes
 
         public void Insert(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
         {
-<<<<<<< HEAD
+ 
             string query = "INSERT INTO  (Item_Code,Description,Discount,Lowest_Price,Others) VALUES('" + textboxCode + "','" + txtboxDescription + "','" + txtboxDiscount + "','" + lowestPrice + "','" + price + "','" + txtboxOther + "')";
-=======
-            string query = "INSERT INTO  (name, age) VALUES('" + textboxCode + "','" + txtboxDescription + "','" + txtboxDiscount + "','" + lowestPrice + "','" + price + "','" + txtboxOther + "')";
->>>>>>> origin/Ravisha
+
+           
+ 
 
             //open connection
             if (this.OpenConnection() == true)
@@ -40,11 +40,11 @@ namespace billing_system.Classes
         //Update statement
         public void Update(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
         {
-<<<<<<< HEAD
+ 
             string query = "UPDATE items SET Item_Code='" + textboxCode + "', Description='" + txtboxDescription + "',Discount='" + txtboxDiscount + "',Lowest_Price='" + lowestPrice + "',price='" + price + "',Others='" + txtboxOther + "' WHERE Item_Code= '"+ textboxCode + "'";
-=======
-            string query = "UPDATE tableinfo SET name='" + textboxCode + "', age='" + txtboxDescription + "',age='" + txtboxDiscount + "',age='" + lowestPrice + "',age='" + price + "',age='" + txtboxOther + "',  WHERE name='John Smith'";
->>>>>>> origin/Ravisha
+
+            
+ 
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -65,11 +65,9 @@ namespace billing_system.Classes
         }
 
         //Delete statement
-<<<<<<< HEAD
+ 
         public void Delete(String textboxCode)
-=======
-        public void Delete(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
->>>>>>> origin/Ravisha
+        
         {
             string query = "Delete from items where Item_Code = '" + textboxCode + "'";
 

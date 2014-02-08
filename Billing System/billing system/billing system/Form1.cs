@@ -34,6 +34,7 @@ namespace billing_system
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
+            
             User UPName = new User();
             UPName.GetUsername = UserName.Text;
             UPName.GetPassword = maskedTextBox1.Text;
@@ -50,5 +51,9 @@ namespace billing_system
             else
                 MessageBox.Show("USERNAME is INCORRESCT!!!!!");
         }
+
+        
+
+       
     }
 }

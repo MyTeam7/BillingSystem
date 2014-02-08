@@ -122,13 +122,20 @@ namespace billing_system.Classes
                     if (db.OpenConnection() == true)
                     {
                         MySqlCommand cmd = new MySqlCommand(query, db.connection);
-                        MySqlDataAdapter adapter = new MySqlDataAdapter(query, db.connection);
+                        //MySqlDataAdapter adapter = new MySqlDataAdapter(query, db.connection);
+                        MySqlDataAdapter mda = new MySqlDataAdapter();
                         DataTable dt = new DataTable();
-                        adapter.Fill(dt);
+                        mda.SelectCommand = cmd;
+                        mda.Fill(dt);
+                        BindingSource bsource = new BindingSource();
+                        bsource.DataSource = dt;
                         mb.dataGridView1.DataSource = dt;
-                        mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
-                        MySqlDataReader mdr = new MySqlDataReader();
-                        mdr = cmd.ExecuteReader();
+                        mda.Update(dt);
+
+                        //mb.dataGridView1.DataSource = dt;
+                        //mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
+                        //MySqlDataReader mdr = cmd.ExecuteReader();
+                        //mdr = cmd.ExecuteReader();
 
                     }
                     else
