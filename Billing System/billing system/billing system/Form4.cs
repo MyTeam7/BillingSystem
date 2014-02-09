@@ -74,6 +74,7 @@ namespace billing_system
             {
                 KeyPressEvent kpe = new KeyPressEvent();
                 kpe.mbDgvdownArrow(this);
+                RowIndex = dataGridView1.CurrentCell.RowIndex;
 
             }
             else if (int.Parse(keyVal) == 38)

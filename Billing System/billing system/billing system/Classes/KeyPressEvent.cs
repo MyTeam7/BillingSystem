@@ -166,6 +166,7 @@ namespace billing_system.Classes
 
             ManualBilling mb = (ManualBilling)obj;
             int rows = mb.dataGridView1.RowCount;
+            
 
 
 
@@ -174,7 +175,7 @@ namespace billing_system.Classes
 
                 mb.RowIndex = mb.RowIndex + 1;
                 //mb.dataGridView1.Rows[mb.RowIndex - 1].Selected = false;
-                mb.dataGridView1.CurrentCell = mb.dataGridView1[mb.RowIndex, 0];
+                mb.dataGridView1.Rows[mb.RowIndex].Selected=true;
                 
 
             }
@@ -251,10 +252,11 @@ namespace billing_system.Classes
                 decimal l_price=(decimal)mb.dataGridView1.Rows[row].Cells[3].Value;
                 decimal disc=(decimal)mb.dataGridView1.Rows[row].Cells[4].Value;;
                 string other=mb.dataGridView1.Rows[row].Cells[5].Value.ToString();
+                MessageBox.Show(des);
 
                
 
-                bf.dataGridView1.Rows.Insert(bf.dataGridView1.RowCount,code,des,price,l_price,disc,other);
+                //bf.dataGridView1.Rows.Insert(bf.dataGridView1.RowCount,code,des,price,l_price,disc,other);
 
 
                
