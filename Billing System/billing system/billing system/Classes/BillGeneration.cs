@@ -10,27 +10,27 @@ using System.Data;
 
 namespace billing_system.Classes
 {
-//-------------------startOfBillGenerationClass---------------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------startOfBillGenerationClass---------------------------------------------------------------------------------------------------------------------------------------------
     class BillGeneration
     {
-        
+
         //class for generate bill in Billing form
         private double cash; //varible for store cash value 
         private int discount; // virable for store discount
 
         //overloaded constructor 
-        public BillGeneration( double cashValue=0.0, int disAmount=0)
+        public BillGeneration(double cashValue = 0.0, int disAmount = 0)
         {
             cash = cashValue;
             discount = disAmount;
-            
+
         }
 
-    //--------------startOfBillNoGen Function---------------------------------------------------------------------------------------------------------------------------
+        //--------------startOfBillNoGen Function---------------------------------------------------------------------------------------------------------------------------
         public int BillNoGen()
         {
             DBConnection db = new DBConnection();
-            int billno=0;
+            int billno = 0;
             try
             {
                 string query = "SELECT COUNT(Quantity) FROM bills";
@@ -59,12 +59,12 @@ namespace billing_system.Classes
                 }
 
                 else
-                    
-                    throw new Exception("DB Connection Error");
-                    
 
-                
-                
+                    throw new Exception("DB Connection Error");
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -72,106 +72,106 @@ namespace billing_system.Classes
                 Billingform bf = new Billingform();
                 bf.Show();
             }
-            
+
             finally
             {
-                bool a=db.CloseConnection(); 
+                bool a = db.CloseConnection();
             }
-            
+
             return billno;
- 
+
         }
-    //--------------endOfBillNoGen Function--------------------------------------------------------------------------------------------------------------------
+        //--------------endOfBillNoGen Function--------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
 
-    //--------------startOfDateTime Function-------------------------------------------------------------------------------------------------------------------
+        //--------------startOfDateTime Function-------------------------------------------------------------------------------------------------------------------
 
         public DateTime Date()
         {
             return DateTime.Now;
         }
 
-    //--------------endOfDateTime Function---------------------------------------------------------------------------------------------------------------------
+        //--------------endOfDateTime Function---------------------------------------------------------------------------------------------------------------------
 
 
 
-//--------------startOfManualBilling Function-------------------------------------------------------------------------------------------------------------------
+        //--------------startOfManualBilling Function-------------------------------------------------------------------------------------------------------------------
 
-        public void manualBilling(string searchKey)
+        public void manualBilling(string searchKey, object obj = null)
         {
             DBConnection db = new DBConnection();
-            
-            
+
+
             try
             {
                 string query;
-                
-                
-
-                    ManualBilling mb = new ManualBilling();
-                    
-                    
 
 
-                    mb.txtBoxDescription.Text = mb.txtBoxDescription.Text+searchKey;
-                    query = "SELECT * From items WHERE Description LIKE CONCAT('" + searchKey + "','%')";
-                    
 
-                    
-                    if (db.OpenConnection() == true)
-                    {
-                        MySqlCommand cmd = new MySqlCommand(query, db.connection);
-                        //MySqlDataAdapter adapter = new MySqlDataAdapter(query, db.connection);
-                        MySqlDataAdapter mda = new MySqlDataAdapter();
-                        DataTable dt = new DataTable();
-                        mda.SelectCommand = cmd;
-                        mda.Fill(dt);
-                        BindingSource bsource = new BindingSource();
-                        bsource.DataSource = dt;
-                        mb.dataGridView1.DataSource = dt;
-                        mda.Update(dt);
 
-                        //mb.dataGridView1.DataSource = dt;
-                        //mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
-                        //MySqlDataReader mdr = cmd.ExecuteReader();
-                        //mdr = cmd.ExecuteReader();
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("DB Connection Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        mb.Close();
-                        mb.Show();
-                        
-                        
-                    }
+                ManualBilling mb = (ManualBilling)obj;
 
-                
+
+                mb.txtBoxDescription.Text = mb.txtBoxDescription.Text + searchKey;
+                mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);
+                query = "SELECT * From items WHERE Description LIKE CONCAT('" + searchKey + "','%')";
+
+
+
+                if (db.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, db.connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    BindingSource bs = new BindingSource();
+                    bs.DataSource = table;
+                    mb.dataGridView1.DataSource = bs;
+                    mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
+                    mb.dataGridView1.Columns[0].Width = mb.dataGridView1.Width / 6;
+                    mb.dataGridView1.Columns[1].Width = mb.dataGridView1.Width / 6;
+                    mb.dataGridView1.Columns[2].Width = mb.dataGridView1.Width / 6;
+                    mb.dataGridView1.Columns[3].Width = mb.dataGridView1.Width / 6;
+                    mb.dataGridView1.Columns[4].Width = mb.dataGridView1.Width / 6;
+                    mb.dataGridView1.Columns[5].Width = mb.dataGridView1.Width / 6;
+
+
+                }
+                else
+                {
+                    MessageBox.Show("DB Connection Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mb.Close();
+
+
+
+                }
+
+
             }
 
             catch (Exception exc)
             {
                 MessageBox.Show("Error Occured," + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
-                
+
+
             }
 
             finally
             {
-                bool a=db.CloseConnection();
-                
-                
+                bool a = db.CloseConnection();
+
+
             }
-            
+
         }
 
-        
 
-//--------------endOfManualBilling Function-------------
+
+        //--------------endOfManualBilling Function-------------
 
 
 
@@ -184,5 +184,5 @@ namespace billing_system.Classes
 
 
     }
-//-------------------endOfBillGenerationClass------------------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------endOfBillGenerationClass------------------------------------------------------------------------------------------------------------------------------------------------
 }

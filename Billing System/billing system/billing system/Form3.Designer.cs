@@ -191,6 +191,7 @@
             this.txtBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxDescription.Location = new System.Drawing.Point(429, 17);
             this.txtBoxDescription.Name = "txtBoxDescription";
+            this.txtBoxDescription.ReadOnly = true;
             this.txtBoxDescription.Size = new System.Drawing.Size(481, 24);
             this.txtBoxDescription.TabIndex = 7;
             // 

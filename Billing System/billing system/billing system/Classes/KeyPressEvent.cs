@@ -11,7 +11,7 @@ using System.Media;
 namespace billing_system.Classes
 {
 
-//-------------------startOfKeyPressClass---------------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------startOfKeyPressClass---------------------------------------------------------------------------------------------------------------------------------------------
     //this class is for manage keypress events
     class KeyPressEvent
     {
@@ -19,52 +19,64 @@ namespace billing_system.Classes
 
 
 
-        
 
-    //--------------startOfmanualSearchkey Function---------------------------------------------------------------------------------------------------------------------------
 
-        public string manualSearchkey(string keyCode,string character, string form="dflt",string focus="dflt")
+        //--------------startOfmanualSearchkey Function---------------------------------------------------------------------------------------------------------------------------
+
+        public string manualSearchkey(string keyCode, string character, string form = "dflt", string focus = "dflt", object obj = null)
         {
-            string keyChar=null;
-            
+            string keyChar = null;
+
             try
             {
-               
-               
+
+
 
                 if (int.Parse(keyCode) > 64 && int.Parse(keyCode) < 106) //validate Alphanumeric characters-------------------------
                 {
                     //KeysConverter kc = new KeysConverter();
                     keyChar = character;
-                    ManualBilling mb = new ManualBilling();
-                    if (mb.Visible == false)
+
+                    if (form == "Billingform")
                     {
-                        mb.Show();
-                        
+                        ManualBilling mb = new ManualBilling();
+                        if (mb.Visible == false)
+                        {
+                            mb.Show();
+                            mb.Focus();
+
+                        }
+                        BillGeneration bf = new BillGeneration();
+                        bf.manualBilling(character, mb);
                     }
-                    BillGeneration bf = new BillGeneration();
-                    bf.manualBilling(character);
+                    else
+                    {
+                        BillGeneration bf = new BillGeneration();
+
+                        bf.manualBilling(character, obj);
+                    }
+
 
                 }
-                else if(int.Parse(keyCode) == 27)
+                else if (int.Parse(keyCode) == 27)
                 {
-                    if(form=="Billingform" && focus=="des")
+                    if (form == "Billingform" && focus == "des")
                     {
                         if (MessageBox.Show("Are you sure you want to exit?", "Confirm exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            keyChar="exit";
+                            keyChar = "exit";
                         }
                     }
 
                     else
                     {
-                        
+
                         SystemSounds.Hand.Play();
-                     
+
                     }
 
                 }
-          
+
                 else if (int.Parse(keyCode) == 40) //validate Down Arrow---------------------------------------------------------------
                 {
                     if (form == "ManualBilling" && focus == "description")
@@ -73,123 +85,122 @@ namespace billing_system.Classes
                         mb.dataGridView1.Focus();
                     }
                 }
-    
-                       
+
+
                 else
                 {
-                    
+
                     SystemSounds.Hand.Play();
-                     
+
                 }
-                
+
 
             }
 
-            
+
             catch (Exception exc)
             {
                 MessageBox.Show("Error Occured," + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
             }
 
             return keyChar;
 
-           
+
         }
 
-    //--------------endOfstartOfmanualSearchkey Function---------------------------------------------------------------------------------------------------------------------------
+        //--------------endOfstartOfmanualSearchkey Function---------------------------------------------------------------------------------------------------------------------------
 
 
 
-        
-        
-        
-    //--------------startOfmbDgvdownArrow Function---------------------------------------------------------------------------------------------------------------------------
+
+
+
+        //--------------startOfmbDgvdownArrow Function---------------------------------------------------------------------------------------------------------------------------
         public void mbDgvdownArrow()
         {
-                ManualBilling mb = new ManualBilling();
-                int rows = mb.dataGridView1.RowCount;
+            ManualBilling mb = new ManualBilling();
+            int rows = mb.dataGridView1.RowCount;
 
 
-                
-                if (keyCount > 1 && mb.RowIndex < rows)
-                {
-                    mb.dataGridView1.Rows[mb.RowIndex].Selected = false;
-                    mb.dataGridView1.Rows[mb.RowIndex++].Selected = true;
-                }
 
-                else
-                {
-                    SystemSounds.Hand.Play();
-                }
+            if (keyCount > 1 && mb.RowIndex < rows)
+            {
+                mb.dataGridView1.Rows[mb.RowIndex].Selected = false;
+                mb.dataGridView1.Rows[mb.RowIndex++].Selected = true;
+            }
 
-            
+            else
+            {
+                SystemSounds.Hand.Play();
+            }
+
+
         }
-   //--------------endOfmbDgvdownArrow Function---------------------------------------------------------------------------------------------------------------------------
-       
-  
-    
-  
+        //--------------endOfmbDgvdownArrow Function---------------------------------------------------------------------------------------------------------------------------
 
 
 
 
-  //--------------startOfUpArrow Function---------------------------------------------------------------------------------------------------------------------------
-       
-    
-       public void mbDgvupArrow()
+
+
+
+
+        //--------------startOfUpArrow Function---------------------------------------------------------------------------------------------------------------------------
+
+
+        public void mbDgvupArrow()
         {
-                ManualBilling mb = new ManualBilling();
+            ManualBilling mb = new ManualBilling();
 
 
-                if (mb.RowIndex == 1)
-                {
-                    mb.txtBoxDescription.Focus();
-                }
+            if (mb.RowIndex == 1)
+            {
+                mb.txtBoxDescription.Focus();
+            }
 
-                else if (mb.RowIndex > 1)
-                {
-                    mb.dataGridView1.Rows[mb.RowIndex].Selected = false;
-                    mb.dataGridView1.Rows[mb.RowIndex--].Selected = true;
-                }
-                else
-                {
-                    SystemSounds.Hand.Play();
-                }
+            else if (mb.RowIndex > 1)
+            {
+                mb.dataGridView1.Rows[mb.RowIndex].Selected = false;
+                mb.dataGridView1.Rows[mb.RowIndex--].Selected = true;
+            }
+            else
+            {
+                SystemSounds.Hand.Play();
+            }
 
-            
+
         }
-   //--------------endOfUpArrow Function---------------------------------------------------------------------------------------------------------------------------
-
-
-
-      
+        //--------------endOfUpArrow Function---------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
 
-   //--------------startOfEnter Function---------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+        //--------------startOfEnter Function---------------------------------------------------------------------------------------------------------------------------
         public void enterButton(string form, string focus)
         {
             if (form == "mb" && focus == "dgv")
             {
-                
+
             }
         }
-   //--------------endOfEnter Function---------------------------------------------------------------------------------------------------------------------------
+        //--------------endOfEnter Function---------------------------------------------------------------------------------------------------------------------------
 
-  
+
 
 
 
 
 
     }
-//-------------------endOfKeyPressClass-----------------------------------------------------------------------------------------------------------------------------------------------
+    //-------------------endOfKeyPressClass-----------------------------------------------------------------------------------------------------------------------------------------------
 }
 
 
- 
-                
+

@@ -33,20 +33,29 @@ namespace billing_system
 
         public void txtBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
+            MessageBox.Show("hj");
             string keyVal;
             string keyCd;
             string searchKey;
 
-            RowIndex = dataGridView1.CurrentCell.RowIndex;
-
             ManualBilling mb = new ManualBilling();
-            keyVal = e.KeyValue.ToString();
-            KeyPressEvent kpe = new KeyPressEvent();
-            keyCd = e.KeyCode.ToString();
-            searchKey = kpe.manualSearchkey(keyVal,keyCd, "ManualBilling", "description");
 
-            BillGeneration bg = new BillGeneration();
-            bg.manualBilling(searchKey);
+            keyVal = e.KeyValue.ToString();
+            keyCd = e.KeyCode.ToString();
+
+
+            KeyPressEvent kpe = new KeyPressEvent();
+            
+            searchKey = kpe.manualSearchkey(keyVal, keyCd, "ManualBillingform", "des",this);
+
+
+
+            if (searchKey == "exit")
+            {
+                this.Close();
+            }
+
+
         }
 
 
@@ -90,8 +99,10 @@ namespace billing_system
 
         private void ManualBilling_Load(object sender, EventArgs e)
         {
+
             
-            this.ActiveControl = txtBoxDescription;
         }
+
+        
     }
 }

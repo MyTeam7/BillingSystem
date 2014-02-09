@@ -31,8 +31,8 @@ namespace billing_system
         {
             this.ActiveControl = txtBoxDescription;
             BillGeneration bf = new BillGeneration();
-            textBox1.Text=bf.BillNoGen().ToString();
-            
+            textBox1.Text = bf.BillNoGen().ToString();
+
 
             timer1 = new Timer();
             timer1.Interval = 1000;
@@ -53,27 +53,23 @@ namespace billing_system
             string keyCd;
             string searchKey;
 
-            ManualBilling mb=new ManualBilling();
-            
-                keyVal = e.KeyValue.ToString();
-                keyCd = e.KeyCode.ToString();
-                
+            ManualBilling mb = new ManualBilling();
 
-                KeyPressEvent kpe = new KeyPressEvent();
-                searchKey = kpe.manualSearchkey(keyVal,keyCd, "Billingform", "des");
-                
+            keyVal = e.KeyValue.ToString();
+            keyCd = e.KeyCode.ToString();
 
 
-                if (searchKey == "exit")
-                {
-                    this.Close();
-                }
-                else
-                {
-                    BillGeneration bg = new BillGeneration();
-                    bg.manualBilling(searchKey);
-                }
-            
+            KeyPressEvent kpe = new KeyPressEvent();
+            searchKey = kpe.manualSearchkey(keyVal, keyCd, "Billingform", "des");
+
+
+
+            if (searchKey == "exit")
+            {
+                this.Close();
+            }
+
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -91,6 +87,7 @@ namespace billing_system
 
 
 
-        
+
+
     }
 }
