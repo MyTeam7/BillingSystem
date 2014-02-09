@@ -17,6 +17,7 @@ namespace billing_system.Classes
         private string Password;
         private string DBUsername;
         private string DBPassword;
+        private string Catagory;
         private string Quary;
         private MySqlCommand command;
         private MySqlDataReader reader;
@@ -85,7 +86,16 @@ namespace billing_system.Classes
         //Find User Catagory class
         public string UserCatagory() 
         {
-            return "aaa";
+            Quary = "SELECT Catagory FROM users WHERE User_Name = '"+Username+"' AND Password = '"+Password+"'";
+            command = new MySqlCommand(Quary, connection);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Catagory = reader.GetString(0);
+            }
+            reader.Close();
+
+            return Catagory;
         }
     }
 }
