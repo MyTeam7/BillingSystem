@@ -170,7 +170,7 @@ namespace billing_system.Classes
 
 
 
-            if (mb.RowIndex < rows)
+            if (mb.RowIndex < rows && rows!=1)
             {
 
                 mb.RowIndex = mb.RowIndex + 1;
@@ -211,6 +211,7 @@ namespace billing_system.Classes
                 mb.ActiveControl = mb.txtBoxDescription;
                 mb.dataGridView1.BorderStyle = BorderStyle.Fixed3D;
                 mb.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle;
+                mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);
             }
 
             else if (mb.RowIndex > 1)

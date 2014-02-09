@@ -127,9 +127,9 @@ namespace billing_system
 
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            DataView Dv = new DataView(dbtable);
-            Dv.RowFilter = string.Format("Description LIKE '%{0}%'", textBox6.Text);
-            dataGridView1.DataSource = Dv;
+            //DataView Dv = new DataView(dbtable);
+            //Dv.RowFilter = string.Format("Description LIKE '%{0}%'", textBox6.Text);
+            //dataGridView1.DataSource = Dv;
 
         }
 

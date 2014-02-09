@@ -72,9 +72,12 @@ namespace billing_system
 
             if (int.Parse(keyVal) == 40)
             {
-                KeyPressEvent kpe = new KeyPressEvent();
-                kpe.mbDgvdownArrow(this);
-                RowIndex = dataGridView1.CurrentCell.RowIndex;
+                if (dataGridView1.RowCount != 0 || dataGridView1.RowCount != 1)
+                {
+                    KeyPressEvent kpe = new KeyPressEvent();
+                    kpe.mbDgvdownArrow(this);
+                    RowIndex = dataGridView1.CurrentCell.RowIndex;
+                }
 
             }
             else if (int.Parse(keyVal) == 38)
