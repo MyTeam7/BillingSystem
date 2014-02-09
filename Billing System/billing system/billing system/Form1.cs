@@ -28,8 +28,7 @@ namespace billing_system
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Admin mext = new Admin();
-            mext.Show();
+            
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
@@ -43,7 +42,18 @@ namespace billing_system
             {
                 if (UPName.PasswordAuthenticaion())
                 {
-                    MessageBox.Show("you are loged!!!!!");
+                    //MessageBox.Show("you are loged!!!!!");
+                    if (UPName.UserCatagory() == "admin")
+                    {
+                        Admin AdminForm = new Admin();
+                        AdminForm.Show();
+                    }
+                    else if (UPName.UserCatagory() == "user")
+                    {
+                        Billingform Bill = new Billingform();
+                        Bill.Show();
+                    }
+                   
                 }
                 else
                     MessageBox.Show("PASSWORD is WRONG!!!!!");
