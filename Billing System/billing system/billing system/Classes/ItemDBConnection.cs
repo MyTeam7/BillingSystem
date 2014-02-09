@@ -15,69 +15,106 @@ namespace billing_system.Classes
     class ItemDBConnection : DBConnection
     {
 
-        public void Insert(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
+        public void Insert(int textboxCode, string txtboxDescription, decimal txtboxDiscount, decimal lowestPrice, decimal price, string txtboxOther)
         {
- 
-            string query = "INSERT INTO  (Item_Code,Description,Discount,Lowest_Price,Others) VALUES('" + textboxCode + "','" + txtboxDescription + "','" + txtboxDiscount + "','" + lowestPrice + "','" + price + "','" + txtboxOther + "')";
 
-           
- 
+            string query = "INSERT items(Item_Code,Description,Discount,Lowest_Price,price,Others) VALUES('" + textboxCode + "','" + txtboxDescription + "','" + txtboxDiscount + "','" + lowestPrice + "','" + price + "','" + txtboxOther + "')";
 
-            //open connection
-            if (this.OpenConnection() == true)
+            try
             {
-                //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //open connection
+                if (this.OpenConnection() == true)
+                {
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                //Execute command
-                cmd.ExecuteNonQuery();
+                    //Execute command
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Item No: " + textboxCode + " & " + txtboxDescription + " insert Database.");
 
-                //close connection
-                this.CloseConnection();
+                    //close connection
+                    this.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         //Update statement
-        public void Update(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
+        public void Update(int textboxCode, string txtboxDescription, decimal txtboxDiscount, decimal lowestPrice, decimal price, string txtboxOther)
         {
- 
-            string query = "UPDATE items SET Item_Code='" + textboxCode + "', Description='" + txtboxDescription + "',Discount='" + txtboxDiscount + "',Lowest_Price='" + lowestPrice + "',price='" + price + "',Others='" + txtboxOther + "' WHERE Item_Code= '"+ textboxCode + "'";
 
-            
- 
+            string query = "UPDATE items SET Item_Code='" + textboxCode + "', Description='" + txtboxDescription + "',Discount='" + txtboxDiscount + "',Lowest_Price='" + lowestPrice + "',price='" + price + "',Others='" + txtboxOther + "' WHERE Item_Code= '" + textboxCode + "'";
 
-            //Open connection
-            if (this.OpenConnection() == true)
+            DialogResult dialogResult = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                //create mysql command
-                MySqlCommand cmd = new MySqlCommand();
-                //Assign the query using CommandText
-                cmd.CommandText = query;
-                //Assign the connection using Connection
-                cmd.Connection = connection;
+                try
+                {
 
-                //Execute query
-                cmd.ExecuteNonQuery();
+                    //Open connection
+                    if (this.OpenConnection() == true)
+                    {
+                        //create mysql command
+                        MySqlCommand cmd = new MySqlCommand();
+                        //Assign the query using CommandText
+                        cmd.CommandText = query;
 
-                //close connection
-                this.CloseConnection();
+
+                        //Assign the connection using Connection
+                        cmd.Connection = connection;
+
+                        //Execute query
+                        cmd.ExecuteNonQuery();
+
+                        //close connection
+                        this.CloseConnection();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
             }
         }
 
         //Delete statement
- 
-        public void Delete(String textboxCode)
-        
+
+        public void Delete(int textboxCode)
         {
             string query = "Delete from items where Item_Code = '" + textboxCode + "'";
 
-            if (this.OpenConnection() == true)
+            DialogResult dialogResult = MessageBox.Show("Do you want to delete changes?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
-                this.CloseConnection();
+
+                try
+                {
+                    if (this.OpenConnection() == true)
+                    {
+                        MySqlCommand cmd = new MySqlCommand(query, connection);
+                        cmd.ExecuteNonQuery();
+
+                        this.CloseConnection();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
             }
         }
+
         //search statement
         public void Search()
         {
