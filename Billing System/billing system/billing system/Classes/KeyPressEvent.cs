@@ -63,6 +63,33 @@ namespace billing_system.Classes
 
 
                 }
+
+
+                else if (int.Parse(keyCode) == 8)
+                {
+                    if (form == "ManualBillingform" && focus == "des")
+                    {
+                        ManualBilling mb = (ManualBilling)obj;
+                        if (mb.txtBoxDescription.Text.Length > 0)
+                        {
+                            string text = mb.txtBoxDescription.Text;
+                            text = text.Substring(0, text.Length - 1);
+                            mb.txtBoxDescription.Text = text;
+                            mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);
+                            BillGeneration bf = new BillGeneration();
+                            character = null;
+                            
+                            bf.manualBilling(character,obj);
+                        }
+                        else
+                        {
+                            SystemSounds.Hand.Play();
+                        }
+                    }
+
+                }
+
+
                 else if (int.Parse(keyCode) == 27)
                 {
                     if (form == "Billingform" && focus == "des")

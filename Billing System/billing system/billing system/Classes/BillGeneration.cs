@@ -104,7 +104,7 @@ namespace billing_system.Classes
         public void manualBilling(string searchKey, object obj = null)
         {
             DBConnection db = new DBConnection();
-
+            
 
             try
             {
@@ -122,7 +122,7 @@ namespace billing_system.Classes
 
 
 
-
+                
                 query = "SELECT * From items WHERE Description LIKE CONCAT('" + mb.txtBoxDescription.Text + "','%')";
 
 
@@ -137,9 +137,15 @@ namespace billing_system.Classes
                     bs.DataSource = table;
                     mb.dataGridView1.DataSource = bs;
                     mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
-                    mb.dataGridView1.Rows[0].Selected = true;
+                    
+                    
+                    if (mb.dataGridView1.RowCount > 0)
+                    {
+                        
+                        mb.dataGridView1.Rows[0].Selected = true;
+                    }
 
-
+                    
 
                 }
                 else
