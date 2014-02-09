@@ -13,10 +13,12 @@ namespace billing_system
     public partial class ManualBilling : Form
     {
         public int RowIndex;
+        
 
         public ManualBilling()
         {
             InitializeComponent();
+
         }
 
         private void A_I_Code_Click(object sender, EventArgs e)
@@ -24,7 +26,7 @@ namespace billing_system
 
         }
 
-        
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -33,20 +35,20 @@ namespace billing_system
 
         public void txtBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show("hj");
+
             string keyVal;
             string keyCd;
             string searchKey;
 
-            ManualBilling mb = new ManualBilling();
+
 
             keyVal = e.KeyValue.ToString();
-            keyCd = e.KeyCode.ToString();
-
+            keyCd = e.KeyCode.ToString().ToLower();
+            RowIndex = 0;
 
             KeyPressEvent kpe = new KeyPressEvent();
-            
-            searchKey = kpe.manualSearchkey(keyVal, keyCd, "ManualBillingform", "des",this);
+
+            searchKey = kpe.manualSearchkey(keyVal, keyCd, "ManualBillingform", "des", this);
 
 
 
@@ -62,32 +64,37 @@ namespace billing_system
         public void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             string keyVal;
-            
 
-            RowIndex = dataGridView1.CurrentCell.RowIndex;
-            keyVal = e.KeyCode.ToString();
+
+
+
+            keyVal = e.KeyValue.ToString();
 
             if (int.Parse(keyVal) == 40)
             {
                 KeyPressEvent kpe = new KeyPressEvent();
-                kpe.mbDgvdownArrow();
+                kpe.mbDgvdownArrow(this);
+
             }
             else if (int.Parse(keyVal) == 38)
             {
                 KeyPressEvent kpe = new KeyPressEvent();
-                kpe.mbDgvupArrow();
+                RowIndex = dataGridView1.CurrentCell.RowIndex;
+                kpe.mbDgvUpArrow(RowIndex, this);
             }
             else if (int.Parse(keyVal) == 13)
             {
                 KeyPressEvent kpe = new KeyPressEvent();
-                kpe.enterButton("mb", "dgv");
+                kpe.enterButton("ManualBillingform", "dgv",this);
             }
             else
             {
+
                 SystemSounds.Hand.Play();
+
             }
 
-           
+
         }
 
 
@@ -99,10 +106,12 @@ namespace billing_system
 
         private void ManualBilling_Load(object sender, EventArgs e)
         {
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
+            this.KeyDown += new KeyEventHandler(dataGridView1_KeyDown);
 
-            
         }
 
-        
+
     }
 }

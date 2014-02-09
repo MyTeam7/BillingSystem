@@ -15,7 +15,7 @@ namespace billing_system.Classes
     //this class is for manage keypress events
     class KeyPressEvent
     {
-        private int keyCount;
+       
 
 
 
@@ -79,10 +79,11 @@ namespace billing_system.Classes
 
                 else if (int.Parse(keyCode) == 40) //validate Down Arrow---------------------------------------------------------------
                 {
-                    if (form == "ManualBilling" && focus == "description")
+
+                    if (form == "ManualBillingform" && focus == "des")
                     {
-                        ManualBilling mb = new ManualBilling();
-                        mb.dataGridView1.Focus();
+                        ManualBilling mb = (ManualBilling)obj;
+                        mb.ActiveControl = mb.dataGridView1;
                     }
                 }
 
@@ -117,17 +118,21 @@ namespace billing_system.Classes
 
 
         //--------------startOfmbDgvdownArrow Function---------------------------------------------------------------------------------------------------------------------------
-        public void mbDgvdownArrow()
+        public void mbDgvdownArrow(object obj)
         {
-            ManualBilling mb = new ManualBilling();
+
+            ManualBilling mb = (ManualBilling)obj;
             int rows = mb.dataGridView1.RowCount;
 
 
 
-            if (keyCount > 1 && mb.RowIndex < rows)
+            if (mb.RowIndex < rows)
             {
-                mb.dataGridView1.Rows[mb.RowIndex].Selected = false;
-                mb.dataGridView1.Rows[mb.RowIndex++].Selected = true;
+
+                mb.RowIndex = mb.RowIndex + 1;
+                mb.dataGridView1.Rows[mb.RowIndex - 1].Selected = false;
+                mb.dataGridView1.Rows[mb.RowIndex].Selected = true;
+
             }
 
             else
@@ -149,14 +154,16 @@ namespace billing_system.Classes
         //--------------startOfUpArrow Function---------------------------------------------------------------------------------------------------------------------------
 
 
-        public void mbDgvupArrow()
+        public void mbDgvUpArrow(int RowIndex, object obj)
         {
-            ManualBilling mb = new ManualBilling();
+            ManualBilling mb = (ManualBilling)obj;
 
 
-            if (mb.RowIndex == 1)
+
+            if (RowIndex == 0)
             {
-                mb.txtBoxDescription.Focus();
+
+                mb.ActiveControl = mb.txtBoxDescription;
             }
 
             else if (mb.RowIndex > 1)
@@ -166,6 +173,7 @@ namespace billing_system.Classes
             }
             else
             {
+
                 SystemSounds.Hand.Play();
             }
 
@@ -183,10 +191,13 @@ namespace billing_system.Classes
 
 
         //--------------startOfEnter Function---------------------------------------------------------------------------------------------------------------------------
-        public void enterButton(string form, string focus)
+        public void enterButton(string form, string focus,object obj)
         {
-            if (form == "mb" && focus == "dgv")
+            if (form == "ManualBillingform" && focus == "dgv")
             {
+                ManualBilling mb = (ManualBilling)obj;
+
+               
 
             }
         }

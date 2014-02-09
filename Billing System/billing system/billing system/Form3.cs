@@ -13,11 +13,14 @@ namespace billing_system
     public partial class Billingform : Form
     {
         public int stage;
+        object obj;
+
         public Billingform()
         {
             InitializeComponent();
             stage = 0;
             this.txtBoxDescription.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
+            obj = this;
         }
 
 

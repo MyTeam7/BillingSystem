@@ -115,10 +115,15 @@ namespace billing_system.Classes
 
                 ManualBilling mb = (ManualBilling)obj;
 
-
+                mb.txtBoxDescription.ReadOnly = false;
                 mb.txtBoxDescription.Text = mb.txtBoxDescription.Text + searchKey;
                 mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);
-                query = "SELECT * From items WHERE Description LIKE CONCAT('" + searchKey + "','%')";
+                mb.txtBoxDescription.ReadOnly = true;
+
+
+
+
+                query = "SELECT * From items WHERE Description LIKE CONCAT('" + mb.txtBoxDescription.Text + "','%')";
 
 
 
@@ -132,12 +137,8 @@ namespace billing_system.Classes
                     bs.DataSource = table;
                     mb.dataGridView1.DataSource = bs;
                     mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
-                    mb.dataGridView1.Columns[0].Width = mb.dataGridView1.Width / 6;
-                    mb.dataGridView1.Columns[1].Width = mb.dataGridView1.Width / 6;
-                    mb.dataGridView1.Columns[2].Width = mb.dataGridView1.Width / 6;
-                    mb.dataGridView1.Columns[3].Width = mb.dataGridView1.Width / 6;
-                    mb.dataGridView1.Columns[4].Width = mb.dataGridView1.Width / 6;
-                    mb.dataGridView1.Columns[5].Width = mb.dataGridView1.Width / 6;
+                    mb.dataGridView1.Rows[0].Selected = true;
+
 
 
                 }
