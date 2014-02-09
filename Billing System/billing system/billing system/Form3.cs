@@ -60,6 +60,8 @@ namespace billing_system
 
             keyVal = e.KeyValue.ToString();
             keyCd = e.KeyCode.ToString();
+            string kd = e.KeyData.ToString();
+            
 
 
             KeyPressEvent kpe = new KeyPressEvent();

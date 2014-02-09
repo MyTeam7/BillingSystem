@@ -30,11 +30,11 @@ namespace billing_system.Classes
         public int BillNoGen()
         {
             DBConnection db = new DBConnection();
-            int billno = 0;
+            int billno = 0; //initialize billno variable
             try
             {
                 string query = "SELECT COUNT(Quantity) FROM bills";
-                int count = 0;
+                int count = 0; //initialize count variable
 
 
 
@@ -44,13 +44,13 @@ namespace billing_system.Classes
                     count = cmd.ExecuteNonQuery();
 
                     if (count < 1)
-                        billno = 000001;
+                        billno = 000001;    //first bill
                     else
                     {
                         string queryOne = "SELECT InvoiceNo FROM bills ORDER BY InvoiceNo DESC LIMIT 1";
                         MySqlCommand cmdOne = new MySqlCommand(queryOne, db.connection);
                         int result = cmdOne.ExecuteNonQuery();
-                        billno = result + 1;
+                        billno = result + 1; //next billno 
 
                     }
 

@@ -39,7 +39,16 @@ namespace billing_system.Classes
 
                 if (int.Parse(keyCode) > 64 && int.Parse(keyCode) < 106) //validate Alphanumeric characters-------------------------
                 {
-                    //KeysConverter kc = new KeysConverter();
+                    
+                    if(int.Parse(keyCode) > 95 && int.Parse(keyCode) < 106)
+                    {
+                        character = character.Substring(6, character.Length-6);
+                    }
+                    
+                        
+                        
+                        
+                        //KeysConverter kc = new KeysConverter();
                     keyChar = character;
 
                     if (form == "Billingform")
