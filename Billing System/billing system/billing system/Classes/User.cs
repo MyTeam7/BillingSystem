@@ -52,7 +52,7 @@ namespace billing_system.Classes
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                DBUsername = reader.GetString(4);
+                DBUsername = reader.GetString(0);
             }
             if (DBUsername == null)
             {
@@ -69,7 +69,7 @@ namespace billing_system.Classes
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                DBPassword = reader.GetString(5);
+                DBPassword = reader.GetString(0);
             }
             if (Password != DBPassword)
             {
