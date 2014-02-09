@@ -47,13 +47,14 @@ namespace billing_system.Classes
         {
             OpenConnection();
 
-            Quary = "SELECT User_Name FROM users WHERE User_Name = "+ Username+"";
+            Quary = "SELECT User_Name FROM users WHERE User_Name = '"+Username+"'";
             command = new MySqlCommand(Quary,connection);
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 DBUsername = reader.GetString(0);
             }
+            reader.Close();
             if (DBUsername == null)
             {
                 return false;
@@ -64,13 +65,14 @@ namespace billing_system.Classes
         //Authenticate password
         public bool PasswordAuthenticaion()
         {
-            Quary = "SELECT Password FROM users WHERE Password = " + Password+"";
+            Quary = "SELECT Password FROM users WHERE Password = '" + Password+"'";
             command = new MySqlCommand(Quary, connection);
             reader = command.ExecuteReader();
             while (reader.Read())
             {
                 DBPassword = reader.GetString(0);
             }
+            reader.Close();
             if (Password != DBPassword)
             {
                 return false;
