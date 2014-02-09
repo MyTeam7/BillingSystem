@@ -78,6 +78,14 @@ namespace billing_system.Classes
                 return false;
             }
             return true;
-        }  
+        } 
+ 
+        //-------------------------------------2/9/2014--------------------------------------------
+
+        //Find User Catagory class
+        public string UserCatagory() 
+        {
+            return "aaa";
+        }
     }
 }
