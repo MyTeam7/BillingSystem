@@ -15,8 +15,8 @@ namespace billing_system.Classes
     //this class is for manage keypress events
     class KeyPressEvent
     {
-       
 
+        public object PrvForm;
 
 
 
@@ -26,7 +26,12 @@ namespace billing_system.Classes
         public string manualSearchkey(string keyCode, string character, string form = "dflt", string focus = "dflt", object obj = null)
         {
             string keyChar = null;
-
+            PrvForm = obj;
+            
+            
+            
+            
+            
             try
             {
 
@@ -84,6 +89,8 @@ namespace billing_system.Classes
                     {
                         ManualBilling mb = (ManualBilling)obj;
                         mb.ActiveControl = mb.dataGridView1;
+                        mb.dataGridView1.BorderStyle = BorderStyle.FixedSingle;
+                        mb.txtBoxDescription.BorderStyle = BorderStyle.Fixed3D;
                     }
                 }
 
@@ -130,8 +137,9 @@ namespace billing_system.Classes
             {
 
                 mb.RowIndex = mb.RowIndex + 1;
-                mb.dataGridView1.Rows[mb.RowIndex - 1].Selected = false;
-                mb.dataGridView1.Rows[mb.RowIndex].Selected = true;
+                //mb.dataGridView1.Rows[mb.RowIndex - 1].Selected = false;
+                mb.dataGridView1.CurrentCell = mb.dataGridView1[mb.RowIndex, 0];
+                
 
             }
 
@@ -162,8 +170,10 @@ namespace billing_system.Classes
 
             if (RowIndex == 0)
             {
-
+                
                 mb.ActiveControl = mb.txtBoxDescription;
+                mb.dataGridView1.BorderStyle = BorderStyle.Fixed3D;
+                mb.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle;
             }
 
             else if (mb.RowIndex > 1)
@@ -173,7 +183,7 @@ namespace billing_system.Classes
             }
             else
             {
-
+                
                 SystemSounds.Hand.Play();
             }
 
@@ -196,6 +206,20 @@ namespace billing_system.Classes
             if (form == "ManualBillingform" && focus == "dgv")
             {
                 ManualBilling mb = (ManualBilling)obj;
+                Billingform bf = (Billingform)PrvForm;
+                int row=mb.dataGridView1.CurrentCell.RowIndex;
+                
+                int code=(int)mb.dataGridView1.Rows[row].Cells[0].Value;
+                string des=mb.dataGridView1.Rows[row].Cells[1].Value.ToString();
+                decimal price=(decimal)mb.dataGridView1.Rows[row].Cells[2].Value;
+                decimal l_price=(decimal)mb.dataGridView1.Rows[row].Cells[3].Value;
+                decimal disc=(decimal)mb.dataGridView1.Rows[row].Cells[4].Value;;
+                string other=mb.dataGridView1.Rows[row].Cells[5].Value.ToString();
+
+               
+
+                bf.dataGridView1.Rows.Insert(bf.dataGridView1.RowCount,code,des,price,l_price,disc,other);
+
 
                
 

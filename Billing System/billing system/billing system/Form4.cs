@@ -80,12 +80,14 @@ namespace billing_system
             {
                 KeyPressEvent kpe = new KeyPressEvent();
                 RowIndex = dataGridView1.CurrentCell.RowIndex;
+                
                 kpe.mbDgvUpArrow(RowIndex, this);
             }
             else if (int.Parse(keyVal) == 13)
             {
                 KeyPressEvent kpe = new KeyPressEvent();
                 kpe.enterButton("ManualBillingform", "dgv",this);
+                
             }
             else
             {
