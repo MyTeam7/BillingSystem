@@ -16,7 +16,7 @@ namespace billing_system.Classes
     class KeyPressEvent
     {
 
-        public object PrvForm;
+        public object PrvForm;  //variable for hold previous function called form instance
 
 
 
@@ -37,58 +37,74 @@ namespace billing_system.Classes
 
 
 
-                if (int.Parse(keyCode) > 64 && int.Parse(keyCode) < 106) //validate Alphanumeric characters-------------------------
+                if (int.Parse(keyCode) > 64 && int.Parse(keyCode) < 106 || int.Parse(keyCode)==32 ) //validate Alphanumeric characters-------------------------
                 {
                     
-                    if(int.Parse(keyCode) > 95 && int.Parse(keyCode) < 106)
+                    if(int.Parse(keyCode) > 95 && int.Parse(keyCode) < 106) //validate numberpad inputs to "NumPad" part
                     {
                         character = character.Substring(6, character.Length-6);
                     }
-                    
+
+                    if (int.Parse(keyCode) == 32)
+                    {
+                        character = " ";
+                    }
                         
                         
-                        
-                        //KeysConverter kc = new KeysConverter();
+                       
                     keyChar = character;
 
-                    if (form == "Billingform")
+                    
+                    
+                    
+                    
+                    if (form == "Billingform" || form == "ManualBillingform")
                     {
-                        ManualBilling mb = new ManualBilling();
-                        if (mb.Visible == false)
+
+                        if (form == "Billingform") //idetify function triggered form
                         {
-                            mb.Show();
-                            mb.Focus();
+                            ManualBilling mb = new ManualBilling();
+                            if (mb.Visible == false) //check whether ManualBilling Form is already initialized or not
+                            {
+                                mb.Show();
+                                mb.Focus();
 
+                            }
+
+                            manualBilling("mb", character, mb); // call manualBilling function 
                         }
-                        BillGeneration bf = new BillGeneration();
-                        bf.manualBilling(character, mb);
-                    }
-                    else
-                    {
-                        BillGeneration bf = new BillGeneration();
+                        else
+                        {
 
-                        bf.manualBilling(character, obj);
+
+                            manualBilling("mb", character, obj);
+                        }
                     }
+
+
+
+
+
 
 
                 }
 
 
-                else if (int.Parse(keyCode) == 8)
+                else if (int.Parse(keyCode) == 8) //validate BackSpace---------------------------------------------------------------
                 {
                     if (form == "ManualBillingform" && focus == "des")
                     {
                         ManualBilling mb = (ManualBilling)obj;
-                        if (mb.txtBoxDescription.Text.Length > 0)
+                        if (mb.txtBoxDescription.Text.Length > 0) //check is there any text in the textbox
                         {
                             string text = mb.txtBoxDescription.Text;
-                            text = text.Substring(0, text.Length - 1);
+                            text = text.Substring(0, text.Length - 1); //remove last character from the text of the textbox
                             mb.txtBoxDescription.Text = text;
-                            mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);
-                            BillGeneration bf = new BillGeneration();
+                            mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0); //move cursor into the end of text in the textbox
+                            
                             character = null;
                             
-                            bf.manualBilling(character,obj);
+                            manualBilling("mb",character,obj);
                         }
                         else
                         {
@@ -99,7 +115,7 @@ namespace billing_system.Classes
                 }
 
 
-                else if (int.Parse(keyCode) == 27)
+                else if (int.Parse(keyCode) == 27)  //validate Esc key---------------------------------------------------------------
                 {
                     if (form == "Billingform" && focus == "des")
                     {
@@ -124,9 +140,9 @@ namespace billing_system.Classes
                     if (form == "ManualBillingform" && focus == "des")
                     {
                         ManualBilling mb = (ManualBilling)obj;
-                        mb.ActiveControl = mb.dataGridView1;
-                        mb.dataGridView1.BorderStyle = BorderStyle.FixedSingle;
-                        mb.txtBoxDescription.BorderStyle = BorderStyle.Fixed3D;
+                        mb.ActiveControl = mb.dataGridView1; //focus into datagridview
+                        mb.dataGridView1.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
+                        mb.txtBoxDescription.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
                     }
                 }
 
@@ -144,11 +160,11 @@ namespace billing_system.Classes
 
             catch (Exception exc)
             {
-                MessageBox.Show("Error Occured," + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error Occured, Please Try Again" + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
-            return keyChar;
+            return keyChar; //return "exit" string
 
 
         }
@@ -161,28 +177,33 @@ namespace billing_system.Classes
 
 
         //--------------startOfmbDgvdownArrow Function---------------------------------------------------------------------------------------------------------------------------
-        public void mbDgvdownArrow(object obj)
+ 
+        public void downArrow(string form,string focus,object obj)
         {
 
-            ManualBilling mb = (ManualBilling)obj;
-            int rows = mb.dataGridView1.RowCount;
-            
-
-
-
-            if (mb.RowIndex < rows && rows!=1)
+            if (form == "mb" && focus == "dgv") // validate ManualBilling form and DataGridView
             {
+                ManualBilling mb = (ManualBilling)obj;
+                int rows = mb.dataGridView1.RowCount; // no of rows in datagridview
+                int rowIndex = mb.dataGridView1.CurrentCell.RowIndex; //current row no
 
-                mb.RowIndex = mb.RowIndex + 1;
-                //mb.dataGridView1.Rows[mb.RowIndex - 1].Selected = false;
-                mb.dataGridView1.Rows[mb.RowIndex].Selected=true;
-                
 
-            }
 
-            else
-            {
-                SystemSounds.Hand.Play();
+
+                if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
+                {
+
+
+                    mb.dataGridView1.Rows[rowIndex].Selected = false; //deselect current row
+                    mb.dataGridView1.Rows[rowIndex + 1].Selected = true; // select next row
+
+
+                }
+
+                else
+                {
+                    SystemSounds.Hand.Play();
+                }
             }
 
 
@@ -199,30 +220,33 @@ namespace billing_system.Classes
         //--------------startOfUpArrow Function---------------------------------------------------------------------------------------------------------------------------
 
 
-        public void mbDgvUpArrow(int RowIndex, object obj)
+        public void upArrow(string form,string focus,int RowIndex, object obj)
         {
-            ManualBilling mb = (ManualBilling)obj;
-
-
-
-            if (RowIndex == 0)
+            if (form == "mb" && focus == "dgv") // validate ManualBilling form and DataGridView
             {
-                
-                mb.ActiveControl = mb.txtBoxDescription;
-                mb.dataGridView1.BorderStyle = BorderStyle.Fixed3D;
-                mb.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle;
-                mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);
-            }
+                ManualBilling mb = (ManualBilling)obj;
 
-            else if (mb.RowIndex > 1)
-            {
-                mb.dataGridView1.Rows[mb.RowIndex].Selected = false;
-                mb.dataGridView1.Rows[mb.RowIndex--].Selected = true;
-            }
-            else
-            {
-                
-                SystemSounds.Hand.Play();
+
+
+                if (RowIndex == 0) //check whether if current selected row is first row or not
+                {
+
+                    mb.ActiveControl = mb.txtBoxDescription; // focus on Description textbox
+                    mb.dataGridView1.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
+                    mb.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
+                    mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);   //move cursor into the end of text in the textbox
+                }
+
+                else if (mb.RowIndex > 1)
+                {
+                    mb.dataGridView1.Rows[mb.RowIndex].Selected = false; //deselect current row
+                    mb.dataGridView1.Rows[mb.RowIndex--].Selected = true; //select previous row
+                }
+                else
+                {
+
+                    SystemSounds.Hand.Play();
+                }
             }
 
 
@@ -253,7 +277,8 @@ namespace billing_system.Classes
                 decimal l_price=(decimal)mb.dataGridView1.Rows[row].Cells[3].Value;
                 decimal disc=(decimal)mb.dataGridView1.Rows[row].Cells[4].Value;;
                 string other=mb.dataGridView1.Rows[row].Cells[5].Value.ToString();
-                MessageBox.Show(des);
+
+                
 
                
 
@@ -265,6 +290,128 @@ namespace billing_system.Classes
             }
         }
         //--------------endOfEnter Function---------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+        //--------------startOfManualBilling Function-------------------------------------------------------------------------------------------------------------------
+
+        public void manualBilling(string form,string searchKey, object obj = null)
+        {
+            DBConnection db = new DBConnection();
+            TextBox textbox=null;
+            DataGridView datagridview = null;
+            string querystring = null;
+
+
+
+
+            //for ManualBilling form
+            if (form == "mb")
+            {
+               ManualBilling mb = (ManualBilling)obj;
+               textbox = mb.txtBoxDescription;
+               datagridview = mb.dataGridView1;
+               
+            }
+
+
+
+
+
+
+            try
+            {
+                string query=null;
+
+
+
+
+                
+
+                textbox.ReadOnly = false;
+                textbox.Text = textbox.Text + searchKey; //assign character of the pressed key into the end of the textbox
+                textbox.Select(textbox.Text.Length, 0); //move cursor into the end of text in the textbox
+                textbox.ReadOnly = true;
+
+
+
+                if (form == "mb")//for ManualBilling form
+                {
+                    querystring = "SELECT * From items WHERE Description LIKE CONCAT('" + textbox.Text + "','%')";
+                }
+                  
+
+
+
+                
+                query = querystring;
+                
+
+
+
+                if (db.OpenConnection() == true)
+                {
+                    //populate data gridview from result
+                    MySqlCommand cmd = new MySqlCommand(query, db.connection);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    BindingSource bs = new BindingSource();
+                    bs.DataSource = table;
+                    datagridview.DataSource = bs;
+                    datagridview.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
+
+
+                    if (datagridview.RowCount > 0)
+                    {
+
+                        datagridview.Rows[0].Selected = true; //auto select first record of datagridview if there is any record
+                    }
+
+
+
+                }
+                else
+                {
+                    MessageBox.Show("DB Connection Error, Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+
+            }
+
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error Occured, Please Try Again" + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+
+            finally
+            {
+                bool a = db.CloseConnection();
+
+            }
+
+        }
+
+
+
+        //--------------endOfManualBilling Function-------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 

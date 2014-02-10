@@ -8,17 +8,20 @@ using System.Windows.Forms;
 using billing_system.Classes;
 using System.Media;
 
+
+//Edited by
+//RavishaHeshan(ravisha_weerasekara@yahoo.com)--2/10/2014
+
 namespace billing_system
 {
     public partial class Billingform : Form
     {
-        public int stage;
-        object obj;
+        
+        object obj; //variable for hold currnt form instance
 
         public Billingform()
         {
             InitializeComponent();
-            stage = 0;
             this.txtBoxDescription.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
             obj = this;
         }
@@ -32,15 +35,15 @@ namespace billing_system
 
         private void Billingform_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = txtBoxDescription;
+            this.ActiveControl = txtBoxDescription; //focus on Description textbox
             BillGeneration bf = new BillGeneration();
-            textBox1.Text = bf.BillNoGen().ToString();
+            textBox1.Text = bf.BillNoGen(this).ToString(); //call to BillNoGen function
 
 
             timer1 = new Timer();
             timer1.Interval = 1000;
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Start();
+            timer1.Tick += new EventHandler(timer1_Tick); 
+            timer1.Start(); //initialize timer
 
         }
 
@@ -58,14 +61,14 @@ namespace billing_system
 
             ManualBilling mb = new ManualBilling();
 
-            keyVal = e.KeyValue.ToString();
-            keyCd = e.KeyCode.ToString();
-            string kd = e.KeyData.ToString();
+            keyVal = e.KeyValue.ToString(); //convert and assign pressed keyValue 
+            keyCd = e.KeyCode.ToString();   //convert and assign pressed keystring
+            
             
 
 
             KeyPressEvent kpe = new KeyPressEvent();
-            searchKey = kpe.manualSearchkey(keyVal, keyCd, "Billingform", "des",this);
+            searchKey = kpe.manualSearchkey(keyVal, keyCd, "Billingform", "des", this); //call manualSearchkey function
             
 
 
@@ -80,7 +83,7 @@ namespace billing_system
         private void timer1_Tick(object sender, EventArgs e)
         {
             BillGeneration bf = new BillGeneration();
-            label9.Text = bf.Date().ToString();
+            label9.Text = bf.Date(this).ToString(); //call to Date function
         }
 
 
