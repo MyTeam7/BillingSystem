@@ -36,6 +36,9 @@ namespace billing_system
 
         private void Billingform_Load(object sender, EventArgs e)
         {
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(textBox2_KeyDown);
+
             this.ActiveControl = txtBoxDescription; //focus on Description textbox
             BillGeneration bf = new BillGeneration();
             textBox1.Text = bf.BillNoGen(this).ToString(); //call to BillNoGen function
@@ -88,7 +91,36 @@ namespace billing_system
         }
 
 
+        public void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            string keyVal = e.KeyValue.ToString();
 
+            
+            if (int.Parse(keyVal) > 95 && int.Parse(keyVal) < 106)
+            {
+                
+                string key=e.KeyCode.ToString();
+                key=key.Substring(6, key.Length - 6);
+                
+                textBox2.ReadOnly = false;
+                textBox2.Text = textBox2.Text + key;
+                textBox2.ReadOnly = true;
+            }
+            else if (int.Parse(keyVal) == 37 || int.Parse(keyVal) == 39)
+            {
+            }
+            else if (int.Parse(keyVal) == 13)
+            {
+                KeyPressEvent kpe = new KeyPressEvent();
+                kpe.enterButton("bf", "qty", this);
+            }
+            else
+            {
+                SystemSounds.Hand.Play();
+            }
+            
+        }
 
 
 

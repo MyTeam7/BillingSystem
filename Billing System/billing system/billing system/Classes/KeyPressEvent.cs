@@ -105,8 +105,14 @@ namespace billing_system.Classes
                             text = text.Substring(0, text.Length - 1); //remove last character from the text of the textbox
                             mb.txtBoxDescription.Text = text;
                             mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0); //move cursor into the end of text in the textbox
-
+                            
+                
                             character = null;
+                            if (mb.txtBoxDescription.TextLength == 0)
+                            {
+                                character = "";
+                                
+                            }
 
                             manualBilling("mb", character, obj);
                         }
@@ -175,7 +181,7 @@ namespace billing_system.Classes
 
             catch (Exception exc)
             {
-                MessageBox.Show("Error Occured, Please Try Again" + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error Occured, Please Try Again, " + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
@@ -281,7 +287,7 @@ namespace billing_system.Classes
 
 
         //--------------startOfEnter Function---------------------------------------------------------------------------------------------------------------------------
-        public void enterButton(string form, string focus, object obj, object formobj)
+        public void enterButton(string form, string focus, object obj, object formobj=null)
         {
             if (form == "mb" && focus == "dgv")
             {
@@ -304,17 +310,57 @@ namespace billing_system.Classes
                 bf.txtBoxDiscount.Text = disc.ToString();
                 mb.Close();
                 bf.ActiveControl = bf.textBox2;
+                                
+            }
+
+            if (form == "bf" && focus == "qty")
+            {
+                Billingform bf = (Billingform)obj;
+
+                string code = bf.txtBoxCode.Text;
+                string des = bf.txtBoxDescription.Text;
+                decimal price;
+                Decimal.TryParse(bf.textBox8.Text, out price);
+                decimal disc;
+                Decimal.TryParse(bf.txtBoxDiscount.Text, out disc);
+                decimal qty;
+                Decimal.TryParse(bf.textBox2.Text, out qty);
+                decimal tot=0;
+
+                if (qty == 0)
+                {
+                    qty = 1;
+                }
+               
+                if(disc==0)
+                {
+                    
+                    tot= (price*qty);
+                }
+
+                else
+                {
+                    decimal newprice;
+                    newprice = (price - ((price / 100) * disc));
+                    tot = (newprice * qty);
+                }
+
                 
 
-
-
-
-                
-
-
-
+                bf.dataGridView1.Rows.Add(bf.dataGridView1.RowCount+1, code,des,qty,disc,price,tot);
+                bf.txtBoxCode.Text = "";
+                bf.txtBoxDescription.Text = "";
+                bf.textBox8.Text = "";
+                bf.textBox2.Text = "";
+                bf.txtBoxDiscount.Text = "";
+                bf.ActiveControl = bf.txtBoxDescription;
 
             }
+
+
+
+
+
         }
         //--------------endOfEnter Function---------------------------------------------------------------------------------------------------------------------------
 
