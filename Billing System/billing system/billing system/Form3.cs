@@ -38,6 +38,9 @@ namespace billing_system
         {
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(textBox2_KeyDown);
+            this.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
+            this.KeyDown += new KeyEventHandler(dataGridView1_KeyDown);
+            
 
             this.ActiveControl = txtBoxDescription; //focus on Description textbox
             BillGeneration bf = new BillGeneration();
@@ -62,12 +65,13 @@ namespace billing_system
             string keyVal;
             string keyCd;
             string searchKey;
+            
 
-            ManualBilling mb = new ManualBilling();
 
             keyVal = e.KeyValue.ToString(); //convert and assign pressed keyValue 
             keyCd = e.KeyCode.ToString();   //convert and assign pressed keystring
 
+            
 
 
 
@@ -83,6 +87,55 @@ namespace billing_system
 
 
         }
+
+
+        public void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            string keyVal;
+
+            
+
+
+            keyVal = e.KeyValue.ToString();
+
+            if (int.Parse(keyVal) == 40)
+            {
+                if (dataGridView1.RowCount != 0 || dataGridView1.RowCount != 1)
+                {
+                    KeyPressEvent kpe = new KeyPressEvent();
+                    kpe.downArrow("bf", "dgv", this); //mb=ManualBilling, dgv=DataGridView
+
+                }
+
+            }
+            else if (int.Parse(keyVal) == 38)
+            {
+                KeyPressEvent kpe = new KeyPressEvent();
+
+                kpe.upArrow("bf", "dgv", this);
+            }
+            else if (int.Parse(keyVal) == 13)
+            {
+                KeyPressEvent kpe = new KeyPressEvent();
+                kpe.enterButton("bf", "dgv", this);
+
+            }
+            else
+            {
+                if (int.Parse(keyVal) < 65 && int.Parse(keyVal) > 105 && int.Parse(keyVal) != 32)
+                {
+
+                    SystemSounds.Hand.Play();
+                }
+
+            }
+        }
+
+
+
+
+
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {

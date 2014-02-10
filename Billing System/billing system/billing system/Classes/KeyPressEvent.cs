@@ -148,6 +148,16 @@ namespace billing_system.Classes
                 else if (int.Parse(keyCode) == 40) //validate Down Arrow---------------------------------------------------------------
                 {
 
+                    if (form == "Billingform" && focus == "des")
+                    {
+                        Billingform bf = (Billingform)obj;
+                        bf.ActiveControl = bf.dataGridView1; //focus into datagridview
+                        bf.dataGridView1.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
+                        bf.txtBoxDescription.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
+                    }
+
+
+
                     if (form == "ManualBillingform" && focus == "des")
                     {
                         ManualBilling mb = (ManualBilling)obj;
@@ -197,7 +207,7 @@ namespace billing_system.Classes
 
 
 
-        //--------------startOfmbDgvdownArrow Function---------------------------------------------------------------------------------------------------------------------------
+        //--------------startOfdownArrow Function---------------------------------------------------------------------------------------------------------------------------
 
         public void downArrow(string form, string focus, object obj)
         {
@@ -229,8 +239,37 @@ namespace billing_system.Classes
             }
 
 
+            if (form == "bf" && focus == "dgv") // validate ManualBilling form and DataGridView
+            {
+                Billingform bf = (Billingform)obj;
+                int rows = bf.dataGridView1.RowCount; // no of rows in datagridview
+                int rowIndex = bf.dataGridView1.CurrentCell.RowIndex; //current row no
+
+
+
+
+                if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
+                {
+
+
+                    bf.dataGridView1.Rows[rowIndex].Selected = false; //deselect current row
+                    bf.dataGridView1.Rows[rowIndex + 1].Selected = true; // select next row
+
+
+                }
+
+                else if (rowIndex != 0)
+                {
+
+                    SystemSounds.Hand.Play();
+                }
+            }
+
+
+
+
         }
-        //--------------endOfmbDgvdownArrow Function---------------------------------------------------------------------------------------------------------------------------
+        //--------------endOfdownArrow Function---------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -244,12 +283,12 @@ namespace billing_system.Classes
 
         public void upArrow(string form, string focus, object obj)
         {
-            ManualBilling mb = (ManualBilling)obj;
-            int RowIndex = mb.dataGridView1.CurrentCell.RowIndex;
+            
             if (form == "mb" && focus == "dgv") // validate ManualBilling form and DataGridView
             {
-                
 
+                ManualBilling mb = (ManualBilling)obj;
+                int RowIndex = mb.dataGridView1.CurrentCell.RowIndex;
                 
 
                 if (RowIndex == 0) //check whether if current selected row is first row or not
@@ -274,7 +313,49 @@ namespace billing_system.Classes
             }
 
 
+
+
+            if (form == "bf" && focus == "dgv") // validate ManualBilling form and DataGridView
+            {
+
+                Billingform bf = (Billingform)obj;
+                int RowIndex = bf.dataGridView1.CurrentCell.RowIndex;
+
+
+                if (RowIndex == 0) //check whether if current selected row is first row or not
+                {
+
+                    bf.ActiveControl = bf.txtBoxDescription; // focus on Description textbox
+                    bf.dataGridView1.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
+                    bf.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
+                    bf.txtBoxDescription.Select(bf.txtBoxDescription.Text.Length, 0);   //move cursor into the end of text in the textbox
+                }
+
+                else if (RowIndex > 1)
+                {
+                    bf.dataGridView1.Rows[RowIndex].Selected = false; //deselect current row
+                    bf.dataGridView1.Rows[RowIndex--].Selected = true; //select previous row
+                }
+                else if (RowIndex == 0)
+                {
+
+                    SystemSounds.Hand.Play();
+                }
+            }
+
+
         }
+
+
+
+
+
+
+
+
+
+
+
         //--------------endOfUpArrow Function---------------------------------------------------------------------------------------------------------------------------
 
 
