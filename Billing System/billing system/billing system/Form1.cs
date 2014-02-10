@@ -14,8 +14,9 @@ namespace billing_system
         public Login()
         {
             InitializeComponent();
+        
         }
-
+  
         private void Login_Load(object sender, EventArgs e)
         {
             
@@ -38,6 +39,12 @@ namespace billing_system
             UPName.GetUsername = UserName.Text;
             UPName.GetPassword = maskedTextBox1.Text;
 
+            if (UserName.Text == " ")
+            {
+                MessageBox.Show("empty");
+            }
+
+
             if (UPName.UsernameAuthenticaion())
             {
                 if (UPName.PasswordAuthenticaion())
@@ -53,14 +60,39 @@ namespace billing_system
                         Billingform Bill = new Billingform();
                         Bill.Show();
                     }
-                   
+
                 }
                 else
+               
                     MessageBox.Show("PASSWORD is WRONG!!!!!");
+                
             }
+
             else
                 MessageBox.Show("USERNAME is INCORRESCT!!!!!");
         }
+
+        private void UserName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void UserName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = char.IsLetter(e.KeyChar) || e.KeyChar == 8 || char.IsNumber(e.KeyChar) ? false : true;
+        }
+
+        private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = char.IsLetter(e.KeyChar) || e.KeyChar == 8 || char.IsNumber(e.KeyChar) ? false : true;
+        }
+
+    
 
         
 
