@@ -27,7 +27,9 @@ namespace billing_system.Classes
         }
 
         //--------------startOfBillNoGen Function---------------------------------------------------------------------------------------------------------------------------
-        public int BillNoGen()
+        //function is for generate billno for BillingForm 
+
+        public int BillNoGen(object obj)
         {
             DBConnection db = new DBConnection();
             int billno = 0; //initialize billno variable
@@ -40,16 +42,16 @@ namespace billing_system.Classes
 
                 if (db.OpenConnection() == true)
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, db.connection);  //create command and assign the query and connection from the constructor
-                    count = cmd.ExecuteNonQuery();
+                    MySqlCommand cmd = new MySqlCommand(query, db.connection);
+                    count = cmd.ExecuteNonQuery(); //check for existing bills
 
                     if (count < 1)
-                        billno = 000001;    //first bill
+                        billno = 000001;    //first billno
                     else
                     {
                         string queryOne = "SELECT InvoiceNo FROM bills ORDER BY InvoiceNo DESC LIMIT 1";
                         MySqlCommand cmdOne = new MySqlCommand(queryOne, db.connection);
-                        int result = cmdOne.ExecuteNonQuery();
+                        int result = cmdOne.ExecuteNonQuery(); //retrieve billno of last bill
                         billno = result + 1; //next billno 
 
                     }
@@ -66,12 +68,25 @@ namespace billing_system.Classes
 
 
             }
+
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex.Message, "Oops!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                Billingform bf = new Billingform();
-                bf.Show();
+                Billingform bf = (Billingform)obj;
+
+                DialogResult result = MessageBox.Show("Error" + ex.Message + " Do you need to Retry?", "Oops!", System.Windows.Forms.MessageBoxButtons.RetryCancel, System.Windows.Forms.MessageBoxIcon.Question);
+
+                if (result == DialogResult.Retry)
+                {
+                    bf.Close(); //close current form
+                    Billingform newform = new Billingform();
+                    newform.Show(); // load new form
+                }
+                else
+                {
+                    bf.Close();
+                }
             }
+
 
             finally
             {
@@ -90,95 +105,42 @@ namespace billing_system.Classes
 
         //--------------startOfDateTime Function-------------------------------------------------------------------------------------------------------------------
 
-        public DateTime Date()
+        public DateTime Date(object obj)
         {
-            return DateTime.Now;
+            DateTime value = DateTime.Today; //initialize variable and assign todays's date
+            try
+            {
+                value = DateTime.Now; //assign todays' date and system time              
+            }
+
+            catch (Exception e)
+            {
+                Billingform bf = (Billingform)obj;
+
+                DialogResult result = MessageBox.Show("Error" + e.Message + " Do you need to Retry?", "Oops!", System.Windows.Forms.MessageBoxButtons.RetryCancel, System.Windows.Forms.MessageBoxIcon.Question);
+
+                if (result == DialogResult.Retry)
+                {
+                    bf.Close(); //close current form
+                    Billingform newform = new Billingform();
+                    newform.Show(); // load new form
+                }
+                else
+                {
+                    bf.Close();
+                }
+
+            }
+
+
+            return value;
         }
 
         //--------------endOfDateTime Function---------------------------------------------------------------------------------------------------------------------
 
 
 
-        //--------------startOfManualBilling Function-------------------------------------------------------------------------------------------------------------------
 
-        public void manualBilling(string searchKey, object obj = null)
-        {
-            DBConnection db = new DBConnection();
-            
-
-            try
-            {
-                string query;
-
-
-
-
-                ManualBilling mb = (ManualBilling)obj;
-
-                mb.txtBoxDescription.ReadOnly = false;
-                mb.txtBoxDescription.Text = mb.txtBoxDescription.Text + searchKey;
-                mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);
-                mb.txtBoxDescription.ReadOnly = true;
-
-
-
-                
-                query = "SELECT * From items WHERE Description LIKE CONCAT('" + mb.txtBoxDescription.Text + "','%')";
-
-
-
-                if (db.OpenConnection() == true)
-                {
-                    MySqlCommand cmd = new MySqlCommand(query, db.connection);
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    BindingSource bs = new BindingSource();
-                    bs.DataSource = table;
-                    mb.dataGridView1.DataSource = bs;
-                    mb.dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
-                    
-                    
-                    if (mb.dataGridView1.RowCount > 0)
-                    {
-                        
-                        mb.dataGridView1.Rows[0].Selected = true;
-                    }
-
-                    
-
-                }
-                else
-                {
-                    MessageBox.Show("DB Connection Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    mb.Close();
-
-
-
-                }
-
-
-            }
-
-            catch (Exception exc)
-            {
-                MessageBox.Show("Error Occured," + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
-            }
-
-            finally
-            {
-                bool a = db.CloseConnection();
-
-
-            }
-
-        }
-
-
-
-        //--------------endOfManualBilling Function-------------
 
 
 
