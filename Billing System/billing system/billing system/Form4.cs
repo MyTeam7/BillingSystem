@@ -33,8 +33,6 @@ namespace billing_system
 
         }
 
-
-
         public void txtBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -77,8 +75,8 @@ namespace billing_system
                 if (dataGridView1.RowCount != 0 || dataGridView1.RowCount != 1)
                 {
                     KeyPressEvent kpe = new KeyPressEvent();
-                    kpe.downArrow("mb","dgv",this); //mb=ManualBilling, dgv=DataGridView
-                    
+                    kpe.mbDgvdownArrow(this);
+                    RowIndex = dataGridView1.CurrentCell.RowIndex;
                 }
 
             }
@@ -86,7 +84,8 @@ namespace billing_system
             {
                 KeyPressEvent kpe = new KeyPressEvent();
                 RowIndex = dataGridView1.CurrentCell.RowIndex;
-                kpe.upArrow("mb","dgv",RowIndex, this);
+                
+                kpe.mbDgvUpArrow(RowIndex, this);
             }
             else if (int.Parse(keyVal) == 13)
             {
@@ -96,10 +95,8 @@ namespace billing_system
             }
             else
             {
-                if (int.Parse(keyVal) < 65 && int.Parse(keyVal) > 105 && int.Parse(keyVal)!=32)
-                {
-                    SystemSounds.Hand.Play();
-                }
+
+                SystemSounds.Hand.Play();
 
             }
 

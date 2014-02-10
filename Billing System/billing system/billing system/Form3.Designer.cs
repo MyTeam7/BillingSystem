@@ -621,6 +621,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtBoxDescription;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox txtBoxDiscount;
         private System.Windows.Forms.Label label3;
@@ -659,7 +660,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Timer timer1;
-        public System.Windows.Forms.TextBox txtBoxDescription;
 
     }
 }
