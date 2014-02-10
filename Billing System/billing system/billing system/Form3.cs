@@ -16,8 +16,9 @@ namespace billing_system
 {
     public partial class Billingform : Form
     {
-
-        object obj; //variable for hold currnt form instance
+       
+        public object obj; //variable for hold currnt form instance
+        
 
         public Billingform()
         {
@@ -38,7 +39,7 @@ namespace billing_system
             this.ActiveControl = txtBoxDescription; //focus on Description textbox
             BillGeneration bf = new BillGeneration();
             textBox1.Text = bf.BillNoGen(this).ToString(); //call to BillNoGen function
-
+           
 
             timer1 = new Timer();
             timer1.Interval = 1000;

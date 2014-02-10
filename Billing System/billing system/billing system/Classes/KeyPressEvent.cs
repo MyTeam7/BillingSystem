@@ -23,10 +23,14 @@ namespace billing_system.Classes
 
         //--------------startOfmanualSearchkey Function---------------------------------------------------------------------------------------------------------------------------
 
-        public string manualSearchkey(string keyCode, string character, string form = "dflt", string focus = "dflt", object obj = null)
+        public string manualSearchkey(string keyCode, string character, string form = "dflt", string focus = "dflt", object obj=null)
         {
             string keyChar = null;
-            PrvForm = obj;
+            if (form == "Billingform" && obj!=null)
+            {
+               
+                PrvForm =obj;
+            }
 
 
 
@@ -63,7 +67,7 @@ namespace billing_system.Classes
 
                         if (form == "Billingform") //idetify function triggered form
                         {
-                            ManualBilling mb = new ManualBilling();
+                            ManualBilling mb = new ManualBilling(PrvForm);
                             if (mb.Visible == false) //check whether ManualBilling Form is already initialized or not
                             {
                                 mb.Show();
@@ -277,12 +281,12 @@ namespace billing_system.Classes
 
 
         //--------------startOfEnter Function---------------------------------------------------------------------------------------------------------------------------
-        public void enterButton(string form, string focus, object obj)
+        public void enterButton(string form, string focus, object obj, object formobj)
         {
-            if (form == "ManualBillingform" && focus == "dgv")
+            if (form == "mb" && focus == "dgv")
             {
                 ManualBilling mb = (ManualBilling)obj;
-                Billingform bf = (Billingform)PrvForm;
+                Billingform bf = (Billingform)formobj;
                 int row = mb.dataGridView1.CurrentCell.RowIndex;
 
                 int code = (int)mb.dataGridView1.Rows[row].Cells[0].Value;
@@ -292,11 +296,20 @@ namespace billing_system.Classes
                 decimal disc = (decimal)mb.dataGridView1.Rows[row].Cells[4].Value; ;
                 string other = mb.dataGridView1.Rows[row].Cells[5].Value.ToString();
 
+               
+
+                bf.txtBoxCode.Text = code.ToString();
+                bf.txtBoxDescription.Text = des;
+                bf.textBox8.Text = price.ToString();
+                bf.txtBoxDiscount.Text = disc.ToString();
+                mb.Close();
+                bf.ActiveControl = bf.textBox2;
+                
 
 
 
 
-                //bf.dataGridView1.Rows.Insert(bf.dataGridView1.RowCount,code,des,price,l_price,disc,other);
+                
 
 
 

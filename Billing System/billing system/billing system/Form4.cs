@@ -13,12 +13,19 @@ namespace billing_system
     public partial class ManualBilling : Form
     {
         public int RowIndex;
+        public object billingform;
 
 
         public ManualBilling()
         {
             InitializeComponent();
 
+        }
+
+        public ManualBilling(object obj)
+        {
+            InitializeComponent();
+            billingform = obj;
         }
 
         private void A_I_Code_Click(object sender, EventArgs e)
@@ -91,7 +98,7 @@ namespace billing_system
             else if (int.Parse(keyVal) == 13)
             {
                 KeyPressEvent kpe = new KeyPressEvent();
-                kpe.enterButton("ManualBillingform", "dgv", this);
+                kpe.enterButton("mb", "dgv", this,billingform);
 
             }
             else
