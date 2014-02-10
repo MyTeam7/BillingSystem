@@ -211,6 +211,7 @@
             this.txtBoxDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxDiscount.Location = new System.Drawing.Point(535, 51);
             this.txtBoxDiscount.Name = "txtBoxDiscount";
+            this.txtBoxDiscount.ReadOnly = true;
             this.txtBoxDiscount.Size = new System.Drawing.Size(175, 24);
             this.txtBoxDiscount.TabIndex = 9;
             // 
@@ -249,6 +250,7 @@
             this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox8.Location = new System.Drawing.Point(784, 51);
             this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(125, 24);
             this.textBox8.TabIndex = 11;
             // 
@@ -268,6 +270,7 @@
             this.txtBoxCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxCode.Location = new System.Drawing.Point(87, 16);
             this.txtBoxCode.Name = "txtBoxCode";
+            this.txtBoxCode.ReadOnly = true;
             this.txtBoxCode.Size = new System.Drawing.Size(189, 23);
             this.txtBoxCode.TabIndex = 8;
             // 
@@ -622,13 +625,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblDescription;
-        private System.Windows.Forms.TextBox txtBoxDiscount;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label lblQty;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtBoxCode;
         private System.Windows.Forms.Label A_I_Code;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label7;
@@ -660,6 +659,10 @@
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Timer timer1;
         public System.Windows.Forms.TextBox txtBoxDescription;
+        public System.Windows.Forms.TextBox txtBoxCode;
+        public System.Windows.Forms.TextBox txtBoxDiscount;
+        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox textBox8;
 
     }
 }
