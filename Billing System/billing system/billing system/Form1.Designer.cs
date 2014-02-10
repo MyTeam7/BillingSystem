@@ -62,6 +62,8 @@
             this.maskedTextBox1.TabIndex = 4;
             this.maskedTextBox1.Text = "Password";
             this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            this.maskedTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
             // 
             // UserName
             // 
@@ -74,6 +76,8 @@
             this.UserName.TabIndex = 3;
             this.UserName.Text = "UserName";
             this.UserName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.UserName.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.UserName_MaskInputRejected);
+            this.UserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserName_KeyPress);
             // 
             // button1
             // 
