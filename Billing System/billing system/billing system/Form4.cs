@@ -126,6 +126,8 @@ namespace billing_system
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
             this.KeyDown += new KeyEventHandler(dataGridView1_KeyDown);
+            
+           
 
         }
 
