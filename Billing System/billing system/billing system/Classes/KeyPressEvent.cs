@@ -333,9 +333,6 @@ namespace billing_system.Classes
 
 
 
-
-
-
             try
             {
                 string query = null;

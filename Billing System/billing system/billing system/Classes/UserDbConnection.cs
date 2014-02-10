@@ -4,6 +4,7 @@ using System.Text;
 using MySql.Data.MySqlClient;          //Add MySql Library
 using System.Data;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace billing_system.Classes
 {
@@ -14,28 +15,43 @@ namespace billing_system.Classes
     /// </summary>
     class UserDbConnection : DBConnection
     {
-        public void Insert(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
+
+        public void Insert(int User_ID, string Name, string Address, int Phone, string User_Name, string Password,String Catagory,String Others)
         {
-            string query = "INSERT INTO  (Item_Code,Description,Discount,Lowest_Price,Others) VALUES('" + textboxCode + "','" + txtboxDescription + "','" + txtboxDiscount + "','" + lowestPrice + "','" + price + "','" + txtboxOther + "')";
-
-            //open connection
-            if (this.OpenConnection() == true)
+            string query = "INSERT INTO users(User_ID,Name,Address,Phone,User_Name,Password,Catagory,Others) VALUES('" + User_ID + "','" + Name + "','" + Address + "','" + Phone + "','" + User_Name + "','" + Password + "','" + Catagory + "','" + Others + "')";
+            try
             {
-                //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //open connection
+                if (this.OpenConnection() == true)
+                {
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                //Execute command
-                cmd.ExecuteNonQuery();
-
-                //close connection
-                this.CloseConnection();
+                    //Execute command
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("New user adding Database");
+                    //close connection
+                    this.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         //Update statement
-        public void Update(String textboxCode, String txtboxDescription, String txtboxDiscount, String lowestPrice, String price, String txtboxOther)
+        public void Update(int User_ID, string Name, string Address, int Phone, string User_Name, string Password, string Catagory, string Others)
         {
-            string query = "UPDATE items SET Item_Code='" + textboxCode + "', Description='" + txtboxDescription + "',Discount='" + txtboxDiscount + "',Lowest_Price='" + lowestPrice + "',price='" + price + "',Others='" + txtboxOther + "' WHERE Item_Code= '" + textboxCode + "'";
+            //Regex rx = new Regex("^[+94]")
+           
+            string query = "UPDATE users SET User_ID='" + User_ID + "', Name='" + Name + "',Address='" + Address + "',Phone='" + Phone + "',User_Name='" + User_Name + "',Password='" + Password + "',Catagory='" + Catagory + "',Others='" + Others + "' WHERE User_ID= '" + User_ID + "'";
+
+            DialogResult dialogResult = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -53,40 +69,51 @@ namespace billing_system.Classes
                 //close connection
                 this.CloseConnection();
             }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
+            }
         }
 
         //Delete statement
-        public void Delete(String textboxCode)
+        public void Delete(int User_ID)
         {
-            string query = "Delete from items where Item_Code = '" + textboxCode + "'";
+            string query = "Delete from users where User_ID = '" + User_ID + "'";
 
-            if (this.OpenConnection() == true)
+            DialogResult dialogResult = MessageBox.Show("Do you want to delete changes?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
-                this.CloseConnection();
+
+                try
+                {
+                    if (this.OpenConnection() == true)
+                    {
+                        MySqlCommand cmd = new MySqlCommand(query, connection);
+                        cmd.ExecuteNonQuery();
+
+                        this.CloseConnection();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
             }
         }
         //search statement
         public void Search()
         {
 
-            string query = "DELETE FROM tableinfo WHERE name='John Smith'";
-
-            if (this.OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataTable table = new DataTable();
-                adapter.Fill(table);
-                BindingSource bsource = new BindingSource();
-
-                bsource.DataSource = table;
-                //dataGridView1.DataSource = table;
-                adapter.Update(table);
-                this.CloseConnection();
-            }
         }
 
 
