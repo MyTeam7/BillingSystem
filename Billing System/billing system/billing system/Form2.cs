@@ -16,7 +16,7 @@ namespace billing_system
         {
             InitializeComponent();
         }
-
+  
         //DataTable dbtable;
         private void button10_Click(object sender, EventArgs e)
         {
@@ -25,7 +25,7 @@ namespace billing_system
             {
                 MessageBox.Show("All the fields must be Filled");
             }
-            else
+            else 
             {
                 int textboxCode = int.Parse(txtBoxCode.Text);
                 string txtboxDescription = txtBoxDescription.Text;
@@ -40,6 +40,7 @@ namespace billing_system
                 adminDb.Insert(textboxCode, txtboxDescription, txtboxDiscount, lowestPrice, price, txtboxOther);
 
             }
+            
         }
 
         private void Admin_Load(object sender, EventArgs e)
@@ -148,6 +149,119 @@ namespace billing_system
                 txtBoxOther.Text = row.Cells["Others"].Value.ToString();
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if ((textBox7.Text == "") || (textBox1.Text == "") || (textBox3.Text == "") || (textBox4.Text == "") || (textBox14.Text == "") || (textBox9.Text == "") || (comboBox3.Text == "") || (textBox5.Text == ""))
+            {
+                MessageBox.Show("All the fields must be Filled");
+            }
+            else
+            {
+                int User_ID = int.Parse(textBox7.Text);
+                string Name = textBox1.Text;
+                string Address = textBox3.Text;
+                int Phone = int.Parse(textBox4.Text);
+                string User_Name = textBox14.Text;
+                string Password = textBox9.Text;
+                string Catagory = comboBox3.Text;
+                string Others = textBox5.Text;
+
+                UserDbConnection userDB = new UserDbConnection();
+                userDB.Insert(User_ID, Name, Address, Phone, User_Name, Password, Catagory, Others);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if ((textBox7.Text == "") || (textBox1.Text == "") || (textBox3.Text == "") || (textBox4.Text == "") || (textBox14.Text == "") || (textBox9.Text == "") || (comboBox3.Text == "") || (textBox5.Text == ""))
+            {
+                MessageBox.Show("All the fields must be Filled");
+            }
+            else
+            {
+                int User_ID = int.Parse(textBox7.Text);
+                string Name = textBox1.Text;
+                string Address = textBox3.Text;
+                int Phone = int.Parse(textBox4.Text);
+                string User_Name = textBox14.Text;
+                string Password = textBox9.Text;
+                string Catagory = comboBox3.Text;
+                string Others = textBox5.Text;
+
+                UserDbConnection userDB = new UserDbConnection();
+                userDB.Update(User_ID, Name, Address, Phone, User_Name, Password, Catagory, Others);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if ((textBox7.Text == "") || (textBox1.Text == "") || (textBox3.Text == "") || (textBox4.Text == "") || (textBox14.Text == "") || (textBox9.Text == "") || (comboBox3.Text == "") || (textBox5.Text == ""))
+            {
+                MessageBox.Show("All the fields must be Filled");
+            }
+            else
+            {
+
+                int User_ID = int.Parse(textBox7.Text);
+                UserDbConnection userDB = new UserDbConnection();
+
+                userDB.Delete(User_ID);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            DBConnection db = new DBConnection();
+            //Admin item = new Admin();
+            try
+            {
+                string query;
+
+                if (db.OpenConnection() == true)
+                {
+                    query = "SELECT * From users";
+                    MySqlCommand cmd = new MySqlCommand(query, db.connection);
+
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    BindingSource bsource = new BindingSource();
+
+                    bsource.DataSource = table;
+                    dataGridView2.DataSource = table;
+                    adapter.Update(table);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                bool a = db.CloseConnection();
+            }
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridView2.Rows[e.RowIndex];
+
+                textBox7.Text = row.Cells["User_ID"].Value.ToString();
+                textBox1.Text = row.Cells["Name"].Value.ToString();
+                textBox3.Text = row.Cells["Address"].Value.ToString();
+                textBox4.Text = row.Cells["Phone"].Value.ToString();
+                textBox14.Text = row.Cells["User_Name"].Value.ToString();
+                textBox9.Text = row.Cells["Password"].Value.ToString();
+                comboBox3.Text = row.Cells["Catagory"].Value.ToString();
+                textBox5.Text = row.Cells["Others"].Value.ToString();
+            }
+        }
+
 
 
     }
