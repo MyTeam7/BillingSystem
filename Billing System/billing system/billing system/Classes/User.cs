@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using my
+using MySql.Data.MySqlClient;
 
 namespace billing_system.Classes
 {
