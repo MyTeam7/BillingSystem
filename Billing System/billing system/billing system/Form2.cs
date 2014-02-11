@@ -38,6 +38,7 @@ namespace billing_system
 
 
                 adminDb.Insert(textboxCode, txtboxDescription, txtboxDiscount, lowestPrice, price, txtboxOther);
+                clearItem();
 
             }
             
@@ -67,6 +68,7 @@ namespace billing_system
                 ItemDBConnection itemupda = new ItemDBConnection();
 
                 itemupda.Update(textboxCode, txtboxDescription, txtboxDiscount, lowestPrice, price, txtboxOther);
+                clearItem();
             }
         }
 
@@ -83,6 +85,7 @@ namespace billing_system
                 ItemDBConnection itemdel = new ItemDBConnection();
 
                 itemdel.Delete(textboxCode);
+                clearItem();
             }
         }
 
@@ -169,6 +172,7 @@ namespace billing_system
 
                 UserDbConnection userDB = new UserDbConnection();
                 userDB.Insert(User_ID, Name, Address, Phone, User_Name, Password, Catagory, Others);
+                clearUser();
             }
         }
 
@@ -191,6 +195,7 @@ namespace billing_system
 
                 UserDbConnection userDB = new UserDbConnection();
                 userDB.Update(User_ID, Name, Address, Phone, User_Name, Password, Catagory, Others);
+                clearUser();
             }
         }
 
@@ -207,6 +212,7 @@ namespace billing_system
                 UserDbConnection userDB = new UserDbConnection();
 
                 userDB.Delete(User_ID);
+                clearUser();
             }
         }
 
@@ -261,8 +267,36 @@ namespace billing_system
                 textBox5.Text = row.Cells["Others"].Value.ToString();
             }
         }
+        public void clearItem()
+        {
+            txtBoxCode.Text = "";
+            txtBoxDescription.Text = "";
+            txtBoxDiscount.Text = "";
+            textBox2.Text = "";
+            textBox8.Text = "";
+            txtBoxOther.Text = "";
+        }
+        public void clearUser()
+        {
+            textBox7.Text = "";
+            textBox1.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox14.Text = "";
+            textBox9.Text = "";
+            comboBox3.Text = "";
+            textBox5.Text = "";
+        }
 
 
+        private void textBoxValidation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            ValidationText tx = new ValidationText();
+            tx.textBoxValidation_KeyPress(sender, e);
+
+
+        }
 
     }
 }
