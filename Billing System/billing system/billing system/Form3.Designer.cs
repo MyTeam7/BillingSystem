@@ -334,7 +334,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(82, 23);
+            this.label14.Location = new System.Drawing.Point(47, 37);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(44, 31);
             this.label14.TabIndex = 15;
@@ -365,8 +365,10 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(53, 27);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(79, 20);
             this.textBox3.TabIndex = 15;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label13
             // 
@@ -519,6 +521,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Gray;
             this.button1.BackgroundImage = global::billing_system.Properties.Resources.add;
+            this.button1.Enabled = false;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(15, 691);
@@ -533,6 +536,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Gainsboro;
             this.button3.BackgroundImage = global::billing_system.Properties.Resources.search;
+            this.button3.Enabled = false;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(105, 691);
@@ -547,6 +551,7 @@
             // 
             this.button13.BackColor = System.Drawing.Color.Gainsboro;
             this.button13.BackgroundImage = global::billing_system.Properties.Resources.edit;
+            this.button13.Enabled = false;
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button13.Location = new System.Drawing.Point(205, 691);
@@ -584,6 +589,7 @@
             this.button15.Text = "Delete";
             this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // timer1
             // 
@@ -651,13 +657,10 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Label label1;
@@ -682,6 +685,9 @@
         public System.Windows.Forms.TextBox textBox8;
         public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.Label label14;
 
     }
 }
