@@ -11,6 +11,7 @@ namespace billing_system.Classes
         public void textBoxValidation_KeyPress(object sender, KeyPressEventArgs e) //admin form
         {
 
+
             char ch = e.KeyChar;
             if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
             {
