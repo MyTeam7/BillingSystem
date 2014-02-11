@@ -118,7 +118,7 @@ namespace billing_system.Classes
                         }
                         else
                         {
-                           
+                            
                             SystemSounds.Hand.Play();
                         }
                     }
@@ -138,7 +138,7 @@ namespace billing_system.Classes
 
                     else
                     {
-
+                        
                         SystemSounds.Hand.Play();
 
                     }
@@ -166,6 +166,7 @@ namespace billing_system.Classes
                         mb.txtBoxDescription.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
                     }
                 }
+
                 else if (int.Parse(keyCode) == 38) //validate up Arrow---------------------------------------------------------------
                 {
                     if (form == "ManualBillingform" && focus == "des")
@@ -173,6 +174,14 @@ namespace billing_system.Classes
 
                     }
 
+                }
+                else if (int.Parse(keyCode) == 13)//validate enter-------------------------------------------------------------------
+                {
+                    if (form == "Billingform" && focus == "des")
+                    {
+
+                        enterButton("bf", "des", PrvForm);
+                    }
                 }
 
 
@@ -211,61 +220,69 @@ namespace billing_system.Classes
 
         public void downArrow(string form, string focus, object obj)
         {
-
-            if (form == "mb" && focus == "dgv") // validate ManualBilling form and DataGridView
+            try
             {
-                ManualBilling mb = (ManualBilling)obj;
-                int rows = mb.dataGridView1.RowCount; // no of rows in datagridview
-                int rowIndex = mb.dataGridView1.CurrentCell.RowIndex; //current row no
 
-
-
-
-                if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
+                if (form == "mb" && focus == "dgv") // validate ManualBilling form and DataGridView
                 {
+                    ManualBilling mb = (ManualBilling)obj;
+                    int rows = mb.dataGridView1.RowCount; // no of rows in datagridview
+                    int rowIndex = mb.dataGridView1.CurrentCell.RowIndex; //current row no
 
-                    
-                    mb.dataGridView1.Rows[rowIndex].Selected = false; //deselect current row
-                    mb.dataGridView1.Rows[rowIndex + 1].Selected = true; // select next row
 
 
+
+                    if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
+                    {
+
+
+                        mb.dataGridView1.Rows[rowIndex - 1].Selected = false; //deselect current row
+                        mb.dataGridView1.Rows[rowIndex].Selected = true; // select next row
+
+
+
+                    }
+
+                    else if (rowIndex != 0)
+                    {
+
+                        SystemSounds.Hand.Play();
+                    }
                 }
 
-                else if(rowIndex != 0)
+
+                if (form == "bf" && focus == "dgv") // validate ManualBilling form and DataGridView
                 {
-                    
-                    SystemSounds.Hand.Play();
+                    Billingform bf = (Billingform)obj;
+                    int rows = bf.dataGridView1.RowCount; // no of rows in datagridview
+                    int rowIndex = bf.dataGridView1.CurrentCell.RowIndex; //current row no
+
+
+
+
+                    if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
+                    {
+
+
+                        bf.dataGridView1.Rows[rowIndex - 1].Selected = false; //deselect current row
+                        bf.dataGridView1.Rows[rowIndex].Selected = true; // select next row
+
+
+                    }
+
+                    else if (rowIndex != 0)
+                    {
+
+                        SystemSounds.Hand.Play();
+                    }
                 }
             }
 
-
-            if (form == "bf" && focus == "dgv") // validate ManualBilling form and DataGridView
+            catch (Exception exc)
             {
-                Billingform bf = (Billingform)obj;
-                int rows = bf.dataGridView1.RowCount; // no of rows in datagridview
-                int rowIndex = bf.dataGridView1.CurrentCell.RowIndex; //current row no
+                MessageBox.Show("Error Occured, Please Try Again, " + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
-
-
-                if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
-                {
-
-
-                    bf.dataGridView1.Rows[rowIndex].Selected = false; //deselect current row
-                    bf.dataGridView1.Rows[rowIndex + 1].Selected = true; // select next row
-
-
-                }
-
-                else if (rowIndex != 0)
-                {
-
-                    SystemSounds.Hand.Play();
-                }
             }
-
-
 
 
         }
@@ -283,74 +300,77 @@ namespace billing_system.Classes
 
         public void upArrow(string form, string focus, object obj)
         {
-            
-            if (form == "mb" && focus == "dgv") // validate ManualBilling form and DataGridView
+            try
             {
 
-                ManualBilling mb = (ManualBilling)obj;
-                int RowIndex = mb.dataGridView1.CurrentCell.RowIndex;
-                
-
-                if (RowIndex == 0) //check whether if current selected row is first row or not
+                if (form == "mb" && focus == "dgv") // validate ManualBilling form and DataGridView
                 {
 
-                    mb.ActiveControl = mb.txtBoxDescription; // focus on Description textbox
-                    mb.dataGridView1.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
-                    mb.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
-                    mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);   //move cursor into the end of text in the textbox
+                    ManualBilling mb = (ManualBilling)obj;
+                    int RowIndex = mb.dataGridView1.CurrentCell.RowIndex;
+
+
+                    if (RowIndex == 0) //check whether if current selected row is first row or not
+                    {
+
+                        mb.ActiveControl = mb.txtBoxDescription; // focus on Description textbox
+                        mb.dataGridView1.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
+                        mb.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
+                        mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0);   //move cursor into the end of text in the textbox
+                    }
+
+                    else if (RowIndex > 1)
+                    {
+
+                        mb.dataGridView1.Rows[RowIndex].Selected = false; //deselect current row
+                        mb.dataGridView1.Rows[RowIndex - 1].Selected = true; //select previous row
+                    }
+                    else if (RowIndex == 0)
+                    {
+
+                        SystemSounds.Hand.Play();
+                    }
                 }
 
-                else if (RowIndex > 1)
+
+
+
+                if (form == "bf" && focus == "dgv") // validate ManualBilling form and DataGridView
                 {
-                    mb.dataGridView1.Rows[mb.RowIndex].Selected = false; //deselect current row
-                    mb.dataGridView1.Rows[mb.RowIndex--].Selected = true; //select previous row
-                }
-                else if(RowIndex == 0)
-                {
-                   
-                    SystemSounds.Hand.Play();
+
+                    Billingform bf = (Billingform)obj;
+                    int RowIndex = bf.dataGridView1.CurrentCell.RowIndex;
+
+
+                    if (RowIndex == 0) //check whether if current selected row is first row or not
+                    {
+
+                        bf.ActiveControl = bf.txtBoxDescription; // focus on Description textbox
+                        bf.dataGridView1.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
+                        bf.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
+                        bf.txtBoxDescription.Select(bf.txtBoxDescription.Text.Length, 0);   //move cursor into the end of text in the textbox
+                    }
+
+                    else if (RowIndex > 1)
+                    {
+                        bf.dataGridView1.Rows[RowIndex].Selected = false; //deselect current row
+                        bf.dataGridView1.Rows[RowIndex--].Selected = true; //select previous row
+                    }
+                    else if (RowIndex == 0)
+                    {
+
+                        SystemSounds.Hand.Play();
+                    }
                 }
             }
-
-
-
-
-            if (form == "bf" && focus == "dgv") // validate ManualBilling form and DataGridView
+            catch (Exception exc)
             {
+                MessageBox.Show("Error Occured, Please Try Again, " + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                Billingform bf = (Billingform)obj;
-                int RowIndex = bf.dataGridView1.CurrentCell.RowIndex;
-
-
-                if (RowIndex == 0) //check whether if current selected row is first row or not
-                {
-
-                    bf.ActiveControl = bf.txtBoxDescription; // focus on Description textbox
-                    bf.dataGridView1.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
-                    bf.txtBoxDescription.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
-                    bf.txtBoxDescription.Select(bf.txtBoxDescription.Text.Length, 0);   //move cursor into the end of text in the textbox
-                }
-
-                else if (RowIndex > 1)
-                {
-                    bf.dataGridView1.Rows[RowIndex].Selected = false; //deselect current row
-                    bf.dataGridView1.Rows[RowIndex--].Selected = true; //select previous row
-                }
-                else if (RowIndex == 0)
-                {
-
-                    SystemSounds.Hand.Play();
-                }
             }
 
 
         }
-
-
-
-
-
-
 
 
 
@@ -370,74 +390,108 @@ namespace billing_system.Classes
         //--------------startOfEnter Function---------------------------------------------------------------------------------------------------------------------------
         public void enterButton(string form, string focus, object obj, object formobj=null)
         {
-            if (form == "mb" && focus == "dgv")
+
+            try
             {
-                ManualBilling mb = (ManualBilling)obj;
-                Billingform bf = (Billingform)formobj;
-                int row = mb.dataGridView1.CurrentCell.RowIndex;
 
-                int code = (int)mb.dataGridView1.Rows[row].Cells[0].Value;
-                string des = mb.dataGridView1.Rows[row].Cells[1].Value.ToString();
-                decimal price = (decimal)mb.dataGridView1.Rows[row].Cells[2].Value;
-                decimal l_price = (decimal)mb.dataGridView1.Rows[row].Cells[3].Value;
-                decimal disc = (decimal)mb.dataGridView1.Rows[row].Cells[4].Value; ;
-                string other = mb.dataGridView1.Rows[row].Cells[5].Value.ToString();
-
-               
-
-                bf.txtBoxCode.Text = code.ToString();
-                bf.txtBoxDescription.Text = des;
-                bf.textBox8.Text = price.ToString();
-                bf.txtBoxDiscount.Text = disc.ToString();
-                mb.Close();
-                bf.ActiveControl = bf.textBox2;
-                                
-            }
-
-            if (form == "bf" && focus == "qty")
-            {
-                Billingform bf = (Billingform)obj;
-
-                string code = bf.txtBoxCode.Text;
-                string des = bf.txtBoxDescription.Text;
-                decimal price;
-                Decimal.TryParse(bf.textBox8.Text, out price);
-                decimal disc;
-                Decimal.TryParse(bf.txtBoxDiscount.Text, out disc);
-                decimal qty;
-                Decimal.TryParse(bf.textBox2.Text, out qty);
-                decimal tot=0;
-
-                if (qty == 0)
+                if (form == "mb" && focus == "dgv")
                 {
-                    qty = 1;
+                    ManualBilling mb = (ManualBilling)obj;
+                    Billingform bf = (Billingform)formobj;
+                    int row = mb.dataGridView1.CurrentCell.RowIndex;
+
+
+                    if (mb.dataGridView1.RowCount != 0)
+                    {
+
+                        int code = (int)mb.dataGridView1.Rows[row].Cells[0].Value;
+                        string des = mb.dataGridView1.Rows[row].Cells[1].Value.ToString();
+                        decimal price = (decimal)mb.dataGridView1.Rows[row].Cells[2].Value;
+                        decimal l_price = (decimal)mb.dataGridView1.Rows[row].Cells[3].Value;
+                        decimal disc = (decimal)mb.dataGridView1.Rows[row].Cells[4].Value; ;
+                        string other = mb.dataGridView1.Rows[row].Cells[5].Value.ToString();
+
+
+
+                        bf.txtBoxCode.Text = code.ToString();
+                        bf.txtBoxDescription.Text = des;
+                        bf.textBox8.Text = price.ToString();
+                        bf.txtBoxDiscount.Text = disc.ToString();
+                        mb.Close();
+                        bf.ActiveControl = bf.textBox2;
+
+                    }
+
                 }
-               
-                if(disc==0)
+
+                if (form == "bf" && focus == "qty")
                 {
+                    Billingform bf = (Billingform)obj;
+
+                    string code = bf.txtBoxCode.Text;
+                    string des = bf.txtBoxDescription.Text;
+                    decimal price;
+                    Decimal.TryParse(bf.textBox8.Text, out price);
+                    decimal disc;
+                    Decimal.TryParse(bf.txtBoxDiscount.Text, out disc);
+                    decimal qty;
+                    Decimal.TryParse(bf.textBox2.Text, out qty);
+                    decimal tot = 0;
+
+                    if (qty == 0)
+                    {
+                        qty = 1;
+                    }
+
+                    if (disc == 0)
+                    {
+
+                        tot = (price * qty);
+                    }
+
+                    else
+                    {
+                        decimal newprice;
+                        newprice = (price - ((price / 100) * disc));
+                        tot = (newprice * qty);
+                    }
+
+                    Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length - 2)), out tot);
+                    bf.label2.Text = (Convert.ToInt32(bf.label2.Text) + 1).ToString();
+                    bf.label4.Text = (Convert.ToInt32(bf.label4.Text) + Convert.ToInt32((price / 100) * disc)).ToString();
+                    Decimal total;
+                    Decimal.TryParse(bf.label7.Text, out total);
+                    total = total + tot;
+                    bf.label7.Text = total.ToString();
+
+
+                    bf.dataGridView1.Rows.Add(bf.dataGridView1.RowCount + 1, code, des, qty, disc, price, tot);
+                    bf.txtBoxCode.Text = "";
+                    bf.txtBoxDescription.Text = "";
+                    bf.textBox8.Text = "";
+                    bf.textBox2.Text = "";
+                    bf.txtBoxDiscount.Text = "";
+                    bf.ActiveControl = bf.txtBoxDescription;
+
+                }
+
+
+                if (form == "bf" && focus == "des")
+                {
+                    Billingform bf = (Billingform)obj;
+                    bf.ActiveControl = bf.textBox3;
                     
-                    tot= (price*qty);
                 }
 
-                else
-                {
-                    decimal newprice;
-                    newprice = (price - ((price / 100) * disc));
-                    tot = (newprice * qty);
-                }
 
-                
 
-                bf.dataGridView1.Rows.Add(bf.dataGridView1.RowCount+1, code,des,qty,disc,price,tot);
-                bf.txtBoxCode.Text = "";
-                bf.txtBoxDescription.Text = "";
-                bf.textBox8.Text = "";
-                bf.textBox2.Text = "";
-                bf.txtBoxDiscount.Text = "";
-                bf.ActiveControl = bf.txtBoxDescription;
 
             }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error Occured, Please Try Again, " + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
 
 
 

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BarcodeReader.cs" />
     <Compile Include="Classes\BillGeneration.cs" />
     <Compile Include="Classes\DBConnection.cs" />
     <Compile Include="Classes\ItemDBConnection.cs" />
