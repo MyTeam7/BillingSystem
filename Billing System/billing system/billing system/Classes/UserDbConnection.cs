@@ -11,7 +11,7 @@ namespace billing_system.Classes
     // Aruna Udayanga--2/7/2014
 
     /// <summary>
-    /// class for dbconnection open, dbconnection close
+    /// class for insert/update/delete
     /// </summary>
     class UserDbConnection : DBConnection
     {
