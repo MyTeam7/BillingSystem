@@ -394,6 +394,8 @@ namespace billing_system
                 txtBoxDescription.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
                 txtBoxDescription.Select(txtBoxDescription.Text.Length, 0);   //move cursor into the end of text in the textbox
             }
+            BillGeneration bg = new BillGeneration();
+            bg.total(this);
 
         }
 
