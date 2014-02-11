@@ -166,6 +166,7 @@ namespace billing_system.Classes
                         mb.txtBoxDescription.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
                     }
                 }
+
                 else if (int.Parse(keyCode) == 38) //validate up Arrow---------------------------------------------------------------
                 {
                     if (form == "ManualBillingform" && focus == "des")
@@ -217,16 +218,17 @@ namespace billing_system.Classes
                 ManualBilling mb = (ManualBilling)obj;
                 int rows = mb.dataGridView1.RowCount; // no of rows in datagridview
                 int rowIndex = mb.dataGridView1.CurrentCell.RowIndex; //current row no
-
+               
 
 
 
                 if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
                 {
 
-                    
-                    mb.dataGridView1.Rows[rowIndex].Selected = false; //deselect current row
-                    mb.dataGridView1.Rows[rowIndex + 1].Selected = true; // select next row
+                   
+                    mb.dataGridView1.Rows[rowIndex-1].Selected = false; //deselect current row
+                    mb.dataGridView1.Rows[rowIndex ].Selected = true; // select next row
+                   
 
 
                 }
@@ -252,8 +254,8 @@ namespace billing_system.Classes
                 {
 
 
-                    bf.dataGridView1.Rows[rowIndex].Selected = false; //deselect current row
-                    bf.dataGridView1.Rows[rowIndex + 1].Selected = true; // select next row
+                    bf.dataGridView1.Rows[rowIndex-1].Selected = false; //deselect current row
+                    bf.dataGridView1.Rows[rowIndex].Selected = true; // select next row
 
 
                 }
@@ -302,8 +304,9 @@ namespace billing_system.Classes
 
                 else if (RowIndex > 1)
                 {
-                    mb.dataGridView1.Rows[mb.RowIndex].Selected = false; //deselect current row
-                    mb.dataGridView1.Rows[mb.RowIndex--].Selected = true; //select previous row
+                   
+                    mb.dataGridView1.Rows[RowIndex].Selected = false; //deselect current row
+                    mb.dataGridView1.Rows[RowIndex-1].Selected = true; //select previous row
                 }
                 else if(RowIndex == 0)
                 {
@@ -370,27 +373,35 @@ namespace billing_system.Classes
         //--------------startOfEnter Function---------------------------------------------------------------------------------------------------------------------------
         public void enterButton(string form, string focus, object obj, object formobj=null)
         {
+            
+
             if (form == "mb" && focus == "dgv")
             {
                 ManualBilling mb = (ManualBilling)obj;
                 Billingform bf = (Billingform)formobj;
                 int row = mb.dataGridView1.CurrentCell.RowIndex;
+                
 
-                int code = (int)mb.dataGridView1.Rows[row].Cells[0].Value;
-                string des = mb.dataGridView1.Rows[row].Cells[1].Value.ToString();
-                decimal price = (decimal)mb.dataGridView1.Rows[row].Cells[2].Value;
-                decimal l_price = (decimal)mb.dataGridView1.Rows[row].Cells[3].Value;
-                decimal disc = (decimal)mb.dataGridView1.Rows[row].Cells[4].Value; ;
-                string other = mb.dataGridView1.Rows[row].Cells[5].Value.ToString();
+                if (mb.dataGridView1.RowCount != 0)
+                {
 
-               
+                    int code = (int)mb.dataGridView1.Rows[row].Cells[0].Value;
+                    string des = mb.dataGridView1.Rows[row].Cells[1].Value.ToString();
+                    decimal price = (decimal)mb.dataGridView1.Rows[row].Cells[2].Value;
+                    decimal l_price = (decimal)mb.dataGridView1.Rows[row].Cells[3].Value;
+                    decimal disc = (decimal)mb.dataGridView1.Rows[row].Cells[4].Value; ;
+                    string other = mb.dataGridView1.Rows[row].Cells[5].Value.ToString();
 
-                bf.txtBoxCode.Text = code.ToString();
-                bf.txtBoxDescription.Text = des;
-                bf.textBox8.Text = price.ToString();
-                bf.txtBoxDiscount.Text = disc.ToString();
-                mb.Close();
-                bf.ActiveControl = bf.textBox2;
+
+
+                    bf.txtBoxCode.Text = code.ToString();
+                    bf.txtBoxDescription.Text = des;
+                    bf.textBox8.Text = price.ToString();
+                    bf.txtBoxDiscount.Text = disc.ToString();
+                    mb.Close();
+                    bf.ActiveControl = bf.textBox2;
+                    
+                }
                                 
             }
 
@@ -426,7 +437,13 @@ namespace billing_system.Classes
                     tot = (newprice * qty);
                 }
 
-                
+                Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length - 2)), out tot);
+                bf.label2.Text = (Convert.ToInt32(bf.label2.Text) + 1).ToString();
+                Decimal total;
+                Decimal.TryParse(bf.label7.Text, out total);
+                total = total + tot;
+                bf.label7.Text = total.ToString();
+
 
                 bf.dataGridView1.Rows.Add(bf.dataGridView1.RowCount+1, code,des,qty,disc,price,tot);
                 bf.txtBoxCode.Text = "";

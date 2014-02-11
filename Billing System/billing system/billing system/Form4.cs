@@ -97,10 +97,22 @@ namespace billing_system
             }
             else if (int.Parse(keyVal) == 13)
             {
-                KeyPressEvent kpe = new KeyPressEvent();
-                kpe.enterButton("mb", "dgv", this,billingform);
+                if (dataGridView1.RowCount != 0)
+                {
+                    KeyPressEvent kpe = new KeyPressEvent();
+                    kpe.enterButton("mb", "dgv", this, billingform);
+                }
+            }
+            
+            else if (int.Parse(keyVal) == 27)
+            {
+                ActiveControl = txtBoxDescription; // focus on Description textbox
+                dataGridView1.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
+                txtBoxDescription.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
+                txtBoxDescription.Select(txtBoxDescription.Text.Length, 0);   //move cursor into the end of text in the textbox
 
             }
+            
             else
             {
                 if (int.Parse(keyVal) < 65 && int.Parse(keyVal) > 105 && int.Parse(keyVal) != 32)

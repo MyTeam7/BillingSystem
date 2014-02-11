@@ -300,12 +300,13 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(71, 59);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 64);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 39);
+            this.label7.Size = new System.Drawing.Size(47, 33);
             this.label7.TabIndex = 15;
             this.label7.Text = "00";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
             // 
@@ -458,6 +459,8 @@
             this.Total});
             this.dataGridView1.Location = new System.Drawing.Point(15, 143);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(818, 542);
             this.dataGridView1.TabIndex = 16;
             // 
@@ -467,18 +470,21 @@
             this.No.DefaultCellStyle = dataGridViewCellStyle1;
             this.No.HeaderText = "No:";
             this.No.Name = "No";
+            this.No.ReadOnly = true;
             this.No.Width = 50;
             // 
             // Code
             // 
             this.Code.HeaderText = "Code";
             this.Code.Name = "Code";
+            this.Code.ReadOnly = true;
             this.Code.Width = 125;
             // 
             // Description
             // 
             this.Description.HeaderText = "Description";
             this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
             this.Description.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Description.Width = 300;
             // 
@@ -486,23 +492,27 @@
             // 
             this.Qty.HeaderText = "Qty";
             this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
             this.Qty.Width = 50;
             // 
             // Disc
             // 
             this.Disc.HeaderText = "Disc";
             this.Disc.Name = "Disc";
+            this.Disc.ReadOnly = true;
             this.Disc.Width = 50;
             // 
             // Rate
             // 
             this.Rate.HeaderText = "Rate";
             this.Rate.Name = "Rate";
+            this.Rate.ReadOnly = true;
             // 
             // Total
             // 
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // button1
             // 
@@ -638,7 +648,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label A_I_Code;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label14;
@@ -650,7 +659,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
@@ -671,6 +679,8 @@
         public System.Windows.Forms.TextBox txtBoxDiscount;
         public System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.TextBox textBox8;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label2;
 
     }
 }
