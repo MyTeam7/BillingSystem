@@ -30,7 +30,7 @@ namespace billing_system.Classes
 
                     //Execute command
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Item No: " + textboxCode + " & " + txtboxDescription + " insert Database.");
+                    MessageBox.Show("Item added successfully .Item No : " + textboxCode + " , Item Name : " + txtboxDescription + "");
 
                     //close connection
                     this.CloseConnection();
@@ -48,7 +48,7 @@ namespace billing_system.Classes
 
             string query = "UPDATE items SET Item_Code='" + textboxCode + "', Description='" + txtboxDescription + "',Discount='" + txtboxDiscount + "',Lowest_Price='" + lowestPrice + "',price='" + price + "',Others='" + txtboxOther + "' WHERE Item_Code= '" + textboxCode + "'";
 
-            DialogResult dialogResult = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure want to Update?", "Confirmation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 try
@@ -90,7 +90,7 @@ namespace billing_system.Classes
         {
             string query = "Delete from items where Item_Code = '" + textboxCode + "'";
 
-            DialogResult dialogResult = MessageBox.Show("Do you want to delete changes?", "Confirmation", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure want to Delete?", "Confirmation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
 

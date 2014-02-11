@@ -259,6 +259,7 @@
             this.txtBoxDiscount.Name = "txtBoxDiscount";
             this.txtBoxDiscount.Size = new System.Drawing.Size(107, 26);
             this.txtBoxDiscount.TabIndex = 1;
+            this.txtBoxDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValidation_KeyPress);
             // 
             // label3
             // 
@@ -297,6 +298,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(125, 26);
             this.textBox2.TabIndex = 1;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValidation_KeyPress);
             // 
             // textBox8
             // 
@@ -306,6 +308,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(125, 26);
             this.textBox8.TabIndex = 1;
+            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValidation_KeyPress);
             // 
             // label13
             // 
@@ -335,6 +338,7 @@
             this.txtBoxCode.Name = "txtBoxCode";
             this.txtBoxCode.Size = new System.Drawing.Size(189, 26);
             this.txtBoxCode.TabIndex = 1;
+            this.txtBoxCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValidation_KeyPress);
             // 
             // A_I_Code
             // 
@@ -582,6 +586,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(151, 26);
             this.textBox4.TabIndex = 1;
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValidation_KeyPress);
             // 
             // label4
             // 
@@ -620,6 +625,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(189, 26);
             this.textBox7.TabIndex = 1;
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValidation_KeyPress);
             // 
             // label7
             // 

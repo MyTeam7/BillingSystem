@@ -47,7 +47,7 @@ namespace billing_system.Classes
            
             string query = "UPDATE users SET User_ID='" + User_ID + "', Name='" + Name + "',Address='" + Address + "',Phone='" + Phone + "',User_Name='" + User_Name + "',Password='" + Password + "',Catagory='" + Catagory + "',Others='" + Others + "' WHERE User_ID= '" + User_ID + "'";
 
-            DialogResult dialogResult = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure want to Update?", "Confirmation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 try
@@ -86,7 +86,7 @@ namespace billing_system.Classes
         {
             string query = "Delete from users where User_ID = '" + User_ID + "'";
 
-            DialogResult dialogResult = MessageBox.Show("Do you want to delete changes?", "Confirmation", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure want to Delete?", "Confirmation", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
 
