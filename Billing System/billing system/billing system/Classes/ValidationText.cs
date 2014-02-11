@@ -5,6 +5,11 @@ using System.Windows.Forms;
 
 namespace billing_system.Classes
 {
+    // Aruna Udayanga--2/11/2014
+
+    /// <summary>
+    /// class for validation 
+    /// </summary>
     class ValidationText
     {
 
