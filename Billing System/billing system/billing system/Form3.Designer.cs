@@ -276,6 +276,7 @@
             this.txtBoxCode.ReadOnly = true;
             this.txtBoxCode.Size = new System.Drawing.Size(189, 23);
             this.txtBoxCode.TabIndex = 8;
+            this.txtBoxCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // A_I_Code
             // 

@@ -23,7 +23,7 @@ namespace billing_system
         public Billingform()
         {
             InitializeComponent();
-            this.txtBoxDescription.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
+            
             obj = this;
         }
 
@@ -37,10 +37,15 @@ namespace billing_system
         private void Billingform_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(textBox2_KeyDown);
+            this.textBox2.KeyDown += new KeyEventHandler(textBox2_KeyDown);
+            this.txtBoxDescription.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
+            this.txtBoxCode.KeyDown += new KeyEventHandler(txtBoxCode_KeyDown);
             this.KeyDown += new KeyEventHandler(dataGridView1_KeyDown);
 
-            this.ActiveControl = txtBoxDescription; //focus on Description textbox
+
+
+            this.ActiveControl = txtBoxCode;
+            //this.ActiveControl = txtBoxDescription; //focus on Description textbox
             BillGeneration bf = new BillGeneration();
             textBox1.Text = bf.BillNoGen(this).ToString(); //call to BillNoGen function
 
@@ -51,10 +56,6 @@ namespace billing_system
             timer1.Start(); //initialize timer
 
         }
-
-
-
-
 
 
 
@@ -85,6 +86,63 @@ namespace billing_system
 
         }
 
+
+
+
+
+
+
+        public void txtBoxCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            string keyVal;
+            
+
+           
+
+            keyVal = e.KeyValue.ToString(); //convert and assign pressed keyValue 
+
+            if (int.Parse(keyVal) > 95 && int.Parse(keyVal) < 106)
+            {
+
+                txtBoxCode.ReadOnly = false;
+                
+
+            }
+
+
+            else if (int.Parse(keyVal) == 27)
+            {
+                if (MessageBox.Show("Are you sure you want to exit?", "Confirm exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+
+            }
+
+
+            else if (int.Parse(keyVal) == 13)
+            {
+                
+                int code = Convert.ToInt32(txtBoxCode.Text);
+                BarcodeReader br = new BarcodeReader(code);
+                br.reader(this);
+            }
+            
+            else if (int.Parse(keyVal) == 8) //validate BackSpace---------------------------------------------------------------
+            {
+            }
+
+
+            else
+            {
+                SystemSounds.Hand.Play();
+            }
+
+
+        }
+
+
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             BillGeneration bf = new BillGeneration();
@@ -94,7 +152,7 @@ namespace billing_system
 
         public void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
-
+            
             string keyVal = e.KeyValue.ToString();
 
 
@@ -192,7 +250,7 @@ namespace billing_system
             {
                 if (int.Parse(keyVal) < 65 && int.Parse(keyVal) > 105 && int.Parse(keyVal) != 32)
                 {
-                   
+                    
                     SystemSounds.Hand.Play();
                 }
 
