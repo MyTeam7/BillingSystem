@@ -84,13 +84,11 @@ namespace billing_system
 
         private void UserName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = char.IsLetter(e.KeyChar) || e.KeyChar == 8 || char.IsNumber(e.KeyChar) ? false : true;
+            ValidationText log = new ValidationText();
+            log.UserName_KeyPress(sender, e);
+
         }
 
-        private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = char.IsLetter(e.KeyChar) || e.KeyChar == 8 || char.IsNumber(e.KeyChar) ? false : true;
-        }
 
     
 

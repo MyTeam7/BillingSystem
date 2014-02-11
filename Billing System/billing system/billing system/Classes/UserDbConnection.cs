@@ -29,7 +29,7 @@ namespace billing_system.Classes
 
                     //Execute command
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("New user adding Database");
+                    MessageBox.Show("you create a new " + Catagory + " : " + User_Name + "");
                     //close connection
                     this.CloseConnection();
                 }
