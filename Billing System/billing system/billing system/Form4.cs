@@ -159,8 +159,8 @@ namespace billing_system
         private void ManualBilling_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
-            this.KeyDown += new KeyEventHandler(dataGridView1_KeyDown);
+            this.txtBoxDescription.KeyDown += new KeyEventHandler(txtBoxDescription_KeyDown);
+            this.dataGridView1.KeyDown += new KeyEventHandler(dataGridView1_KeyDown);
             
            
 

@@ -57,7 +57,7 @@ namespace billing_system.Classes
 
 
                     keyChar = character;
-
+                    
 
 
 
@@ -85,6 +85,12 @@ namespace billing_system.Classes
                         }
                     }
 
+                    if (form == "admin")
+                    {
+                        
+                        manualBilling("admin", character, obj);
+                        
+                    }
 
 
 
@@ -96,25 +102,46 @@ namespace billing_system.Classes
 
                 else if (int.Parse(keyCode) == 8) //validate BackSpace---------------------------------------------------------------
                 {
-                    if (form == "ManualBillingform" && focus == "des")
+                    TextBox text=null;
+                    string formName=null;
+
+                    if (form == "ManualBillingform"  && focus == "des")
                     {
                         ManualBilling mb = (ManualBilling)obj;
-                        if (mb.txtBoxDescription.Text.Length > 0) //check is there any text in the textbox
+                        text = mb.txtBoxDescription;
+                        formName = "mb";
+
+                    }
+
+                    if (form == "admin" && focus == "search")
+                    {
+                        Admin ad = (Admin)obj;
+                        text = ad.textBox6;
+                        formName = "admin";
+
+                    }
+
+
+
+
+
+                        
+                        if (text.Text.Length > 0) //check is there any text in the textbox
                         {
-                            string text = mb.txtBoxDescription.Text;
-                            text = text.Substring(0, text.Length - 1); //remove last character from the text of the textbox
-                            mb.txtBoxDescription.Text = text;
-                            mb.txtBoxDescription.Select(mb.txtBoxDescription.Text.Length, 0); //move cursor into the end of text in the textbox
+                            
+                            text.Text = text.Text.Substring(0, text.Text.Length - 1); //remove last character from the text of the textbox
+                            //mb.txtBoxDescription.Text = text;
+                            text.Select(text.Text.Length, 0); //move cursor into the end of text in the textbox
                             
                 
                             character = null;
-                            if (mb.txtBoxDescription.TextLength == 0)
+                            if (text.TextLength == 0)
                             {
                                 character = "";
                                 
                             }
 
-                            manualBilling("mb", character, obj);
+                            manualBilling(formName, character, obj);
                         }
                         else
                         {
@@ -122,8 +149,9 @@ namespace billing_system.Classes
                             SystemSounds.Hand.Play();
                         }
                     }
-
-                }
+            
+            
+            
 
 
                 else if (int.Parse(keyCode) == 27)  //validate Esc key---------------------------------------------------------------
@@ -457,21 +485,19 @@ namespace billing_system.Classes
                     }
 
                     Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length - 2)), out tot);
-                    bf.label2.Text = (Convert.ToInt32(bf.label2.Text) + 1).ToString();
-                    bf.label4.Text = (Convert.ToInt32(bf.label4.Text) + Convert.ToInt32((price / 100) * disc)).ToString();
+                    //bf.label2.Text = (bf.dataGridView1.RowCount+1).ToString();
+                    //bf.label4.Text = (Convert.ToInt32(bf.label4.Text) + Convert.ToInt32((price / 100) * disc)).ToString();
                     Decimal total;
                     Decimal.TryParse(bf.label7.Text, out total);
-                    total = total + tot;
-                    bf.label7.Text = total.ToString();
-
+                    
+                    
+                    
 
                     bf.dataGridView1.Rows.Add(bf.dataGridView1.RowCount + 1, code, des, qty, disc, price, tot);
-                    bf.txtBoxCode.Text = "";
-                    bf.txtBoxDescription.Text = "";
-                    bf.textBox8.Text = "";
-                    bf.textBox2.Text = "";
-                    bf.txtBoxDiscount.Text = "";
-                    bf.ActiveControl = bf.txtBoxDescription;
+                    
+                    BillGeneration bg = new BillGeneration();
+                    bg.total(bf);
+                    
 
                 }
 
@@ -525,6 +551,13 @@ namespace billing_system.Classes
 
             }
 
+            if (form == "admin")
+            {
+                Admin frm = (Admin)obj;
+                textbox = frm.textBox6;
+                datagridview = frm.dataGridView1;
+            }
+
 
 
             try
@@ -534,20 +567,30 @@ namespace billing_system.Classes
 
 
 
-
+               
 
                 textbox.ReadOnly = false;
                 textbox.Text = textbox.Text + searchKey; //assign character of the pressed key into the end of the textbox
                 textbox.Select(textbox.Text.Length, 0); //move cursor into the end of text in the textbox
                 textbox.ReadOnly = true;
 
-
-
                 if (form == "mb")//for ManualBilling form
                 {
                     querystring = "SELECT * From items WHERE Description LIKE CONCAT('" + textbox.Text + "','%')";
                 }
 
+                if (form == "admin")
+                {
+                    if (textbox.Text == "")
+                    {
+                        querystring = "SELECT * From items";
+                    }
+                    else
+                    {
+                        querystring = "SELECT * From items WHERE Description LIKE CONCAT('" + textbox.Text + "','%')";
+                    }
+
+                }
 
 
 

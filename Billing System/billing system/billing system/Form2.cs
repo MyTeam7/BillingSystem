@@ -48,6 +48,13 @@ namespace billing_system
         {
             //SearchItem serItm = new SearchItem();
             //serItm.serchItemDis();
+
+            KeyPressEvent kpe = new KeyPressEvent();
+            kpe.manualBilling("admin", "", this);
+
+            this.KeyPreview = true;
+            this.textBox6.KeyDown += new KeyEventHandler(textBox6_KeyDown);
+
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -92,40 +99,42 @@ namespace billing_system
 
         private void button9_Click(object sender, EventArgs e)
         {
-            // SearchItem serItm = new SearchItem();
-            //serItm.serchItemDis(); 
+            KeyPressEvent kpe = new KeyPressEvent();
+            kpe.manualBilling("admin", textBox6.Text, this);
+            //// SearchItem serItm = new SearchItem();
+            ////serItm.serchItemDis(); 
 
-            DBConnection db = new DBConnection();
-            //Admin item = new Admin();
-            try
-            {
-                string query;
+            //DBConnection db = new DBConnection();
+            ////Admin item = new Admin();
+            //try
+            //{
+            //    string query;
 
-                if (db.OpenConnection() == true)
-                {
-                    query = "SELECT * From items";
-                    MySqlCommand cmd = new MySqlCommand(query, db.connection);
+            //    if (db.OpenConnection() == true)
+            //    {
+            //        query = "SELECT * From items";
+            //        MySqlCommand cmd = new MySqlCommand(query, db.connection);
 
 
-                    MySqlDataAdapter adapter = new MySqlDataAdapter();
-                    adapter.SelectCommand = cmd;
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    BindingSource bsource = new BindingSource();
+            //        MySqlDataAdapter adapter = new MySqlDataAdapter();
+            //        adapter.SelectCommand = cmd;
+            //        DataTable table = new DataTable();
+            //        adapter.Fill(table);
+            //        BindingSource bsource = new BindingSource();
 
-                    bsource.DataSource = table;
-                    dataGridView1.DataSource = table;
-                    adapter.Update(table);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                bool a = db.CloseConnection();
-            }
+            //        bsource.DataSource = table;
+            //        dataGridView1.DataSource = table;
+            //        adapter.Update(table);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //finally
+            //{
+            //    bool a = db.CloseConnection();
+            //}
 
         }
 
@@ -295,6 +304,42 @@ namespace billing_system
             ValidationText tx = new ValidationText();
             tx.textBoxValidation_KeyPress(sender, e);
 
+
+        }
+
+
+        public void textBox6_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            try
+            {
+
+                string keyVal;
+                string keyCd;
+                string searchKey;
+
+
+
+                keyVal = e.KeyValue.ToString(); //keycode value
+                keyCd = e.KeyCode.ToString().ToLower(); //character
+                
+
+                KeyPressEvent kpe = new KeyPressEvent();
+
+                searchKey = kpe.manualSearchkey(keyVal, keyCd, "admin", "search", this);
+
+
+
+                if (searchKey == "exit")
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error Occured, Please Try Again, " + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
 
         }
 

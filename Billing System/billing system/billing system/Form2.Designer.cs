@@ -198,16 +198,22 @@
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(98, 125);
             this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(456, 26);
             this.textBox6.TabIndex = 9;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 165);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(974, 516);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
@@ -832,8 +838,6 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtBoxDescription;
         private System.Windows.Forms.Label lblDescription;
@@ -887,5 +891,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Label label18;
+        public System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }

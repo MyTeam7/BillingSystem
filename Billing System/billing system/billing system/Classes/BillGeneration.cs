@@ -139,7 +139,61 @@ namespace billing_system.Classes
         //--------------endOfDateTime Function---------------------------------------------------------------------------------------------------------------------
 
 
+        //--------------startOftotal Function---------------------------------------------------------------------------------------------------------------------
 
+        public void total(object obj)
+        {
+            Billingform bf = (Billingform)obj;
+            decimal price;
+            decimal disc;
+            Decimal.TryParse(bf.textBox8.Text, out price);
+            Decimal.TryParse(bf.txtBoxDiscount.Text, out disc);
+            decimal totalDisc = 0;
+            decimal rate = 0;
+            decimal discount = 0;
+            decimal qty = 0;
+            decimal tot=0;
+
+            bf.label2.Text = (bf.dataGridView1.RowCount).ToString();
+            
+            for (int i = 0; i < bf.dataGridView1.RowCount; i++)
+            {
+                
+                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[5].Value).ToString(),out rate);
+                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[4].Value).ToString(),out discount);
+                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[3].Value).ToString(),out qty);
+
+                
+
+                totalDisc = totalDisc+((rate / 100) * discount) * qty;
+                
+            }
+
+
+            for (int i = 0; i < bf.dataGridView1.RowCount; i++)
+            {
+                decimal total = 0;
+                Decimal.TryParse(bf.dataGridView1.Rows[i].Cells[6].Value.ToString(), out total);
+                tot = tot + total;
+
+
+            }
+
+
+            bf.label7.Text = tot.ToString();
+            bf.label4.Text = totalDisc.ToString().Substring(0, totalDisc.ToString().Length - 2);
+
+            bf.txtBoxCode.Text = "";
+            bf.txtBoxDescription.Text = "";
+            bf.textBox8.Text = "";
+            bf.textBox2.Text = "";
+            bf.txtBoxDiscount.Text = "";
+            bf.ActiveControl = bf.txtBoxDescription;
+
+
+        }
+
+        //--------------endOftotal Function---------------------------------------------------------------------------------------------------------------------
 
 
 
