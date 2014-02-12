@@ -130,7 +130,7 @@ namespace billing_system.Classes
                         {
                             
                             text.Text = text.Text.Substring(0, text.Text.Length - 1); //remove last character from the text of the textbox
-                            //mb.txtBoxDescription.Text = text;
+                            
                             text.Select(text.Text.Length, 0); //move cursor into the end of text in the textbox
                             
                 

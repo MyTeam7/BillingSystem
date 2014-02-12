@@ -23,7 +23,7 @@ namespace billing_system
         public Billingform()
         {
             InitializeComponent();
-            
+
             obj = this;
         }
 
@@ -59,7 +59,7 @@ namespace billing_system
         }
 
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public void txtBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
@@ -98,7 +98,7 @@ namespace billing_system
 
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         public void txtBoxCode_KeyDown(object sender, KeyEventArgs e)
@@ -159,7 +159,7 @@ namespace billing_system
 
 
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -177,7 +177,7 @@ namespace billing_system
         }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -195,9 +195,28 @@ namespace billing_system
                     key = key.Substring(6, key.Length - 6);
 
                     textBox2.ReadOnly = false;
-                    textBox2.Text = textBox2.Text + key;
+                    if (textBox2.Text.Length < 4)
+                    {
+                        textBox2.Text = textBox2.Text + key;
+                    }
+                    textBox2.Select(textBox2.Text.Length, 0);
                     textBox2.ReadOnly = true;
 
+
+                }
+
+                else if (int.Parse(keyVal) == 8) //validate BackSpace---------------------------------------------------------------
+                {
+                    if (textBox2.Text.Length != 0)
+                    {
+                        textBox2.Text = textBox2.Text.Substring(0, textBox2.Text.Length - 1); //remove last character from the text of the textbox
+
+                        textBox2.Select(textBox2.Text.Length, 0); //move cursor into the end of text in the textbox
+                    }
+                    else
+                    {
+                        SystemSounds.Hand.Play();
+                    }
                 }
                 else if (int.Parse(keyVal) == 37 || int.Parse(keyVal) == 39)
                 {
@@ -222,71 +241,71 @@ namespace billing_system
 
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public void textBox3_KeyDown(object sender, KeyEventArgs e)
         {
             string keyVal = e.KeyValue.ToString();
-                if (int.Parse(keyVal) == 13 && textBox3.Text!="")
+            if (int.Parse(keyVal) == 13 && textBox3.Text != "")
+            {
+                decimal tot;
+                decimal cash;
+                Decimal.TryParse(textBox3.Text, out cash);
+                Decimal.TryParse(label7.Text, out tot);
+                if (cash < tot)
                 {
-                    decimal tot;
-                    decimal cash;
-                    Decimal.TryParse(textBox3.Text, out cash);
-                    Decimal.TryParse(label7.Text, out tot);
-                    if (cash < tot)
-                    {
-                        MessageBox.Show("Cash value is lesser than Total Invoice amount", "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        label14.Text = (cash - tot).ToString();
-                    }
-
-                    //call print function
-
+                    MessageBox.Show("Cash value is lesser than Total Invoice amount", "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-               
-                else if (int.Parse(keyVal) == 8) //validate BackSpace---------------------------------------------------------------
-                {
-                    if (textBox3.Text.Length > 0) //check is there any text in the textbox
-                    {
-                        string text = textBox3.Text;
-                        text = text.Substring(0, text.Length - 1); //remove last character from the text of the textbox
-                        textBox3.Text = text;
-                        textBox3.Select(textBox3.Text.Length, 0); //move cursor into the end of text in the textbox
- 
-                    }
-                    else
-                    {
-
-                        SystemSounds.Hand.Play();
-                    }
-
-
-
-
-                }
-                
-                else if (int.Parse(keyVal) > 95 && int.Parse(keyVal) < 106)
-                {
-                    string num = e.KeyCode.ToString();
-                    num = num.Substring(6, num.Length - 6);
-                    textBox3.Text = textBox3.Text + num;
-                    textBox3.Select(textBox3.Text.Length, 0);
-                }
-                else if (int.Parse(keyVal) == 27)
-                {
-                    this.ActiveControl = txtBoxDescription;
-                    textBox3.Text = "";
-                }
-
                 else
                 {
+                    label14.Text = (cash - tot).ToString();
+                }
+
+                //call print function
+
+            }
+
+            else if (int.Parse(keyVal) == 8) //validate BackSpace---------------------------------------------------------------
+            {
+                if (textBox3.Text.Length > 0) //check is there any text in the textbox
+                {
+                    string text = textBox3.Text;
+                    text = text.Substring(0, text.Length - 1); //remove last character from the text of the textbox
+                    textBox3.Text = text;
+                    textBox3.Select(textBox3.Text.Length, 0); //move cursor into the end of text in the textbox
+
+                }
+                else
+                {
+
                     SystemSounds.Hand.Play();
                 }
-                
+
+
+
+
+            }
+
+            else if (int.Parse(keyVal) > 95 && int.Parse(keyVal) < 106)
+            {
+                string num = e.KeyCode.ToString();
+                num = num.Substring(6, num.Length - 6);
+                textBox3.Text = textBox3.Text + num;
+                textBox3.Select(textBox3.Text.Length, 0);
+            }
+            else if (int.Parse(keyVal) == 27)
+            {
+                this.ActiveControl = txtBoxDescription;
+                textBox3.Text = "";
+            }
+
+            else
+            {
+                SystemSounds.Hand.Play();
+            }
+
 
         }
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -294,9 +313,9 @@ namespace billing_system
 
                 string keyVal;
 
-                
-                    keyVal = e.KeyValue.ToString();
-                
+
+                keyVal = e.KeyValue.ToString();
+
 
                 if (int.Parse(keyVal) == 40)
                 {
@@ -400,7 +419,7 @@ namespace billing_system
         }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     }
 }

@@ -618,6 +618,7 @@
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Billingform";
             this.Text = "Billing";
             this.Load += new System.EventHandler(this.Billingform_Load);
