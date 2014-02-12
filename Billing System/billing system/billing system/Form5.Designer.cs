@@ -97,6 +97,7 @@
             this.txtBoxDiscount.Name = "txtBoxDiscount";
             this.txtBoxDiscount.Size = new System.Drawing.Size(175, 24);
             this.txtBoxDiscount.TabIndex = 9;
+            this.txtBoxDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCode_KeyPress);
             // 
             // label3
             // 
@@ -116,6 +117,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(112, 24);
             this.textBox2.TabIndex = 10;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCode_KeyPress);
             // 
             // lblQty
             // 
@@ -136,6 +138,7 @@
             this.textBox8.Size = new System.Drawing.Size(106, 24);
             this.textBox8.TabIndex = 11;
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCode_KeyPress);
             // 
             // label12
             // 
@@ -155,6 +158,7 @@
             this.txtBoxCode.Name = "txtBoxCode";
             this.txtBoxCode.Size = new System.Drawing.Size(189, 23);
             this.txtBoxCode.TabIndex = 8;
+            this.txtBoxCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCode_KeyPress);
             // 
             // A_I_Code
             // 
@@ -186,6 +190,7 @@
             this.textBox1.Size = new System.Drawing.Size(175, 24);
             this.textBox1.TabIndex = 9;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCode_KeyPress);
             // 
             // label2
             // 
@@ -207,6 +212,7 @@
             this.textBox3.Size = new System.Drawing.Size(175, 24);
             this.textBox3.TabIndex = 9;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxCode_KeyPress);
             // 
             // button4
             // 

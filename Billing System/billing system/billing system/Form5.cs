@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using billing_system.Classes;
 
 namespace billing_system
 {
@@ -33,6 +34,13 @@ namespace billing_system
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtBoxCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            ValidationText tx = new ValidationText();
+            tx.textBoxValidation_KeyPress(sender, e);
         }
     }
 }

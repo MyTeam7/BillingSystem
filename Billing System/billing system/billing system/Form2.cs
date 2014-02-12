@@ -10,6 +10,8 @@ using MySql.Data.MySqlClient;
 
 namespace billing_system
 {
+
+    // Aruna Udayanga--2/11/2014
     public partial class Admin : Form
     {
         public Admin()

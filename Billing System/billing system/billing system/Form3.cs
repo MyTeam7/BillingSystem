@@ -185,6 +185,9 @@ namespace billing_system
         {
             try
             {
+
+
+
                 string keyVal = e.KeyValue.ToString();
 
 
@@ -198,8 +201,10 @@ namespace billing_system
                     textBox2.Text = textBox2.Text + key;
                     textBox2.ReadOnly = true;
 
+
+
                 }
-                else if (int.Parse(keyVal) == 37 || int.Parse(keyVal) == 39)
+               if (int.Parse(keyVal) == 37 || int.Parse(keyVal) == 39)
                 {
                 }
                 else if (int.Parse(keyVal) == 13)
@@ -209,6 +214,8 @@ namespace billing_system
                 }
                 else
                 {
+
+
                     SystemSounds.Hand.Play();
                 }
             }
@@ -398,6 +405,12 @@ namespace billing_system
             bg.total(this);
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
