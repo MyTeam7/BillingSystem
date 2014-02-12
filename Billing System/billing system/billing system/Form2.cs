@@ -46,12 +46,8 @@ namespace billing_system
 
         private void Admin_Load(object sender, EventArgs e)
         {
-            //-------------------Dilanka Rathnayaka------------------------------2/9/2014----------------------------
-            Reports rep = new Reports();
-            rep.FormLoadDateTimePicker(dateTimePicker2);
-            //Set Cashier names to combo box
-            rep.FormLoadComboBox(comboBox1);
-            //-------------------------------------------------------------------------------------------------------
+            //SearchItem serItm = new SearchItem();
+            //serItm.serchItemDis();
 
             KeyPressEvent kpe = new KeyPressEvent();
             kpe.manualBilling("admin", "", this);
