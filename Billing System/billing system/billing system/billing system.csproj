@@ -49,6 +49,7 @@
     <Compile Include="Classes\BillGeneration.cs" />
     <Compile Include="Classes\DBConnection.cs" />
     <Compile Include="Classes\ItemDBConnection.cs" />
+    <Compile Include="Classes\Reports.cs" />
     <Compile Include="Classes\UserDbConnection.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\KeyPressEvent.cs" />
