@@ -5,6 +5,11 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data;
 
+
+// RavishaHeshan(ravisha_weerasekara@yahoo.com)--2/11/2014
+
+
+
 namespace billing_system.Classes
 {
     class BarcodeReader

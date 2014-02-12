@@ -61,10 +61,12 @@ namespace billing_system.Classes
                 }
 
                 else
-
+                {
+                   
                     throw new Exception("DB Connection Error");
+                    
 
-
+                }
 
 
             }
@@ -77,12 +79,15 @@ namespace billing_system.Classes
 
                 if (result == DialogResult.Retry)
                 {
-                    bf.Close(); //close current form
                     Billingform newform = new Billingform();
-                    newform.Show(); // load new form
+                    bf.Dispose(); //close current form
+                    newform.Show(); // load new form 
+                    
+                   
                 }
                 else
                 {
+                    
                     bf.Close();
                 }
             }
