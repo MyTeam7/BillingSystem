@@ -356,20 +356,20 @@
             this.panel5.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel5.Controls.Add(this.textBox3);
             this.panel5.Controls.Add(this.label13);
-            this.panel5.Location = new System.Drawing.Point(855, 508);
+            this.panel5.Location = new System.Drawing.Point(855, 499);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(141, 53);
+            this.panel5.Size = new System.Drawing.Size(141, 68);
             this.panel5.TabIndex = 21;
             // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(12, 27);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(120, 20);
+            this.textBox3.Size = new System.Drawing.Size(120, 26);
             this.textBox3.TabIndex = 15;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 

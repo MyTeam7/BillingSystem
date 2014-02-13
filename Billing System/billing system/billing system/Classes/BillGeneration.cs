@@ -183,8 +183,17 @@ namespace billing_system.Classes
             }
 
 
-            bf.label7.Text = tot.ToString();
+            
+                bf.label7.Text = tot.ToString();
+            
+            
+
+            
+           
+            
+            
             if (totalDisc != 0)
+
             {
                 bf.label4.Text = totalDisc.ToString().Substring(0, totalDisc.ToString().Length - 2);
             }
