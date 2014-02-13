@@ -356,17 +356,19 @@
             this.panel5.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel5.Controls.Add(this.textBox3);
             this.panel5.Controls.Add(this.label13);
-            this.panel5.Location = new System.Drawing.Point(855, 508);
+            this.panel5.Location = new System.Drawing.Point(855, 500);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(141, 53);
+            this.panel5.Size = new System.Drawing.Size(141, 67);
             this.panel5.TabIndex = 21;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(53, 27);
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(0, 20);
+            this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(79, 20);
+            this.textBox3.Size = new System.Drawing.Size(135, 37);
             this.textBox3.TabIndex = 15;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -375,7 +377,7 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.SystemColors.Control;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(3, 0);
+            this.label13.Location = new System.Drawing.Point(2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(40, 17);
             this.label13.TabIndex = 14;
