@@ -23,7 +23,9 @@ namespace billing_system.Classes
             if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
             {
                 e.Handled = true;
-                MessageBox.Show("Latters are NOT valid");
+                //MessageBox.Show("Latters are NOT valid");
+                SystemSounds.Hand.Play();
+
             }
 
 
