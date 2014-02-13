@@ -44,7 +44,7 @@ namespace billing_system.Classes
                 {
                     MySqlCommand cmd = new MySqlCommand(query, db.connection);
                     count = int.Parse(cmd.ExecuteScalar().ToString()); //check for existing bills
-                    
+
 
 
                     if (count < 1)
@@ -64,9 +64,9 @@ namespace billing_system.Classes
 
                 else
                 {
-                   
+
                     throw new Exception("DB Connection Error");
-                    
+
 
                 }
 
@@ -81,15 +81,13 @@ namespace billing_system.Classes
 
                 if (result == DialogResult.Retry)
                 {
-                    Billingform newform = new Billingform();
-                    bf.Dispose(); //close current form
-                    newform.Show(); // load new form 
-                    
-                   
+                    bf.reload();
+
+
                 }
                 else
                 {
-                    
+
                     bf.Close();
                 }
             }
@@ -128,9 +126,7 @@ namespace billing_system.Classes
 
                 if (result == DialogResult.Retry)
                 {
-                    bf.Close(); //close current form
-                    Billingform newform = new Billingform();
-                    newform.Show(); // load new form
+                    bf.reload();
                 }
                 else
                 {
@@ -159,21 +155,21 @@ namespace billing_system.Classes
             decimal rate = 0;
             decimal discount = 0;
             decimal qty = 0;
-            decimal tot=0;
+            decimal tot = 0;
 
             bf.label2.Text = (bf.dataGridView1.RowCount).ToString();
-            
+
             for (int i = 0; i < bf.dataGridView1.RowCount; i++)
             {
-                
-                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[5].Value).ToString(),out rate);
-                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[4].Value).ToString(),out discount);
-                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[3].Value).ToString(),out qty);
 
-                
+                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[5].Value).ToString(), out rate);
+                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[4].Value).ToString(), out discount);
+                Decimal.TryParse((bf.dataGridView1.Rows[i].Cells[3].Value).ToString(), out qty);
 
-                totalDisc = totalDisc+((rate / 100) * discount) * qty;
-                
+
+
+                totalDisc = totalDisc + ((rate / 100) * discount) * qty;
+
             }
 
 
@@ -182,12 +178,20 @@ namespace billing_system.Classes
                 decimal total = 0.00m;
                 Decimal.TryParse(bf.dataGridView1.Rows[i].Cells[6].Value.ToString(), out total);
                 tot = tot + total;
-                
+
 
             }
 
 
+
             bf.label7.Text = tot.ToString();
+
+
+
+
+
+
+
             if (totalDisc != 0)
             {
                 bf.label4.Text = totalDisc.ToString().Substring(0, totalDisc.ToString().Length - 2);
@@ -211,7 +215,84 @@ namespace billing_system.Classes
 
 
 
+        //--------------startOfbillToDB Function---------------------------------------------------------------------------------------------------------------------
 
+        public void billToDB(object obj)
+        {
+            Billingform bf = (Billingform)obj;
+            DBConnection db = new DBConnection();
+            try
+            {
+
+                string inv_no = bf.textBox1.Text;
+                string user = bf.label16.Text;
+                string code = null;
+                string qty = null;
+                string discount = null;
+                string total = null;
+                DateTime date = Convert.ToDateTime(bf.label9.Text.Substring(0, bf.label9.Text.Length - 12));
+
+                string time = bf.label9.Text.Substring(10, 11);
+                string pay_Type = "ca";
+
+
+
+
+                if (db.OpenConnection() == true)
+                {
+
+
+
+
+                    for (int i = 0; i < bf.dataGridView1.RowCount; i++)
+                    {
+                        code = bf.dataGridView1.Rows[i].Cells[1].Value.ToString();
+                        qty = bf.dataGridView1.Rows[i].Cells[3].Value.ToString();
+                        discount = bf.dataGridView1.Rows[i].Cells[4].Value.ToString();
+                        total = bf.dataGridView1.Rows[i].Cells[6].Value.ToString();
+
+
+                        string query = "INSERT INTO bills VALUES('" + inv_no + "','" + code + "','" + qty + "','" + total + "','" + discount + "')";
+                        MySqlCommand cmd = new MySqlCommand(query, db.connection);
+                        cmd.ExecuteNonQuery();
+
+                    }
+
+                    string query2 = "INSERT INTO bills_info VALUES('" + inv_no + "','" + user + "','" + date.Year + "-" + date.Month + "-" + date.Day + "','" + time + "','" + pay_Type + "')";
+                    MySqlCommand cmdOne = new MySqlCommand(query2, db.connection);
+                    cmdOne.ExecuteNonQuery();
+
+                    bf.reload();
+
+
+                }
+
+                else
+                {
+
+                    throw new Exception("DB Connection Error");
+
+
+                }
+
+
+
+
+            }
+
+            catch (Exception exc)
+            {
+                MessageBox.Show("Errror Occured, Please Try Again, " + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+
+        }
+
+
+
+
+        //--------------endOfbillToDB Function---------------------------------------------------------------------------------------------------------------------
 
 
 

@@ -23,13 +23,13 @@ namespace billing_system.Classes
 
         //--------------startOfmanualSearchkey Function---------------------------------------------------------------------------------------------------------------------------
 
-        public string manualSearchkey(string keyCode, string character, string form = "dflt", string focus = "dflt", object obj=null)
+        public string manualSearchkey(string keyCode, string character, string form = "dflt", string focus = "dflt", object obj = null)
         {
             string keyChar = null;
-            if (form == "Billingform" && obj!=null)
+            if (form == "Billingform" && obj != null)
             {
-               
-                PrvForm =obj;
+
+                PrvForm = obj;
             }
 
 
@@ -57,7 +57,7 @@ namespace billing_system.Classes
 
 
                     keyChar = character;
-                    
+
 
 
 
@@ -87,9 +87,9 @@ namespace billing_system.Classes
 
                     if (form == "admin")
                     {
-                        
+
                         manualBilling("admin", character, obj);
-                        
+
                     }
 
 
@@ -102,10 +102,10 @@ namespace billing_system.Classes
 
                 else if (int.Parse(keyCode) == 8) //validate BackSpace---------------------------------------------------------------
                 {
-                    TextBox text=null;
-                    string formName=null;
+                    TextBox text = null;
+                    string formName = null;
 
-                    if (form == "ManualBillingform"  && focus == "des")
+                    if (form == "ManualBillingform" && focus == "des")
                     {
                         ManualBilling mb = (ManualBilling)obj;
                         text = mb.txtBoxDescription;
@@ -125,33 +125,33 @@ namespace billing_system.Classes
 
 
 
-                        
-                        if (text.Text.Length > 0) //check is there any text in the textbox
-                        {
-                            
-                            text.Text = text.Text.Substring(0, text.Text.Length - 1); //remove last character from the text of the textbox
-                            
-                            text.Select(text.Text.Length, 0); //move cursor into the end of text in the textbox
-                            
-                
-                            character = null;
-                            if (text.TextLength == 0)
-                            {
-                                character = "";
-                                
-                            }
 
-                            manualBilling(formName, character, obj);
-                        }
-                        else
+                    if (text.Text.Length > 0) //check is there any text in the textbox
+                    {
+
+                        text.Text = text.Text.Substring(0, text.Text.Length - 1); //remove last character from the text of the textbox
+
+                        text.Select(text.Text.Length, 0); //move cursor into the end of text in the textbox
+
+
+                        character = null;
+                        if (text.TextLength == 0)
                         {
-                            
-                            SystemSounds.Hand.Play();
+                            character = "";
+
                         }
+
+                        manualBilling(formName, character, obj);
                     }
-            
-            
-            
+                    else
+                    {
+
+                        SystemSounds.Hand.Play();
+                    }
+                }
+
+
+
 
 
                 else if (int.Parse(keyCode) == 27)  //validate Esc key---------------------------------------------------------------
@@ -166,7 +166,7 @@ namespace billing_system.Classes
 
                     else
                     {
-                        
+
                         SystemSounds.Hand.Play();
 
                     }
@@ -175,15 +175,15 @@ namespace billing_system.Classes
 
                 else if (int.Parse(keyCode) == 40) //validate Down Arrow---------------------------------------------------------------
                 {
-                    DataGridView dataGridView=null;
+                    DataGridView dataGridView = null;
                     TextBox textBox = null;
-                    
+
 
                     if (form == "Billingform" && focus == "des")
                     {
                         Billingform bf = (Billingform)obj;
                         dataGridView = bf.dataGridView1;
-                       
+
                         textBox = bf.txtBoxDescription;
                         bf.ActiveControl = dataGridView;//focus into datagridview
                     }
@@ -194,12 +194,12 @@ namespace billing_system.Classes
                     {
                         ManualBilling mb = (ManualBilling)obj;
                         dataGridView = mb.dataGridView1;
-                        
+
                         textBox = mb.txtBoxDescription;
                         mb.ActiveControl = dataGridView;//focus into datagridview
                     }
 
-                    
+
                     dataGridView.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
                     textBox.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
 
@@ -207,7 +207,7 @@ namespace billing_system.Classes
 
                 }
 
-                
+
                 else if (int.Parse(keyCode) == 13)//validate enter-------------------------------------------------------------------
                 {
                     if (form == "Billingform" && focus == "des")
@@ -220,10 +220,10 @@ namespace billing_system.Classes
 
                 else
                 {
-                    
-                       
-                        SystemSounds.Hand.Play();
-                    
+
+
+                    SystemSounds.Hand.Play();
+
 
                 }
 
@@ -255,12 +255,12 @@ namespace billing_system.Classes
         {
             try
             {
-                DataGridView dataGridView=null;
+                DataGridView dataGridView = null;
 
                 if (form == "mb" && focus == "dgv") // validate ManualBilling form and DataGridView
                 {
                     ManualBilling mb = (ManualBilling)obj;
-                    dataGridView=mb.dataGridView1;
+                    dataGridView = mb.dataGridView1;
 
                 }
 
@@ -268,37 +268,37 @@ namespace billing_system.Classes
                 if (form == "bf" && focus == "dgv") // validate ManualBilling form and DataGridView
                 {
                     Billingform bf = (Billingform)obj;
-                    dataGridView=bf.dataGridView1;
+                    dataGridView = bf.dataGridView1;
                 }
 
 
-                    
-                    int rows = dataGridView.RowCount; // no of rows in datagridview
-                    int rowIndex = dataGridView.CurrentCell.RowIndex; //current row no
+
+                int rows = dataGridView.RowCount; // no of rows in datagridview
+                int rowIndex = dataGridView.CurrentCell.RowIndex; //current row no
 
 
 
 
-                    if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
-                    {
+                if (rowIndex < (rows - 1) && rowIndex != 0) //validate current selected row is not the last or first row
+                {
 
 
-                        dataGridView.Rows[rowIndex - 1].Selected = false; //deselect current row
-                        dataGridView.Rows[rowIndex].Selected = true; // select next row
+                    dataGridView.Rows[rowIndex - 1].Selected = false; //deselect current row
+                    dataGridView.Rows[rowIndex].Selected = true; // select next row
 
 
 
-                    }
+                }
 
-                    else if (rowIndex != 0)
-                    {
+                else if (rowIndex != 0)
+                {
 
-                        SystemSounds.Hand.Play();
-                    }
-                
+                    SystemSounds.Hand.Play();
+                }
 
 
-                
+
+
             }
 
             catch (Exception exc)
@@ -329,66 +329,66 @@ namespace billing_system.Classes
 
                 DataGridView dataGridView = null;
                 TextBox textBox = null;
-                
+
 
                 if (form == "bf" && focus == "dgv")
                 {
                     Billingform bf = (Billingform)obj;
                     dataGridView = bf.dataGridView1;
-                    
+
                     textBox = bf.txtBoxDescription;
-                    
+
                 }
 
                 if (form == "mb" && focus == "dgv")
                 {
                     ManualBilling mb = (ManualBilling)obj;
                     dataGridView = mb.dataGridView1;
-                    
+
                     textBox = mb.txtBoxDescription;
-                    
+
                 }
 
 
-                
-
-                   
-                    int RowIndex = dataGridView.CurrentCell.RowIndex;
 
 
-                    if (RowIndex == 0) //check whether if current selected row is first row or not
+
+                int RowIndex = dataGridView.CurrentCell.RowIndex;
+
+
+                if (RowIndex == 0) //check whether if current selected row is first row or not
+                {
+                    if (form == "bf" && focus == "dgv")
                     {
-                        if (form == "bf" && focus == "dgv")
-                        {
-                            Billingform bf = (Billingform)obj;
-                            bf.ActiveControl = bf.txtBoxDescription;//focus into datagridview
-                        }
-
-                        if (form == "mb" && focus == "dgv")
-                        {
-                            ManualBilling mb = (ManualBilling)obj;
-                            mb.ActiveControl = mb.txtBoxDescription;//focus into datagridview
-                        }
-
-
-                        dataGridView.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
-                        textBox.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
-                        textBox.Select(textBox.Text.Length, 0);   //move cursor into the end of text in the textbox
+                        Billingform bf = (Billingform)obj;
+                        bf.ActiveControl = bf.txtBoxDescription;//focus into datagridview
                     }
 
-                    else if (RowIndex > 1)
+                    if (form == "mb" && focus == "dgv")
                     {
-
-                        dataGridView.Rows[RowIndex].Selected = false; //deselect current row
-                        dataGridView.Rows[RowIndex - 1].Selected = true; //select previous row
+                        ManualBilling mb = (ManualBilling)obj;
+                        mb.ActiveControl = mb.txtBoxDescription;//focus into datagridview
                     }
-                    else if (RowIndex == 0)
-                    {
 
-                        SystemSounds.Hand.Play();
-                    }
-                
-                
+
+                    dataGridView.BorderStyle = BorderStyle.Fixed3D; //change borderStyle to identify active control
+                    textBox.BorderStyle = BorderStyle.FixedSingle; //change borderStyle to identify active control
+                    textBox.Select(textBox.Text.Length, 0);   //move cursor into the end of text in the textbox
+                }
+
+                else if (RowIndex > 1)
+                {
+
+                    dataGridView.Rows[RowIndex].Selected = false; //deselect current row
+                    dataGridView.Rows[RowIndex - 1].Selected = true; //select previous row
+                }
+                else if (RowIndex == 0)
+                {
+
+                    SystemSounds.Hand.Play();
+                }
+
+
             }
 
 
@@ -418,7 +418,7 @@ namespace billing_system.Classes
 
 
         //--------------startOfEnter Function---------------------------------------------------------------------------------------------------------------------------
-        public void enterButton(string form, string focus, object obj, object formobj=null)
+        public void enterButton(string form, string focus, object obj, object formobj = null)
         {
 
             try
@@ -477,7 +477,7 @@ namespace billing_system.Classes
                     {
 
                         tot = (price * qty);
-                        
+
                     }
 
                     else
@@ -486,27 +486,23 @@ namespace billing_system.Classes
                         newprice = (price - ((price / 100) * disc));
                         tot = (newprice * qty);
                     }
-                    
 
-                    if (tot.ToString().Length > 5)
-                    {
-                        Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length-2)), out tot);
-                        
-                    }
+
+
 
                     Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length)), out tot);
-                    
+
                     Decimal total;
                     Decimal.TryParse(bf.label7.Text, out total);
-                    
-                    
-                    
+
+                    tot = Math.Round(tot, 2);
+
 
                     bf.dataGridView1.Rows.Add(bf.dataGridView1.RowCount + 1, code, des, qty, disc, price, tot);
-                    
+
                     BillGeneration bg = new BillGeneration();
                     bg.total(bf);
-                    
+
 
                 }
 
@@ -514,8 +510,16 @@ namespace billing_system.Classes
                 if (form == "bf" && focus == "des")
                 {
                     Billingform bf = (Billingform)obj;
-                    bf.ActiveControl = bf.textBox3;
-                    
+                    if (bf.dataGridView1.RowCount != 0)
+                    {
+
+                        bf.ActiveControl = bf.textBox3;
+                    }
+                    else
+                    {
+                        SystemSounds.Hand.Play();
+                    }
+
                 }
 
 
@@ -576,7 +580,7 @@ namespace billing_system.Classes
 
 
 
-               
+
 
                 textbox.ReadOnly = false;
                 textbox.Text = textbox.Text + searchKey; //assign character of the pressed key into the end of the textbox

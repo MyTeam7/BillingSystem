@@ -106,11 +106,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(712, 11);
+            this.label9.Location = new System.Drawing.Point(720, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(160, 17);
+            this.label9.Size = new System.Drawing.Size(47, 17);
             this.label9.TabIndex = 10;
-            this.label9.Text = "Date & time goes here";
+            this.label9.Text = "Date ";
             // 
             // label16
             // 
@@ -118,9 +118,9 @@
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(95, 7);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(104, 20);
+            this.label16.Size = new System.Drawing.Size(60, 20);
             this.label16.TabIndex = 9;
-            this.label16.Text = "cashier name";
+            this.label16.Text = "cashier";
             // 
             // label6
             // 
@@ -334,7 +334,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(47, 37);
+            this.label14.Location = new System.Drawing.Point(6, 37);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(44, 31);
             this.label14.TabIndex = 15;
@@ -356,17 +356,21 @@
             this.panel5.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel5.Controls.Add(this.textBox3);
             this.panel5.Controls.Add(this.label13);
-            this.panel5.Location = new System.Drawing.Point(855, 508);
+            this.panel5.Location = new System.Drawing.Point(855, 500);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(141, 53);
+            this.panel5.Size = new System.Drawing.Size(141, 67);
             this.panel5.TabIndex = 21;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(53, 27);
+            this.textBox3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(3, 27);
+            this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(79, 20);
+            this.textBox3.Size = new System.Drawing.Size(135, 37);
             this.textBox3.TabIndex = 15;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -644,11 +648,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblDescription;
@@ -690,6 +691,9 @@
         public System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox textBox3;
         public System.Windows.Forms.Label label14;
+        public System.Windows.Forms.Label label16;
+        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.Label label9;
 
     }
 }
