@@ -43,15 +43,17 @@ namespace billing_system.Classes
                 if (db.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, db.connection);
-                    count = cmd.ExecuteNonQuery(); //check for existing bills
+                    count = int.Parse(cmd.ExecuteScalar().ToString()); //check for existing bills
+                    
+
 
                     if (count < 1)
                         billno = 000001;    //first billno
                     else
                     {
-                        string queryOne = "SELECT InvoiceNo FROM bills ORDER BY InvoiceNo DESC LIMIT 1";
+                        string queryOne = "SELECT Invoice_No FROM bills ORDER BY Invoice_No DESC LIMIT 1";
                         MySqlCommand cmdOne = new MySqlCommand(queryOne, db.connection);
-                        int result = cmdOne.ExecuteNonQuery(); //retrieve billno of last bill
+                        int result = int.Parse(cmdOne.ExecuteScalar().ToString()); //retrieve billno of last bill
                         billno = result + 1; //next billno 
 
                     }
@@ -75,7 +77,7 @@ namespace billing_system.Classes
             {
                 Billingform bf = (Billingform)obj;
 
-                DialogResult result = MessageBox.Show("Error" + ex.Message + " Do you need to Retry?", "Oops!", System.Windows.Forms.MessageBoxButtons.RetryCancel, System.Windows.Forms.MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Error " + ex.Message + " Do you need to Retry?", "Oops!", System.Windows.Forms.MessageBoxButtons.RetryCancel, System.Windows.Forms.MessageBoxIcon.Question);
 
                 if (result == DialogResult.Retry)
                 {
@@ -177,10 +179,10 @@ namespace billing_system.Classes
 
             for (int i = 0; i < bf.dataGridView1.RowCount; i++)
             {
-                decimal total = 0;
+                decimal total = 0.00m;
                 Decimal.TryParse(bf.dataGridView1.Rows[i].Cells[6].Value.ToString(), out total);
                 tot = tot + total;
-
+                
 
             }
 

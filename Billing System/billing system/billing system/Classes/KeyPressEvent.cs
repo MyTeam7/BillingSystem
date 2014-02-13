@@ -466,7 +466,7 @@ namespace billing_system.Classes
                     Decimal.TryParse(bf.txtBoxDiscount.Text, out disc);
                     decimal qty;
                     Decimal.TryParse(bf.textBox2.Text, out qty);
-                    decimal tot = 0;
+                    decimal tot = 0.00m;
 
                     if (qty == 0)
                     {
@@ -477,6 +477,7 @@ namespace billing_system.Classes
                     {
 
                         tot = (price * qty);
+                        
                     }
 
                     else
@@ -485,10 +486,16 @@ namespace billing_system.Classes
                         newprice = (price - ((price / 100) * disc));
                         tot = (newprice * qty);
                     }
+                    
 
-                    Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length - 2)), out tot);
-                    //bf.label2.Text = (bf.dataGridView1.RowCount+1).ToString();
-                    //bf.label4.Text = (Convert.ToInt32(bf.label4.Text) + Convert.ToInt32((price / 100) * disc)).ToString();
+                    if (tot.ToString().Length > 5)
+                    {
+                        Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length-2)), out tot);
+                        
+                    }
+
+                    Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length)), out tot);
+                    
                     Decimal total;
                     Decimal.TryParse(bf.label7.Text, out total);
                     
