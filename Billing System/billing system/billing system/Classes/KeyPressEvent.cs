@@ -488,11 +488,7 @@ namespace billing_system.Classes
                     }
                     
 
-                    if (tot.ToString().Length > 5)
-                    {
-                        Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length-2)), out tot);
-                        
-                    }
+
 
                     Decimal.TryParse((tot.ToString().Substring(0, tot.ToString().Length)), out tot);
                     
@@ -513,8 +509,16 @@ namespace billing_system.Classes
 
                 if (form == "bf" && focus == "des")
                 {
-                    Billingform bf = (Billingform)obj;
-                    bf.ActiveControl = bf.textBox3;
+                     Billingform bf = (Billingform)obj;
+                     if (bf.dataGridView1.RowCount != 0)
+                     {
+
+                         bf.ActiveControl = bf.textBox3;
+                     }
+                     else
+                     {
+                         SystemSounds.Hand.Play();
+                     }
                     
                 }
 

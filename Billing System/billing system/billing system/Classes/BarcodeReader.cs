@@ -42,9 +42,7 @@ namespace billing_system.Classes
                     
                     if(table.Rows.Count==0)
                     {
-                        Form6 err=new Form6();
-                        err.label1.Text="Invalid Code";
-                        err.Show();
+                        MessageBox.Show("Invalid BarCode", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {

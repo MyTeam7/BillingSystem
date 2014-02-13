@@ -18,6 +18,7 @@ namespace billing_system
     {
 
         public object obj; //variable for hold currnt form instance
+        public string user_name;
 
 
         public Billingform()
@@ -25,6 +26,15 @@ namespace billing_system
             InitializeComponent();
 
             obj = this;
+        }
+
+        public Billingform(string user)
+        {
+            InitializeComponent();
+
+            obj = this;
+            user_name = user;
+            
         }
 
 
@@ -55,6 +65,13 @@ namespace billing_system
             timer1.Interval = 1000;
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Start(); //initialize timer
+
+            
+            label16.Text = user_name;
+
+            
+
+
 
         }
 
@@ -103,11 +120,12 @@ namespace billing_system
 
         public void txtBoxCode_KeyDown(object sender, KeyEventArgs e)
         {
+            
             try
             {
                 string keyVal;
 
-
+               
 
 
                 keyVal = e.KeyValue.ToString(); //convert and assign pressed keyValue 
@@ -167,7 +185,7 @@ namespace billing_system
             try
             {
                 BillGeneration bf = new BillGeneration();
-                label9.Text = bf.Date(this).ToString(); //call to Date function
+                label9.Text = bf.Date(this).ToString()+" "; //call to Date function
             }
             catch (Exception exc)
             {
@@ -245,6 +263,7 @@ namespace billing_system
         public void textBox3_KeyDown(object sender, KeyEventArgs e)
         {
             string keyVal = e.KeyValue.ToString();
+           
             if (int.Parse(keyVal) == 13 && textBox3.Text != "")
             {
                 decimal tot;
@@ -261,7 +280,19 @@ namespace billing_system
                 }
 
                 //call print function
+                //if (PrintClass.printfunction())
+                //{
+                    BillGeneration bg = new BillGeneration();
+                    bg.billToDB(this);
+                //}
 
+            }
+            else if (int.Parse(keyVal) == 110) //validate dot---------------------------------------------------------------
+            {
+                string dot = ".";
+                
+                textBox3.Text = textBox3.Text + dot;
+                textBox3.Select(textBox3.Text.Length, 0);
             }
 
             else if (int.Parse(keyVal) == 8) //validate BackSpace---------------------------------------------------------------
@@ -420,6 +451,14 @@ namespace billing_system
 
 
         //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        public void reload()
+        {
+            Billingform bf=new Billingform(user_name);
+            bf.Show();
+            this.Close();
+        }
+
 
     }
 }
