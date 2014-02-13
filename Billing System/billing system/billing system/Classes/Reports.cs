@@ -38,14 +38,12 @@ namespace billing_system.Classes
         public void ComboBoxTextchange(ComboBox cmb, string text)
         {
             OpenConnection();
-            //Cb1.Items.Add("sssssss");
             string Quary = "SELECT Description FROM items WHERE Description LIKE '" + text + "%'";
             MySqlCommand command = new MySqlCommand(Quary, connection);
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 string temp = reader.GetString(0);
-                //MessageBox.Show(temp);
                 cmb.Items.Add(temp);
             }
             reader.Close();

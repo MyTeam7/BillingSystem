@@ -349,15 +349,21 @@ namespace billing_system
 
         private void comboBox4_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox2.Text != "")
+            if (comboBox4.Text != "")
             {
-                string cmbText = comboBox2.Text;
-                comboBox2.Items.Clear();
+                string cmbText = comboBox4.Text;
+                comboBox4.Items.Clear();
                 Reports rep = new Reports();
-                rep.ComboBoxTextchange(comboBox2, cmbText);
+                rep.ComboBoxTextchange(comboBox4, cmbText);
             }
             else
                 comboBox2.Items.Clear();
+        }
+
+        private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+           
+            comboBox4.Enabled = false;
         }
 
     }
