@@ -50,14 +50,14 @@ namespace billing_system
                 if (UPName.PasswordAuthenticaion())
                 {
                     //MessageBox.Show("you are loged!!!!!");
-                    if (UPName.UserCatagory().ToLower() == "admin")
+                    if (UPName.UserCatagory() == "Admin")
                     {
                         Admin AdminForm = new Admin();
                         AdminForm.Show();
                         UserName.Text = "UserName";
                         maskedTextBox1.Text = "Password";
                     }
-                    else if (UPName.UserCatagory().ToLower() == "user")
+                    else if (UPName.UserCatagory().ToLower() == "User")
                     {
                         Billingform Bill = new Billingform();
                         Bill.Show();
