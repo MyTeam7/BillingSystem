@@ -87,9 +87,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.adminTabPg.SuspendLayout();
             this.Items.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -693,6 +693,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
+            this.panel3.Controls.Add(this.comboBox4);
             this.panel3.Controls.Add(this.dateTimePicker2);
             this.panel3.Controls.Add(this.dateTimePicker1);
             this.panel3.Controls.Add(this.comboBox2);
@@ -700,7 +701,6 @@
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.textBox10);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label11);
             this.panel3.Location = new System.Drawing.Point(15, 6);
@@ -768,15 +768,6 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "from Date";
             // 
-            // textBox10
-            // 
-            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(753, 16);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(180, 26);
-            this.textBox10.TabIndex = 1;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -796,6 +787,15 @@
             this.label11.Size = new System.Drawing.Size(58, 19);
             this.label11.TabIndex = 0;
             this.label11.Text = "Cashier";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(753, 16);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(180, 26);
+            this.comboBox4.TabIndex = 9;
+            this.comboBox4.TextChanged += new System.EventHandler(this.comboBox4_TextChanged);
             // 
             // Admin
             // 
@@ -879,7 +879,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox2;
@@ -893,5 +892,6 @@
         private System.Windows.Forms.Label label18;
         public System.Windows.Forms.TextBox textBox6;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBox4;
     }
 }

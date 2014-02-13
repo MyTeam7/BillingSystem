@@ -347,5 +347,18 @@ namespace billing_system
 
         }
 
+        private void comboBox4_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.Text != "")
+            {
+                string cmbText = comboBox2.Text;
+                comboBox2.Items.Clear();
+                Reports rep = new Reports();
+                rep.ComboBoxTextchange(comboBox2, cmbText);
+            }
+            else
+                comboBox2.Items.Clear();
+        }
+
     }
 }
