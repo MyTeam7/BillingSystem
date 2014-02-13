@@ -494,11 +494,11 @@ namespace billing_system.Classes
                     
                     Decimal total;
                     Decimal.TryParse(bf.label7.Text, out total);
-
-                    tot=Math.Round(tot, 2);
+                    
+                    
                     
 
-                    bf.dataGridView1.Rows.Add(bf.dataGridView1.RowCount + 1, code, des, qty, disc, price,tot);
+                    bf.dataGridView1.Rows.Add(bf.dataGridView1.RowCount + 1, code, des, qty, disc, price, tot);
                     
                     BillGeneration bg = new BillGeneration();
                     bg.total(bf);
