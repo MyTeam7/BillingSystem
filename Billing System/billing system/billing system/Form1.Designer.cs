@@ -63,7 +63,7 @@
             this.maskedTextBox1.Text = "Password";
             this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
-           
+            this.maskedTextBox1.Click += new System.EventHandler(this.maskedTextBox1_Click);
             // 
             // UserName
             // 
@@ -77,6 +77,7 @@
             this.UserName.Text = "UserName";
             this.UserName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.UserName.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.UserName_MaskInputRejected);
+            this.UserName.Click += new System.EventHandler(this.UserName_Click);
             this.UserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserName_KeyPress);
             // 
             // button1

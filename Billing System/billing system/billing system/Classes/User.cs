@@ -56,7 +56,7 @@ namespace billing_system.Classes
                 DBUsername = reader.GetString(0);
             }
             reader.Close();
-            if (DBUsername == null)
+            if (DBUsername == null || Username.ToLower() != DBUsername.ToLower())
             {
                 return false;
             }
@@ -74,7 +74,7 @@ namespace billing_system.Classes
                 DBPassword = reader.GetString(0);
             }
             reader.Close();
-            if (Password != DBPassword)
+            if (Password == null || Password.ToLower() != DBPassword.ToLower())
             {
                 return false;
             }
