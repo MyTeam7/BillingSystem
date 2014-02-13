@@ -19,7 +19,7 @@ namespace billing_system
   
         private void Login_Load(object sender, EventArgs e)
         {
-            
+            this.ActiveControl = BtnLogin;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace billing_system
                         UserName.Text = "UserName";
                         maskedTextBox1.Text = "Password";
                     }
-                    else if (UPName.UserCatagory().ToLower() == "User")
+                    else if (UPName.UserCatagory() == "User")
                     {
                         Billingform Bill = new Billingform();
                         Bill.Show();
