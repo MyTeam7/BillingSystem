@@ -14,6 +14,7 @@ namespace billing_system.Classes
     /// </summary>
     class Reports : DBConnection
     {
+        private int iCode;
         public void FormLoadDateTimePicker(DateTimePicker dPick1, DateTimePicker dPick2)
         {
             //To is set to system date
@@ -119,8 +120,9 @@ namespace billing_system.Classes
             else
             {
                 //MessageBox.Show("non/non");
-                string t = cmb3.SelectedItem.ToString();
-                MessageBox.Show(t);
+                //string t = cmb3.SelectedItem.ToString();
+                //MessageBox.Show(t);
+                switchCase = 5;
             }
 
             switch (switchCase)
@@ -244,8 +246,10 @@ namespace billing_system.Classes
                     gDView.DataSource = table2;
                     CloseConnection();
                     break;
+
                 case 5:
                     quary = "SELECT Item_Code FROM Items WHERE Description = '" + cmb3.SelectedText.ToString() + "'";
+                    Int64 iCode = 0;
 
                     OpenConnection();
 
@@ -253,9 +257,17 @@ namespace billing_system.Classes
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        uNameTemp = reader.GetString(0);
+                        iCode = reader.GetInt64(0);
                     }
                     reader.Close();
+                    MessageBox.Show(iCode.ToString());
+
+                    quary = "SELECT b.Invoice_No, b.Quantity AS QUANTITY FROM bills b WHERE b.Item_Code = '" + iCode + "'GROUP BY b.Invoice_No";
+
+                    adapter = new MySqlDataAdapter(quary, connection);
+                    DataTable table4 = new DataTable();
+                    adapter.Fill(table4);
+
                     break;
                 default:
                     break;
