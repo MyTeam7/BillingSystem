@@ -55,9 +55,11 @@
             // 
             this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maskedTextBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBox1.ForeColor = System.Drawing.SystemColors.GrayText;
             this.maskedTextBox1.Location = new System.Drawing.Point(31, 224);
             this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(10, 5, 5, 5);
             this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.ReadOnly = true;
             this.maskedTextBox1.Size = new System.Drawing.Size(320, 29);
             this.maskedTextBox1.TabIndex = 4;
             this.maskedTextBox1.Text = "Password";
@@ -69,9 +71,11 @@
             // 
             this.UserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserName.ForeColor = System.Drawing.SystemColors.GrayText;
             this.UserName.Location = new System.Drawing.Point(31, 189);
             this.UserName.Margin = new System.Windows.Forms.Padding(10, 5, 5, 5);
             this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
             this.UserName.Size = new System.Drawing.Size(320, 29);
             this.UserName.TabIndex = 3;
             this.UserName.Text = "UserName";
@@ -128,6 +132,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "Login";
+            this.Opacity = 0.8D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
