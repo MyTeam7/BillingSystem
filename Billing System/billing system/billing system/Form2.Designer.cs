@@ -826,6 +826,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Admin";
             this.Text = "Admin";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Admin_FormClosing);
             this.Load += new System.EventHandler(this.Admin_Load);
             this.adminTabPg.ResumeLayout(false);
             this.Items.ResumeLayout(false);

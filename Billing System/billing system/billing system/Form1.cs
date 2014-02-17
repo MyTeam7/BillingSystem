@@ -39,10 +39,14 @@ namespace billing_system
             UPName.GetUsername = UserName.Text;
             UPName.GetPassword = maskedTextBox1.Text;
 
-            if (UserName.Text == " ")
+           /* if (UserName.Text == " ")
             {
                 MessageBox.Show("empty");
             }
+            if (maskedTextBox1.Text == " ")
+            {
+                MessageBox.Show("empty");
+            }*/
 
 
             if (UPName.UsernameAuthenticaion())
@@ -52,8 +56,10 @@ namespace billing_system
                     //MessageBox.Show("you are loged!!!!!");
                     if (UPName.UserCatagory() == "Admin")
                     {
-                        Admin AdminForm = new Admin();
+                        Admin AdminForm = new Admin(this);
                         AdminForm.Show();
+                        this.Hide();
+               
                         UserName.Text = "UserName";
                         maskedTextBox1.Text = "Password";
                     }
@@ -61,6 +67,7 @@ namespace billing_system
                     {
                         Billingform Bill = new Billingform();
                         Bill.Show();
+
                         UserName.Text = "UserName";
                         maskedTextBox1.Text = "Password";
                     }
@@ -73,7 +80,7 @@ namespace billing_system
             }
 
             else
-                MessageBox.Show("USERNAME is INCORRESCT!!!!!");
+                MessageBox.Show("USERNAME is INCORRECT!!!!!");
         }
 
         private void UserName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)

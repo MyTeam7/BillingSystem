@@ -12,8 +12,15 @@ namespace billing_system
 {
     public partial class Admin : Form
     {
+        public Login log;
         public Admin()
         {
+            InitializeComponent();
+        }
+
+        public Admin(Login log) 
+        {
+            this.log = log;
             InitializeComponent();
         }
 
@@ -46,6 +53,7 @@ namespace billing_system
 
         private void Admin_Load(object sender, EventArgs e)
         {
+
             //-------------------Dilanka Rathnayaka------------------------------2/9/2014----------------------------
             Reports rep = new Reports();
             rep.FormLoadDateTimePicker(dateTimePicker1, dateTimePicker2);
@@ -464,6 +472,28 @@ namespace billing_system
         {
             Reports rep = new Reports();
             rep.DoneButtonClick(comboBox1, comboBox2, comboBox4, dateTimePicker1, dateTimePicker2, dataGridView3);
+        }
+
+        private void Admin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            const string message =
+        "Are you sure that you would like to close the form?";
+            const string caption = "Form Closing";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            // If the no button was pressed ... 
+            if (result == DialogResult.No)
+            {
+                // cancel the closure of the form.
+                e.Cancel = true;
+            }
+            else
+            {
+                log.Show();
+            }
+          
         }
 
     }

@@ -621,6 +621,7 @@
             this.MaximizeBox = false;
             this.Name = "Billingform";
             this.Text = "Billing";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Billingform_FormClosing);
             this.Load += new System.EventHandler(this.Billingform_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
