@@ -399,12 +399,6 @@ namespace billing_system
             }
         }
 
-        private void button12_Click(object sender, EventArgs e)
-        {
-            Reports rep = new Reports();
-            rep.DoneButtonClick(comboBox1, comboBox2, comboBox4, dateTimePicker1, dateTimePicker2, dataGridView3);
-        }
-
         private void comboBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -417,6 +411,59 @@ namespace billing_system
                 MessageBox.Show("You Cant Sellect Any.Because No cashier Selected");
                 comboBox2.SelectedIndex = 0;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem.ToString() == "NON")
+            {
+                comboBox4.Enabled = true;
+
+            }
+            else
+            {
+
+                comboBox4.Enabled = false;
+            }  
+        }
+
+        private void comboBox2_MouseClick_1(object sender, MouseEventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                MessageBox.Show("You Cant Sellect Any.Because No cashier Selected");
+                comboBox2.SelectedIndex = 0;
+            }
+        }
+
+        private void comboBox2_SelectedValueChanged_1(object sender, EventArgs e)
+        {
+            /* if (comboBox1.SelectedIndex == 0)
+            {
+                MessageBox.Show("You Cant Sellect Any.Because No cashier Selected");
+                comboBox2.SelectedIndex = 0;
+            }
+            if (comboBox2.SelectedItem.ToString() == "NON")
+            {
+                if (comboBox1.SelectedItem.ToString() == "NON")
+                {
+                    comboBox4.Enabled = true;
+                }
+                
+            }
+            else
+                comboBox4.Enabled = false;*/
+        }
+
+        private void comboBox2_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click_1(object sender, EventArgs e)
+        {
+            Reports rep = new Reports();
+            rep.DoneButtonClick(comboBox1, comboBox2, comboBox4, dateTimePicker1, dateTimePicker2, dataGridView3);
         }
 
     }

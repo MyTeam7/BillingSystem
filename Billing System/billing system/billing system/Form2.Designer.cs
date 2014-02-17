@@ -80,6 +80,7 @@
             this.button12 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -89,7 +90,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.adminTabPg.SuspendLayout();
             this.Items.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -681,12 +681,16 @@
             this.button12.TabIndex = 9;
             this.button12.Text = "Done";
             this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click_1);
             // 
             // dataGridView3
             // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(3, 150);
             this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(974, 531);
             this.dataGridView3.TabIndex = 7;
             // 
@@ -707,6 +711,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(952, 88);
             this.panel3.TabIndex = 6;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(753, 16);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(180, 26);
+            this.comboBox4.TabIndex = 9;
+            this.comboBox4.TextChanged += new System.EventHandler(this.comboBox4_TextChanged);
             // 
             // dateTimePicker2
             // 
@@ -735,17 +748,22 @@
             this.comboBox2.Size = new System.Drawing.Size(197, 26);
             this.comboBox2.TabIndex = 7;
             this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
+            this.comboBox2.SelectedValueChanged += new System.EventHandler(this.comboBox2_SelectedValueChanged_1);
+            this.comboBox2.TextChanged += new System.EventHandler(this.comboBox2_TextChanged_1);
+            this.comboBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox2_MouseClick_1);
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            "NON",
             "All"});
             this.comboBox1.Location = new System.Drawing.Point(69, 16);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(178, 26);
             this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // label6
             // 
@@ -796,15 +814,6 @@
             this.label11.Size = new System.Drawing.Size(58, 19);
             this.label11.TabIndex = 0;
             this.label11.Text = "Cashier";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(753, 16);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(180, 26);
-            this.comboBox4.TabIndex = 9;
-            this.comboBox4.TextChanged += new System.EventHandler(this.comboBox4_TextChanged);
             // 
             // Admin
             // 

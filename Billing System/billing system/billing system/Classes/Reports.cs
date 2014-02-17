@@ -135,6 +135,19 @@ namespace billing_system.Classes
                     MySqlDataAdapter adapter = new MySqlDataAdapter(quary, connection);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
+
+                    Decimal sum = 0;
+            
+                foreach (DataRow row in table.Rows)
+                {
+                    sum += Convert.ToDecimal(row[1]);
+                }
+             
+                    DataRow dr1 = table.NewRow();
+                    dr1[1] = sum;
+                    table.Rows.Add(dr1);
+
+
                     gDView.DataSource = table;
                     CloseConnection();
                     break;
@@ -144,8 +157,23 @@ namespace billing_system.Classes
                     adapter = new MySqlDataAdapter(quary, connection);
                     DataTable table3 = new DataTable();
                     adapter.Fill(table3);
+
+                    sum = 0;
+            
+                foreach (DataRow row in table3.Rows)
+                {
+                    sum += Convert.ToDecimal(row[1]);
+                }
+             
+                    dr1 = table3.NewRow();
+                    dr1[1] = sum;
+                    table3.Rows.Add(dr1);
+
+
                     gDView.DataSource = table3;
                     CloseConnection();
+
+                   
                     break;
                 case 3:
                     quary = "SELECT User_Name FROM users WHERE Name = '" + cmb1.SelectedItem.ToString() + "'";
@@ -166,6 +194,18 @@ namespace billing_system.Classes
                     adapter = new MySqlDataAdapter(quary, connection);
                     DataTable table1 = new DataTable();
                     adapter.Fill(table1);
+
+                    sum = 0;
+            
+                foreach (DataRow row in table1.Rows)
+                {
+                    sum += Convert.ToDecimal(row[1]);
+                }
+             
+                    dr1 = table1.NewRow();
+                    dr1[1] = sum;
+                    table1.Rows.Add(dr1);
+
                     gDView.DataSource = table1;
                     CloseConnection();
                     break;
@@ -189,6 +229,18 @@ namespace billing_system.Classes
                     adapter = new MySqlDataAdapter(quary, connection);
                     DataTable table2 = new DataTable();
                     adapter.Fill(table2);
+
+                    sum = 0;
+            
+                foreach (DataRow row in table2.Rows)
+                {
+                    sum += Convert.ToDecimal(row[1]);
+                }
+             
+                    dr1 = table2.NewRow();
+                    dr1[1] = sum;
+                    table2.Rows.Add(dr1);
+
                     gDView.DataSource = table2;
                     CloseConnection();
                     break;
