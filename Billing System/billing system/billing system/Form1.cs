@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using billing_system.Classes;
+using System.Media;
 
 namespace billing_system
 {
@@ -19,7 +20,12 @@ namespace billing_system
 
         private void Login_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = BtnLogin;
+            this.ActiveControl = UserName;
+            this.KeyPreview = true;
+            this.UserName.KeyDown += new KeyEventHandler(UserName_KeyDown);
+            this.maskedTextBox1.KeyDown += new KeyEventHandler(maskedTextBox1_KeyDown);
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,39 +35,31 @@ namespace billing_system
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            UserName.Text = "";
+            maskedTextBox1.Text = "";
         }
 
-        //Login button Click event
         private void BtnLogin_Click(object sender, EventArgs e)
         {
 
             User UPName = new User();
-            //set username
             UPName.GetUsername = UserName.Text;
-            //set password
             UPName.GetPassword = maskedTextBox1.Text;
 
-            //check if username empty
             if (UserName.Text != " ")
             {
-                //check username with datbase
                 if (UPName.UsernameAuthenticaion())
                 {
-                    //check if password empty
                     if (maskedTextBox1.Text != " ")
                     {
-                        //check username with datbase
                         if (UPName.PasswordAuthenticaion())
                         {
-                            //get the catagory
                             if (UPName.UserCatagory() == "Admin")
                             {
                                 Admin AdminForm = new Admin(this);
                                 AdminForm.Show();
                                 this.Hide();
 
-                                //Reset textboxes
                                 UserName.Text = "UserName";
                                 maskedTextBox1.Text = "Password";
                                 UserName.ForeColor = Color.Gray;
@@ -74,7 +72,6 @@ namespace billing_system
                                 Bill.Show();
                                 this.Hide();
 
-                                //Reset textboxes
                                 UserName.Text = "UserName";
                                 maskedTextBox1.Text = "Password";
                             }
@@ -98,6 +95,8 @@ namespace billing_system
             {
                 MessageBox.Show("Username is Empty");
             }
+
+
         }
 
         private void UserName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -125,12 +124,6 @@ namespace billing_system
         private void maskedTextBox1_Click(object sender, EventArgs e)
         {
             maskedTextBox1.Text = string.Empty;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        }         
-               
-=======
         }
 
 
@@ -140,17 +133,17 @@ namespace billing_system
             try
             {
 
-                
-                
+
+
                 string keyVal;
-                
+
                 keyVal = e.KeyValue.ToString(); //keycode value
-                
-                
+
+
 
                 if (int.Parse(keyVal) > 64 && int.Parse(keyVal) < 106) //validate Alphanumeric characters-------------------------
                 {
-                    
+
 
                     if (UserName.Text == "UserName")
                     {
@@ -158,17 +151,17 @@ namespace billing_system
                     }
                     UserName.ForeColor = Color.Black;
                     UserName.ReadOnly = false;
-                    
+
                     UserName.Select(UserName.Text.Length, 0);
-                    
+
                 }
 
-                
-               
+
+
 
                 if (int.Parse(keyVal) == 9)
                 {
-                    
+
                     if (UserName.Text == "UserName")
                     {
                         SystemSounds.Hand.Play();
@@ -176,18 +169,18 @@ namespace billing_system
                     else
                     {
                         this.ActiveControl = maskedTextBox1;
-                       
+
                     }
-                    
-                    
-
-               }
-
-               
 
 
 
-                
+                }
+
+
+
+
+
+
             }
             catch (Exception exc)
             {
@@ -209,25 +202,25 @@ namespace billing_system
         {
             try
             {
-                
+
                 string keyVal;
-                
+
                 keyVal = e.KeyValue.ToString(); //keycode value
-                
+
 
                 if (int.Parse(keyVal) > 64 && int.Parse(keyVal) < 106) //validate Alphanumeric characters-------------------------
                 {
-                   
+
                     if (maskedTextBox1.Text == "Password")
                     {
                         maskedTextBox1.Text = "";
                         maskedTextBox1.ForeColor = Color.Black;
                     }
-                    maskedTextBox1.PasswordChar ='*';
+                    maskedTextBox1.PasswordChar = '*';
                     maskedTextBox1.ReadOnly = false;
-                    
+
                     maskedTextBox1.Select(maskedTextBox1.Text.Length, 0);
-                   
+
                 }
 
 
@@ -247,7 +240,7 @@ namespace billing_system
                 }
 
 
-               
+
 
             }
             catch (Exception exc)
@@ -257,8 +250,9 @@ namespace billing_system
             }
 
 
->>>>>>> 9d2407a78b04362a320fa292949b88d8cd2c0f09
         }
+
+
 
     }
 }
