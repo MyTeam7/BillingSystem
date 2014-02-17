@@ -39,16 +39,7 @@ namespace billing_system
             UPName.GetUsername = UserName.Text;
             UPName.GetPassword = maskedTextBox1.Text;
 
-           /* if (UserName.Text == " ")
-            {
-                MessageBox.Show("empty");
-            }
-            if (maskedTextBox1.Text == " ")
-            {
-                MessageBox.Show("empty");
-            }*/
-
-
+          
             if (UPName.UsernameAuthenticaion())
             {
                 if (UPName.PasswordAuthenticaion())
