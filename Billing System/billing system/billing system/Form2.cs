@@ -114,51 +114,9 @@ namespace billing_system
         {
             KeyPressEvent kpe = new KeyPressEvent();
             kpe.manualBilling("admin", textBox6.Text, this);
-            //// SearchItem serItm = new SearchItem();
-            ////serItm.serchItemDis(); 
-
-            //DBConnection db = new DBConnection();
-            ////Admin item = new Admin();
-            //try
-            //{
-            //    string query;
-
-            //    if (db.OpenConnection() == true)
-            //    {
-            //        query = "SELECT * From items";
-            //        MySqlCommand cmd = new MySqlCommand(query, db.connection);
-
-
-            //        MySqlDataAdapter adapter = new MySqlDataAdapter();
-            //        adapter.SelectCommand = cmd;
-            //        DataTable table = new DataTable();
-            //        adapter.Fill(table);
-            //        BindingSource bsource = new BindingSource();
-
-            //        bsource.DataSource = table;
-            //        dataGridView1.DataSource = table;
-            //        adapter.Update(table);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error Occured," + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //finally
-            //{
-            //    bool a = db.CloseConnection();
-            //}
+          
 
         }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-            //DataView Dv = new DataView(dbtable);
-            //Dv.RowFilter = string.Format("Description LIKE '%{0}%'", textBox6.Text);
-            //dataGridView1.DataSource = Dv;
-
-        }
-
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {

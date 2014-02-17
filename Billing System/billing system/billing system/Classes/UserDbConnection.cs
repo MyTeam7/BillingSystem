@@ -110,11 +110,6 @@ namespace billing_system.Classes
 
             }
         }
-        //search statement
-        public void Search()
-        {
-
-        }
 
 
     }

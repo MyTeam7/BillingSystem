@@ -183,7 +183,9 @@
             // button9
             // 
             this.button9.BackColor = System.Drawing.Color.Gainsboro;
+            this.button9.BackgroundImage = global::billing_system.Properties.Resources.search;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.Location = new System.Drawing.Point(9, 116);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(80, 43);
@@ -741,8 +743,8 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "NON",
-            "CASH",
-            "CREDIT CARD"});
+            "CA",
+            "CR"});
             this.comboBox2.Location = new System.Drawing.Point(409, 16);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(197, 26);

@@ -115,27 +115,6 @@ namespace billing_system.Classes
             }
         }
 
-        //search statement
-        public void Search()
-        {
-
-            string query = "DELETE FROM tableinfo WHERE name='John Smith'";
-
-            if (this.OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataTable table = new DataTable();
-                adapter.Fill(table);
-                BindingSource bsource = new BindingSource();
-
-                bsource.DataSource = table;
-                //dataGridView1.DataSource = table;
-                adapter.Update(table);
-                this.CloseConnection();
-            }
-        }
 
     }
 }
