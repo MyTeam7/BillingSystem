@@ -64,6 +64,9 @@ namespace billing_system
                                 //Reset textboxes
                                 UserName.Text = "UserName";
                                 maskedTextBox1.Text = "Password";
+                                UserName.ForeColor = Color.Gray;
+                                maskedTextBox1.ForeColor = Color.Gray;
+                                maskedTextBox1.PasswordChar = '\0';
                             }
                             else if (UPName.UserCatagory() == "User")
                             {
@@ -122,6 +125,139 @@ namespace billing_system
         private void maskedTextBox1_Click(object sender, EventArgs e)
         {
             maskedTextBox1.Text = string.Empty;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        }         
+               
+=======
+        }
+
+
+
+        public void UserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+
+                
+                
+                string keyVal;
+                
+                keyVal = e.KeyValue.ToString(); //keycode value
+                
+                
+
+                if (int.Parse(keyVal) > 64 && int.Parse(keyVal) < 106) //validate Alphanumeric characters-------------------------
+                {
+                    
+
+                    if (UserName.Text == "UserName")
+                    {
+                        UserName.Text = "";
+                    }
+                    UserName.ForeColor = Color.Black;
+                    UserName.ReadOnly = false;
+                    
+                    UserName.Select(UserName.Text.Length, 0);
+                    
+                }
+
+                
+               
+
+                if (int.Parse(keyVal) == 9)
+                {
+                    
+                    if (UserName.Text == "UserName")
+                    {
+                        SystemSounds.Hand.Play();
+                    }
+                    else
+                    {
+                        this.ActiveControl = maskedTextBox1;
+                       
+                    }
+                    
+                    
+
+               }
+
+               
+
+
+
+                
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error Occured, Please Try Again, " + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+        public void maskedTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                
+                string keyVal;
+                
+                keyVal = e.KeyValue.ToString(); //keycode value
+                
+
+                if (int.Parse(keyVal) > 64 && int.Parse(keyVal) < 106) //validate Alphanumeric characters-------------------------
+                {
+                   
+                    if (maskedTextBox1.Text == "Password")
+                    {
+                        maskedTextBox1.Text = "";
+                        maskedTextBox1.ForeColor = Color.Black;
+                    }
+                    maskedTextBox1.PasswordChar ='*';
+                    maskedTextBox1.ReadOnly = false;
+                    
+                    maskedTextBox1.Select(maskedTextBox1.Text.Length, 0);
+                   
+                }
+
+
+
+
+                if (int.Parse(keyVal) == 13)
+                {
+                    if (maskedTextBox1.Text == "Password")
+                    {
+                        MessageBox.Show("Please Enter your Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        BtnLogin_Click(sender, e);
+                    }
+
+                }
+
+
+               
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error Occured, Please Try Again, " + exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+
+>>>>>>> 9d2407a78b04362a320fa292949b88d8cd2c0f09
         }
 
     }
