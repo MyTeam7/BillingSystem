@@ -32,27 +32,36 @@ namespace billing_system
             
         }
 
+        //Login button Click event
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             
             User UPName = new User();
+            //set username
             UPName.GetUsername = UserName.Text;
+            //set password
             UPName.GetPassword = maskedTextBox1.Text;
 
+            //check if username empty
             if (UserName.Text != " ")
             {
+                //check username with datbase
                 if (UPName.UsernameAuthenticaion())
                 {
+                    //check if password empty
                     if (maskedTextBox1.Text != " ")
                     {
+                        //check username with datbase
                         if (UPName.PasswordAuthenticaion())
                         {
+                            //get the catagory
                             if (UPName.UserCatagory() == "Admin")
                             {
                                 Admin AdminForm = new Admin(this);
                                 AdminForm.Show();
                                 this.Hide();
 
+                                //Reset textboxes
                                 UserName.Text = "UserName";
                                 maskedTextBox1.Text = "Password";
                             }
@@ -62,6 +71,7 @@ namespace billing_system
                                 Bill.Show();
                                 this.Hide();
 
+                                //Reset textboxes
                                 UserName.Text = "UserName";
                                 maskedTextBox1.Text = "Password";
                             }
@@ -85,8 +95,6 @@ namespace billing_system
             {
                 MessageBox.Show("Username is Empty");
             }
-
-
         }
 
         private void UserName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -114,13 +122,7 @@ namespace billing_system
         private void maskedTextBox1_Click(object sender, EventArgs e)
         {
             maskedTextBox1.Text = string.Empty;
-        }
-
-
-    
-
-        
-
-       
+        }         
+               
     }
 }

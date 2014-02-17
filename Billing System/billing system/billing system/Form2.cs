@@ -56,6 +56,7 @@ namespace billing_system
 
             //-------------------Dilanka Rathnayaka------------------------------2/9/2014----------------------------
             Reports rep = new Reports();
+            //set dates
             rep.FormLoadDateTimePicker(dateTimePicker1, dateTimePicker2);
             //Set Cashier names to combo box
             rep.FormLoadComboBox(comboBox1, comboBox2);
@@ -468,12 +469,14 @@ namespace billing_system
 
         }
 
+        //Report tab DONE button click event
         private void button12_Click_1(object sender, EventArgs e)
         {
             Reports rep = new Reports();
             rep.DoneButtonClick(comboBox1, comboBox2, comboBox4, dateTimePicker1, dateTimePicker2, dataGridView3);
         }
 
+        //Admin Form CLOSE event
         private void Admin_FormClosing(object sender, FormClosingEventArgs e)
         {
             const string message =

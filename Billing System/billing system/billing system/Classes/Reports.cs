@@ -74,7 +74,7 @@ namespace billing_system.Classes
             reader.Close();
         }
 
-        //Click of DONE Button
+        //DONE Button click event
         public void DoneButtonClick(ComboBox cmb1, ComboBox cmb2, ComboBox cmb3, DateTimePicker dPick1, DateTimePicker dPick2, DataGridView gDView)
         {
             gDView.DataSource = null;
@@ -93,34 +93,26 @@ namespace billing_system.Classes
 
             if (cmb1.SelectedIndex == 1 && cmb2.SelectedIndex == 0)
             {
-                //MessageBox.Show("all/non");
                 switchCase = 2;
             }
             else if (cmb1.SelectedIndex == 1 && cmb2.SelectedIndex == 1)
             {
-                //MessageBox.Show("all/ca");
                 switchCase = 1;
             }
             else if (cmb1.SelectedIndex == 1 && cmb2.SelectedIndex == 2)
             {
-                //MessageBox.Show("all/cr");
                 switchCase = 1;
             }
             else if (cmb1.SelectedIndex >= 1 && cmb2.SelectedIndex == 0)
             {
-                //MessageBox.Show("name/non");
                 switchCase = 4;
             }
             else if (cmb1.SelectedIndex >= 1 && cmb2.SelectedIndex > 0)
             {
-                //MessageBox.Show("name/cr,ca");
                 switchCase = 3;
             }
             else
             {
-                //MessageBox.Show("non/non");
-                //string t = cmb3.SelectedItem.ToString();
-                //MessageBox.Show(t);
                 switchCase = 5;
             }
 
@@ -130,31 +122,27 @@ namespace billing_system.Classes
             {
                 case 1:
 
-                    //MessageBox.Show(c);
-
                     quary = "SELECT b.Invoice_No, SUM(b.Price) AS TOTAL FROM bills b, bills_info bf WHERE b.Invoice_No = bf.Invoice_No AND bf.Paying_Type = '" + c + "' AND bf.Purchase_Date >= '" + a + "' AND bf.Purchase_Date <= '" + b + "' GROUP BY b.Invoice_No";
-                    //quary = "SELECT Invoice_No, User_Name FROM bills_info WHERE Purchase_Date >= '"+a+"' AND Purchase_Date <= '"+b+"'";
                     OpenConnection();
                     MySqlDataAdapter adapter = new MySqlDataAdapter(quary, connection);
                     DataTable table = new DataTable();
-                    adapter.Fill(table);
-
-                    
+                    adapter.Fill(table);    
             
-                foreach (DataRow row in table.Rows)
-                {
+                    foreach (DataRow row in table.Rows)
+                    {
                     sum += Convert.ToDecimal(row[1]);
-                }
+                    }
              
                     DataRow dr1 = table.NewRow();
                     dr1[1] = sum;
                     table.Rows.Add(dr1);
 
-
                     gDView.DataSource = table;
                     CloseConnection();
                     break;
+
                 case 2:
+
                     quary = "SELECT b.Invoice_No, SUM(b.Price) AS TOTAL FROM bills b, bills_info bf WHERE b.Invoice_No = bf.Invoice_No AND bf.Purchase_Date >= '" + a + "' AND bf.Purchase_Date <= '" + b + "' GROUP BY b.Invoice_No";
                     OpenConnection();
                     adapter = new MySqlDataAdapter(quary, connection);
@@ -163,10 +151,10 @@ namespace billing_system.Classes
 
                     sum = 0;
             
-                foreach (DataRow row in table3.Rows)
-                {
+                    foreach (DataRow row in table3.Rows)
+                    {
                     sum += Convert.ToDecimal(row[1]);
-                }
+                    }
              
                     dr1 = table3.NewRow();
                     dr1[1] = sum;
@@ -178,7 +166,9 @@ namespace billing_system.Classes
 
                    
                     break;
+
                 case 3:
+
                     quary = "SELECT User_Name FROM users WHERE Name = '" + cmb1.SelectedItem.ToString() + "'";
 
                     OpenConnection();
@@ -200,10 +190,10 @@ namespace billing_system.Classes
 
                     sum = 0;
             
-                foreach (DataRow row in table1.Rows)
-                {
+                    foreach (DataRow row in table1.Rows)
+                    {
                     sum += Convert.ToDecimal(row[1]);
-                }
+                    }
              
                     dr1 = table1.NewRow();
                     dr1[1] = sum;
@@ -214,6 +204,7 @@ namespace billing_system.Classes
                     break;
 
                 case 4:
+
                     quary = "SELECT User_Name FROM users WHERE Name = '" + d + "'";
 
                     OpenConnection();
@@ -235,10 +226,10 @@ namespace billing_system.Classes
 
                     sum = 0;
             
-                foreach (DataRow row in table2.Rows)
-                {
+                    foreach (DataRow row in table2.Rows)
+                    {
                     sum += Convert.ToDecimal(row[1]);
-                }
+                    }
              
                     dr1 = table2.NewRow();
                     dr1[1] = sum;
@@ -249,6 +240,7 @@ namespace billing_system.Classes
                     break;
 
                 case 5:
+
                     quary = "SELECT Item_Code FROM items WHERE Description = '" + cmb3.SelectedItem.ToString() + "'";
                     int iCode = 0;
 
@@ -271,9 +263,9 @@ namespace billing_system.Classes
                     adapter.Fill(table4);
 
                     foreach (DataRow row in table4.Rows)
-                {
+                    {
                     sum += Convert.ToDecimal(row[1]);
-                }
+                    }
              
                     dr1 = table4.NewRow();
                     dr1[1] = sum;
@@ -282,6 +274,7 @@ namespace billing_system.Classes
                     gDView.DataSource = table4;
                     CloseConnection();
                     break;
+
                 default:
                     break;
             }
