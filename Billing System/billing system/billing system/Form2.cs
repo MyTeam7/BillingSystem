@@ -16,7 +16,7 @@ namespace billing_system
         {
             InitializeComponent();
         }
-  
+
         //DataTable dbtable;
         private void button10_Click(object sender, EventArgs e)
         {
@@ -25,7 +25,7 @@ namespace billing_system
             {
                 MessageBox.Show("All the fields must be Filled");
             }
-            else 
+            else
             {
                 int textboxCode = int.Parse(txtBoxCode.Text);
                 string txtboxDescription = txtBoxDescription.Text;
@@ -41,16 +41,16 @@ namespace billing_system
                 clearItem();
 
             }
-            
+
         }
 
         private void Admin_Load(object sender, EventArgs e)
         {
             //-------------------Dilanka Rathnayaka------------------------------2/9/2014----------------------------
             Reports rep = new Reports();
-            rep.FormLoadDateTimePicker(dateTimePicker2);
+            rep.FormLoadDateTimePicker(dateTimePicker1, dateTimePicker2);
             //Set Cashier names to combo box
-            rep.FormLoadComboBox(comboBox1);
+            rep.FormLoadComboBox(comboBox1, comboBox2);
             //-------------------------------------------------------------------------------------------------------
 
             KeyPressEvent kpe = new KeyPressEvent();
@@ -326,7 +326,7 @@ namespace billing_system
 
                 keyVal = e.KeyValue.ToString(); //keycode value
                 keyCd = e.KeyCode.ToString().ToLower(); //character
-                
+
 
                 KeyPressEvent kpe = new KeyPressEvent();
 
@@ -352,18 +352,71 @@ namespace billing_system
             if (comboBox4.Text != "")
             {
                 string cmbText = comboBox4.Text;
-                comboBox4.Items.Clear();
+                //comboBox4.Items.Clear();
                 Reports rep = new Reports();
                 rep.ComboBoxTextchange(comboBox4, cmbText);
             }
             else
-                comboBox2.Items.Clear();
+                comboBox4.Items.Clear();
         }
 
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
-           
-            comboBox4.Enabled = false;
+
+
+        }
+
+        private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
+        {
+            /* if (comboBox1.SelectedIndex == 0)
+             {
+                 MessageBox.Show("You Cant Sellect Any.Because No cashier Selected");
+                 comboBox2.SelectedIndex = 0;
+             }
+             if (comboBox2.SelectedItem.ToString() == "NON")
+             {
+                 if (comboBox1.SelectedItem.ToString() == "NON")
+                 {
+                     comboBox4.Enabled = true;
+                 }
+                
+             }
+             else
+                 comboBox4.Enabled = false;*/
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem.ToString() == "NON")
+            {
+                comboBox4.Enabled = true;
+
+            }
+            else
+            {
+
+                comboBox4.Enabled = false;
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Reports rep = new Reports();
+            rep.DoneButtonClick(comboBox1, comboBox2, comboBox4, dateTimePicker1, dateTimePicker2, dataGridView3);
+        }
+
+        private void comboBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                MessageBox.Show("You Cant Sellect Any.Because No cashier Selected");
+                comboBox2.SelectedIndex = 0;
+            }
         }
 
     }
