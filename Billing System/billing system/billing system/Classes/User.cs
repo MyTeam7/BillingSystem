@@ -56,8 +56,10 @@ namespace billing_system.Classes
                 DBUsername = reader.GetString(0);
             }
             reader.Close();
+            CloseConnection();
             if (DBUsername == null)
             {
+                //if enter username not in the database
                 return false;
             }
                 return true;
@@ -66,6 +68,8 @@ namespace billing_system.Classes
         //Authenticate password
         public bool PasswordAuthenticaion()
         {
+            OpenConnection();
+
             Quary = "SELECT Password FROM users WHERE Password = '" + Password + "'";
             command = new MySqlCommand(Quary, connection);
             reader = command.ExecuteReader();
@@ -76,10 +80,12 @@ namespace billing_system.Classes
             reader.Close();
             if (Password == null)
             {
+                //if entered password not in the database
                 return false;
             }
             else
             {
+                //check if entered username and password match 
                 Quary = "SELECT Password FROM users WHERE User_Name = '" + Username + "'";
                 command = new MySqlCommand(Quary, connection);
                 reader = command.ExecuteReader();
@@ -88,6 +94,8 @@ namespace billing_system.Classes
                     DBPassword = reader.GetString(0);
                 }
                 reader.Close();
+                CloseConnection();
+
                 if (DBPassword == Password)
                 {
                     return true;
@@ -96,16 +104,16 @@ namespace billing_system.Classes
                 {
                     return false;
                 }
-
-
             }
         } 
  
-        //-------------------------------------2/9/2014--------------------------------------------
+        //---------------Dilanka Rathnayaka----------------------2/9/2014------------------------------
 
         //Find User Catagory class
         public string UserCatagory() 
         {
+            OpenConnection();
+
             Quary = "SELECT Catagory FROM users WHERE User_Name = '"+Username+"' AND Password = '"+Password+"'";
             command = new MySqlCommand(Quary, connection);
             reader = command.ExecuteReader();
@@ -114,6 +122,7 @@ namespace billing_system.Classes
                 Catagory = reader.GetString(0);
             }
             reader.Close();
+            CloseConnection();
 
             return Catagory;
         }
