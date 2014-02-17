@@ -14,7 +14,6 @@ namespace billing_system.Classes
     /// </summary>
     class Reports : DBConnection
     {
-        private int iCode;
         public void FormLoadDateTimePicker(DateTimePicker dPick1, DateTimePicker dPick2)
         {
             //To is set to system date
@@ -125,6 +124,8 @@ namespace billing_system.Classes
                 switchCase = 5;
             }
 
+            Decimal sum = 0;
+
             switch (switchCase)
             {
                 case 1:
@@ -138,7 +139,7 @@ namespace billing_system.Classes
                     DataTable table = new DataTable();
                     adapter.Fill(table);
 
-                    Decimal sum = 0;
+                    
             
                 foreach (DataRow row in table.Rows)
                 {
@@ -248,8 +249,8 @@ namespace billing_system.Classes
                     break;
 
                 case 5:
-                    quary = "SELECT Item_Code FROM Items WHERE Description = '" + cmb3.SelectedText.ToString() + "'";
-                    Int64 iCode = 0;
+                    quary = "SELECT Item_Code FROM items WHERE Description = '" + cmb3.SelectedItem.ToString() + "'";
+                    int iCode = 0;
 
                     OpenConnection();
 
@@ -257,17 +258,29 @@ namespace billing_system.Classes
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        iCode = reader.GetInt64(0);
+                        iCode = reader.GetInt32(0);
                     }
                     reader.Close();
-                    MessageBox.Show(iCode.ToString());
 
-                    quary = "SELECT b.Invoice_No, b.Quantity AS QUANTITY FROM bills b WHERE b.Item_Code = '" + iCode + "'GROUP BY b.Invoice_No";
+                    sum = 0;
+
+                    quary = "SELECT b.Invoice_No, b.Quantity AS QUANTITY FROM bills b, bills_info bf WHERE b.Invoice_No = bf.Invoice_No AND b.Item_Code = '" + iCode + "' AND bf.Purchase_Date >= '" + a + "' AND bf.Purchase_Date <= '" + b + "' GROUP BY b.Invoice_No";
 
                     adapter = new MySqlDataAdapter(quary, connection);
                     DataTable table4 = new DataTable();
                     adapter.Fill(table4);
 
+                    foreach (DataRow row in table4.Rows)
+                {
+                    sum += Convert.ToDecimal(row[1]);
+                }
+             
+                    dr1 = table4.NewRow();
+                    dr1[1] = sum;
+                    table4.Rows.Add(dr1);
+
+                    gDView.DataSource = table4;
+                    CloseConnection();
                     break;
                 default:
                     break;
