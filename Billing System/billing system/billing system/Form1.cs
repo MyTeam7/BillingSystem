@@ -62,6 +62,9 @@ namespace billing_system
 
                                 UserName.Text = "UserName";
                                 maskedTextBox1.Text = "Password";
+                                UserName.ForeColor = Color.Gray;
+                                maskedTextBox1.ForeColor = Color.Gray;
+                                maskedTextBox1.PasswordChar = '\0';
                             }
                             else if (UPName.UserCatagory() == "User")
                             {
@@ -133,19 +136,14 @@ namespace billing_system
                 
                 
                 string keyVal;
-                string keyCode;
+                
                 keyVal = e.KeyValue.ToString(); //keycode value
-                keyCode = e.KeyCode.ToString();
+                
                 
 
                 if (int.Parse(keyVal) > 64 && int.Parse(keyVal) < 106) //validate Alphanumeric characters-------------------------
                 {
-                    UserName.Enabled = true;
-                    if (int.Parse(keyVal) > 95 && int.Parse(keyVal) < 106) //validate numberpad inputs to "NumPad" part
-                    {
-                        
-                        keyCode = keyCode.Substring(6, keyCode.Length - 6);
-                    }
+                    
 
                     if (UserName.Text == "UserName")
                     {
@@ -153,9 +151,9 @@ namespace billing_system
                     }
                     UserName.ForeColor = Color.Black;
                     UserName.ReadOnly = false;
-                    UserName.Text = UserName.Text + keyCode;
+                    
                     UserName.Select(UserName.Text.Length, 0);
-                    UserName.ReadOnly = true;
+                    
                 }
 
                 
@@ -171,12 +169,15 @@ namespace billing_system
                     else
                     {
                         this.ActiveControl = maskedTextBox1;
-                        maskedTextBox1.ForeColor=Color.Black;
+                       
                     }
                     
                     
 
-                }
+               }
+
+               
+
 
 
                 
@@ -203,25 +204,23 @@ namespace billing_system
             {
                 
                 string keyVal;
-                string keyCode;
+                
                 keyVal = e.KeyValue.ToString(); //keycode value
-                keyCode = e.KeyCode.ToString();
+                
 
                 if (int.Parse(keyVal) > 64 && int.Parse(keyVal) < 106) //validate Alphanumeric characters-------------------------
                 {
-                    if (int.Parse(keyVal) > 95 && int.Parse(keyVal) < 106) //validate numberpad inputs to "NumPad" part
-                    {
-                        keyCode = keyCode.Substring(6, keyCode.Length - 6);
-                    }
+                   
                     if (maskedTextBox1.Text == "Password")
                     {
                         maskedTextBox1.Text = "";
+                        maskedTextBox1.ForeColor = Color.Black;
                     }
                     maskedTextBox1.PasswordChar ='*';
                     maskedTextBox1.ReadOnly = false;
-                    maskedTextBox1.Text = maskedTextBox1.Text + keyCode;
+                    
                     maskedTextBox1.Select(maskedTextBox1.Text.Length, 0);
-                    maskedTextBox1.ReadOnly = true;
+                   
                 }
 
 
@@ -241,6 +240,7 @@ namespace billing_system
                 }
 
 
+               
 
             }
             catch (Exception exc)
