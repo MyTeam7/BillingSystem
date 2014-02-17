@@ -66,7 +66,7 @@ namespace billing_system.Classes
         //Authenticate password
         public bool PasswordAuthenticaion()
         {
-            Quary = "SELECT Password FROM users WHERE Password = '" + Password+"'";
+            Quary = "SELECT Password FROM users WHERE Password = '" + Password + "'";
             command = new MySqlCommand(Quary, connection);
             reader = command.ExecuteReader();
             while (reader.Read())
@@ -78,7 +78,27 @@ namespace billing_system.Classes
             {
                 return false;
             }
-            return true;
+            else
+            {
+                Quary = "SELECT Password FROM users WHERE User_Name = '" + Username + "'";
+                command = new MySqlCommand(Quary, connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    DBPassword = reader.GetString(0);
+                }
+                reader.Close();
+                if (DBPassword == Password)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
         } 
  
         //-------------------------------------2/9/2014--------------------------------------------

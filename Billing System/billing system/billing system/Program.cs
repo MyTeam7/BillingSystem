@@ -14,12 +14,10 @@ namespace billing_system
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
-            Application.Run(new Login());
-=======
-            Application.Run(new Billingform("Walas Mama"));
->>>>>>> 1456a891b83874f8bda56f9d6eba023e3b416dbd
 
+            Application.Run(new Login());
+
+            
         }
     }
 }

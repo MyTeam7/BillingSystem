@@ -39,39 +39,54 @@ namespace billing_system
             UPName.GetUsername = UserName.Text;
             UPName.GetPassword = maskedTextBox1.Text;
 
-          
-            if (UPName.UsernameAuthenticaion())
+            if (UserName.Text != " ")
             {
-                if (UPName.PasswordAuthenticaion())
+                if (UPName.UsernameAuthenticaion())
                 {
-                    //MessageBox.Show("you are loged!!!!!");
-                    if (UPName.UserCatagory() == "Admin")
+                    if (maskedTextBox1.Text != " ")
                     {
-                        Admin AdminForm = new Admin(this);
-                        AdminForm.Show();
-                        this.Hide();
-               
-                        UserName.Text = "UserName";
-                        maskedTextBox1.Text = "Password";
+                        if (UPName.PasswordAuthenticaion())
+                        {
+                            if (UPName.UserCatagory() == "Admin")
+                            {
+                                Admin AdminForm = new Admin(this);
+                                AdminForm.Show();
+                                this.Hide();
+
+                                UserName.Text = "UserName";
+                                maskedTextBox1.Text = "Password";
+                            }
+                            else if (UPName.UserCatagory() == "User")
+                            {
+                                Billingform Bill = new Billingform(UPName.GetUsername, this);
+                                Bill.Show();
+                                this.Hide();
+
+                                UserName.Text = "UserName";
+                                maskedTextBox1.Text = "Password";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter CORRECT Password");
+                        }
                     }
-                    else if (UPName.UserCatagory() == "User")
+                    else
                     {
-                        Billingform Bill = new Billingform();
-                        Bill.Show();
-
-                        UserName.Text = "UserName";
-                        maskedTextBox1.Text = "Password";
+                        MessageBox.Show("password is Empty");
                     }
-
                 }
                 else
-               
-                    MessageBox.Show("PASSWORD is WRONG!!!!!");
-                
+                {
+                    MessageBox.Show("Please Enter CORRECT Username");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Username is Empty");
             }
 
-            else
-                MessageBox.Show("USERNAME is INCORRECT!!!!!");
+
         }
 
         private void UserName_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)

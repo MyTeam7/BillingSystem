@@ -19,6 +19,7 @@ namespace billing_system
 
         public object obj; //variable for hold currnt form instance
         public string user_name;
+        public Login log;
 
 
         public Billingform()
@@ -28,10 +29,11 @@ namespace billing_system
             obj = this;
         }
 
-        public Billingform(string user)
+        public Billingform(string user, Login log)
         {
             InitializeComponent();
 
+            this.log = log;
             obj = this;
             user_name = user;
 
@@ -475,7 +477,7 @@ namespace billing_system
 
         public void reload()
         {
-            Billingform bf = new Billingform(user_name);
+            Billingform bf = new Billingform(user_name,log);
             bf.Show();
             this.Close();
         }
